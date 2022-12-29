@@ -1,14 +1,40 @@
 import './App.css';
 import { playableClasses, playableRazes, playlist } from "./resources.js"
+import { useState } from "react";
+
+import { DisplayScreen } from './components/DisplayScreen/DisplayScreen';
 
 function App() {
-  console.log(playableClasses, playableRazes, playlist)
+
+  const[gender, setGender] = useState("male")
+  const[raze, setRaze] = useState({})
+
+  const useSelectRaze = (e) => {
+    setRaze(
+      playableRazes.find( (pRaze) => 
+        pRaze.razeName === e.target.id
+      )
+      
+    )
+    console.log(raze)
+  } 
+
+  const useSelectGender = () => {
+    const genderSelector = document.getElementById("genderFemale")
+    genderSelector.checked ? setGender("female") : setGender("male")
+    console.log(gender)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Pathfinder Cosmos Quest</h1>
-      </header>
-    </div>
+    <>
+      <DisplayScreen
+       playableRazes={playableRazes} 
+       gender={gender} 
+       useSelectGender={useSelectGender}
+       
+       raze={raze}
+       useSelectRaze={useSelectRaze}/>
+    </>
   );
 }
 

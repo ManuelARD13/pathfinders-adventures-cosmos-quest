@@ -360,6 +360,7 @@ playlist.push(dwarfsAudio)
 
 /*Constructors*/
 const createNewRaze = (razeName, razeSkills, razeLore, razeMusicBK, razeBKImg, razeImgFemale, razeImgMale, availableClassesObj, dualRaze=false) => ({
+    key: razeName,
     razeName: razeName,
     razeSkills: razeSkills,
     razeLore: razeLore,
@@ -484,7 +485,7 @@ const elfAvailableClasses = {
         warlock
     ]
 }
-const elf = createNewRaze("elf", ["Mystical Perception", "Blood Linage Wisdom"], "Lorem Ipsumx100", elfsAudio, new Image().src="https://i.imgur.com/SylK7Kb.png", "img/elffemale.png", "img/elfmale.png", elfAvailableClasses, true)
+const elf = createNewRaze("elf", ["Mystical Perception", "Blood Linage Wisdom"], "Lorem Ipsumx100", elfsAudio, new Image().src="https://i.imgur.com/SylK7Kb.png", "https://i.imgur.com/ldlwtYl.png", "https://i.imgur.com/jY083KY.png", elfAvailableClasses, true)
 playableRazes.push(elf)
 
 const orcAvailableClasses = {
@@ -514,7 +515,7 @@ const orcAvailableClasses = {
     ]
 }
 
-const orc = createNewRaze("orc", ["Brutal Intimidation", "Beast's Authority"], "Lorem Ipsum", orcsAudio, new Image().src="img/orcgrimmBastion.png","img/orcfemale.png", "https://i.imgur.com/BHSVxDH.png", orcAvailableClasses, true)
+const orc = createNewRaze("orc", ["Brutal Intimidation", "Beast's Authority"], "Lorem Ipsum", orcsAudio, new Image().src="img/orcgrimmBastion.png", "https://i.imgur.com/5iPKo3V.png", "https://i.imgur.com/BHSVxDH.png", orcAvailableClasses, true)
 playableRazes.push(orc)
 
 const humanAvailableClasses = {
@@ -554,7 +555,7 @@ const humanAvailableClasses = {
     ]
 }
 
-const human = createNewRaze("human", ["Weapon Proficiency", "General's Leadership"], "Lorem ipsum", humansAudio, new Image().src="img/ellukiaDowntowns.png", "img/humanfemale.png", "img/humanmale.png", humanAvailableClasses, true)
+const human = createNewRaze("human", ["Weapon Proficiency", "General's Leadership"], "Lorem ipsum", humansAudio, new Image().src="img/ellukiaDowntowns.png", "https://i.imgur.com/GfgzOBw.png", "https://i.imgur.com/fgt8E0D.png", humanAvailableClasses, true)
 playableRazes.push(human)
 
 const dwarfAvailableClasses = {
@@ -581,7 +582,7 @@ const dwarfAvailableClasses = {
     ]
 }
 
-const dwarf = createNewRaze("dwarf", [], "lorem ipsum", dwarfsAudio, new Image().src="img/fareastIronFederation.png", "img/dwarffemale.png", "img/dwarfmale.png", dwarfAvailableClasses, true)
+const dwarf = createNewRaze("dwarf", [], "lorem ipsum", dwarfsAudio, new Image().src="img/fareastIronFederation.png", "https://i.imgur.com/ZyqGfTo.png", "https://i.imgur.com/pHbKy9T.png", dwarfAvailableClasses, true)
 playableRazes.push(dwarf)
 
 export { playableClasses, playableRazes, playlist }
