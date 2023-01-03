@@ -1,9 +1,22 @@
 import React from "react";
 
-function ClassesSelector({ setSelectionStage, raze, gender, useSelectClass }) {
+function ClassesSelector({ setScreen, setSelectionStage, raze, gender, useSelectClass, setCharacterClass, useScreenChange }) {
+    
     return (
         <>
-        <div>hola
+        <div>
+            <input type={"button"} value="Return" onClick={() => {
+                setCharacterClass(null)
+                setSelectionStage("razes")
+                }} />
+            <p>Choose your class</p>
+            <div>
+                <ul>
+                    <li>CON</li>
+                    <li>CON</li>
+                    <li>CON</li>
+                </ul>
+            </div>
             {
                gender === "male" ? 
                 raze.availableClasses.male.map((pClass) => 
@@ -20,7 +33,7 @@ function ClassesSelector({ setSelectionStage, raze, gender, useSelectClass }) {
                     </>
                 )
             }
-            <input type="button" className="continueButton" value="Comfirm Selections" onClick={() => setSelectionStage("razes")} />
+            <input type="button" className="continueButton" value="Comfirm Selections" onClick={() => setScreen("DiceRoll")} />
         </div>
         <div>
           <p>class Descrtition</p>

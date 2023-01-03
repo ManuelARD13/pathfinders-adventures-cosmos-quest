@@ -1,8 +1,8 @@
 import React from "react";
 
 function BrandingDisplay( { setScreen } ){
-    const screenChange = (screen) => setScreen(screen)
-    setTimeout(() => screenChange("MainMenuScreen"), 14000)
+    // const screenChange = (screen) => setScreen(screen)
+    // setTimeout(() => screenChange("MainMenuScreen"), 14000)
     return(
     <section id="branding" className="fade-out">
         <div>

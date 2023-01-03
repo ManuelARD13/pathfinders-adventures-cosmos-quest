@@ -6,6 +6,7 @@ import { DisplayScreen } from './components/DisplayScreen/DisplayScreen';
 import { StartScreen } from './components/StartScreen/StartScreen';
 import { BrandingDisplay } from './components/BrandingDisplay/BrandingDisplay';
 import { MainMenu } from './components/MainMenu/MainMenu';
+import { DiceRoll } from './components/DiceRoll/DiceRoll';
 
 function App() {
 
@@ -27,6 +28,9 @@ function App() {
 
   const [characterImg, setCharacterImg] = useState("https://i.imgur.com/aryfPBv.png")
 
+  const [diceRolled, setDiceRolled] = useState(false)
+  const [reRolledCount, setReRolledCount] = useState(3)
+
   useEffect(() => {
     if(!characterClass){
       setCharacterImg(gender === "male" ? raze.razeImgMale : raze.razeImgFemale)
@@ -46,29 +50,6 @@ function App() {
          }
     }
   }, [gender, raze, characterClass])
-
-  // const useSetImg = () => {
-  //   if(characterClass === {}) {
-  //     if(raze === {}){
-  //       setCharacterImg("")
-  //     } else {
-  //       gender === "male" ? setCharacterImg(raze.razeImgMale) : setCharacterImg(raze.razeImgFemale) 
-  //     }
-  //   } else {
-  //     if(raze.razeName === "human"){
-  //       setCharacterImg(gender === "male" ? characterClass.classImg.human.male :
-  //       characterClass.classImg.human.female)
-  //     } else if(raze.razeName === "elf"){
-  //       setCharacterImg(gender === "male" ? characterClass.classImg.elf.male :
-  //       characterClass.classImg.elf.female)
-  //     } else if (raze.razeName === "orc") {
-  //       setCharacterImg(gender === "male" ? characterClass.classImg.orc.male :
-  //       characterClass.classImg.orc.female)
-  //     } else if (raze.razeName === "dwarf") {
-  //       setCharacterImg(gender === "male" ? characterClass.classImg.dwarf.male : 
-  //       characterClass.classImg.dwarf.female)
-  //     }
-  //   }}
 
   const useSelectGender = () => {
     const genderSelector = document.getElementById("genderFemale")
@@ -113,14 +94,22 @@ function App() {
         useSelectRaze={useSelectRaze}
 
         characterClass={characterClass}
+        setCharacterClass={setCharacterImg}
         useSelectClass={useSelectClass}
 
         characterImg={characterImg}
         useEffect={useEffect}
         
-        useScreenChange={setScreen} />
+        setScreen={setScreen} />
 
        : null}
+       {screen === "DiceRoll" ? 
+        <DiceRoll diceRolled={diceRolled} 
+                  setDiceRolled={setDiceRolled}
+                  reRolledCount={reRolledCount}
+                  setReRolledCount={setReRolledCount}
+                  setScreen={setScreen} 
+        />: null}
     </>
   );
 }
