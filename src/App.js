@@ -7,19 +7,26 @@ import { StartScreen } from './components/StartScreen/StartScreen';
 import { BrandingDisplay } from './components/BrandingDisplay/BrandingDisplay';
 import { MainMenu } from './components/MainMenu/MainMenu';
 import { DiceRoll } from './components/DiceRoll/DiceRoll';
+import { CharacterProfile } from './components/CharacterProfile/CharacterProfile';
+import { Greetings } from './components/Greetings/Greetings';
+import { LoadGame } from './components/LoadGame/LoadGame';
+import { LoadedCharacterProfile } from './components/LoadedCharacterProfile/LoadedCharacterProfile';
 
 function App() {
 
   /*Functions*/
 
-  const createPlayerId = () => {
-    let num = "00" + Math.floor(Math.random() * 100)
-    return num
-  }
+  
 
   /*States & Hooks*/
   const [screen, setScreen] = useState("StartScreen")
+
+  const [savedCharacters, setSavedCharacters] = useState([])
+  const [character, setCharacter] = useState({})
+
   const [selectionStage, setSelectionStage] = useState("razes")
+
+  const [characterName, setCharacterName] = useState("")
 
   const[gender, setGender] = useState("male")
   const[raze, setRaze] = useState({})
@@ -30,26 +37,7 @@ function App() {
 
   const [diceRolled, setDiceRolled] = useState(false)
   const [reRolledCount, setReRolledCount] = useState(3)
-
-  useEffect(() => {
-    if(!characterClass){
-      setCharacterImg(gender === "male" ? raze.razeImgMale : raze.razeImgFemale)
-    } else {
-      if(raze.razeName === "human"){
-           setCharacterImg(gender === "male" ? characterClass.classImg.human.male :
-           characterClass.classImg.human.female)
-         } else if(raze.razeName === "elf"){
-           setCharacterImg(gender === "male" ? characterClass.classImg.elf.male :
-           characterClass.classImg.elf.female)
-         } else if (raze.razeName === "orc") {
-           setCharacterImg(gender === "male" ? characterClass.classImg.orc.male :
-           characterClass.classImg.orc.female)
-         } else if (raze.razeName === "dwarf") {
-           setCharacterImg(gender === "male" ? characterClass.classImg.dwarf.male : 
-           characterClass.classImg.dwarf.female)
-         }
-    }
-  }, [gender, raze, characterClass])
+  const [characterStats, setStats] = useState({})
 
   const useSelectGender = () => {
     const genderSelector = document.getElementById("genderFemale")
@@ -72,45 +60,102 @@ function App() {
     )
   }
 
+  useEffect(() => {
+    if(!characterClass){
+      setCharacterImg(gender === "male" ? raze.razeImgMale : raze.razeImgFemale)
+    } else {
+      if(raze.razeName === "human"){
+           setCharacterImg(gender === "male" ? characterClass.classImg.human.male :
+           characterClass.classImg.human.female)
+         } else if(raze.razeName === "elf"){
+           setCharacterImg(gender === "male" ? characterClass.classImg.elf.male :
+           characterClass.classImg.elf.female)
+         } else if (raze.razeName === "orc") {
+           setCharacterImg(gender === "male" ? characterClass.classImg.orc.male :
+           characterClass.classImg.orc.female)
+         } else if (raze.razeName === "dwarf") {
+           setCharacterImg(gender === "male" ? characterClass.classImg.dwarf.male : 
+           characterClass.classImg.dwarf.female)
+         }
+    }
+  }, [gender, raze, characterClass])
+
   /*Renderization*/
   return (
     <>
-      {screen !== "StartScreen" ?  null : <StartScreen setScreen={setScreen} />}
+      {screen !== "StartScreen" ?  null : <StartScreen setScreen={setScreen} setSavedCharacters={setSavedCharacters}/>}
       {screen === "BrandingScreen" ? <BrandingDisplay setScreen={setScreen} /> : null}
       {screen === "MainMenuScreen" ? <MainMenu  setScreen={setScreen} /> : null}
 
+      { screen === "LoadGameScreen" ? 
+      
+        <LoadGame 
+          savedCharacters={savedCharacters} 
+
+          setCharacter={setCharacter}
+          
+          setScreen={setScreen} /> 
+        : null}
+
+      { screen === "LoadedCharacterScreen" ? 
+        <LoadedCharacterProfile character={character} setScreen={setScreen} /> 
+      : null}
 
       {screen === "CreateCharacterScreen" ?
 
         <DisplayScreen
-        selectionStage={selectionStage}
-        setSelectionStage={setSelectionStage}
+          selectionStage={selectionStage}
+          setSelectionStage={setSelectionStage}
+          
+          characterName={characterName}
+          setCharacterName={setCharacterName}
 
-        playableRazes={playableRazes} 
-        gender={gender} 
-        useSelectGender={useSelectGender}
-        
-        raze={raze}
-        useSelectRaze={useSelectRaze}
+          gender={gender} 
+          useSelectGender={useSelectGender}
 
-        characterClass={characterClass}
-        setCharacterClass={setCharacterImg}
-        useSelectClass={useSelectClass}
+          playableRazes={playableRazes}
+          raze={raze}
+          useSelectRaze={useSelectRaze}
 
-        characterImg={characterImg}
-        useEffect={useEffect}
-        
-        setScreen={setScreen} />
+          characterClass={characterClass}
+          setCharacterClass={setCharacterImg}
+          useSelectClass={useSelectClass}
 
-       : null}
+          characterImg={characterImg}
+          
+          setScreen={setScreen} 
+        />
+        : null}
+       
        {screen === "DiceRoll" ? 
-        <DiceRoll diceRolled={diceRolled} 
-                  setDiceRolled={setDiceRolled}
-                  reRolledCount={reRolledCount}
-                  setReRolledCount={setReRolledCount}
-                  setScreen={setScreen} 
-        />: null}
-    </>
+
+        <DiceRoll 
+          diceRolled={diceRolled} 
+          setDiceRolled={setDiceRolled}
+          reRolledCount={reRolledCount}
+          setReRolledCount={setReRolledCount}
+          setStats={setStats}
+
+          setScreen={setScreen} 
+        />
+        : null}
+
+        { screen === "CharacterProfile" ? 
+        
+          <CharacterProfile 
+            characterName={characterName}
+            gender={gender} 
+            raze={raze} 
+            characterClass={characterClass}
+            characterImg={characterImg}
+            characterStats={characterStats}
+            setScreen={setScreen}
+            savedCharacters={savedCharacters} 
+          /> 
+          : null }
+
+          { screen === "Greetings" ? <Greetings /> : null}
+    </> 
   );
 }
 

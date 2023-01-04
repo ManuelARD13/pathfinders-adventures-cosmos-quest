@@ -9,12 +9,13 @@ function MainMenu( { setScreen } ) {
             <form id="mainMenuForm">
                 <input 
                     type="button" 
-                    className="continueButton" 
                     value="New Game" 
-                    id="newGame"
                     onClick={() => setScreen("CreateCharacterScreen")}  
                 />
-                <input type="button" value="Load Game" id="loadGame" />
+                <input 
+                    type="button" 
+                    value="Load Game" 
+                    onClick={() => setScreen("LoadGameScreen")} />
             </form>
         </div>
     </section>

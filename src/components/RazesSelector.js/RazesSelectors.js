@@ -1,11 +1,17 @@
 import React from "react";
 
-function RazesSelector({ setSelectionStage , gender, raze, useSelectRaze, useSelectGender, playableRazes , useDisplayImg}) {
+function RazesSelector({ setSelectionStage , setCharacterName, gender, raze, useSelectRaze, useSelectGender, playableRazes , useDisplayImg}) {
+  
+    const getUserTextInput = (e) => {
+      let characterName = e.target.value
+      setCharacterName(characterName)
+    }
+
     return(
         <>
         <div>
               <legend>Character Name</legend>
-              <input type={"text"} placeholder="Character Name" />
+              <input type={"text"} placeholder="Character Name" onChange={getUserTextInput}/>
 
               <legend>Character Gender</legend>
               <label htmlFor="genderMale">Male</label>

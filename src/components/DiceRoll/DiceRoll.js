@@ -1,6 +1,27 @@
 import React, { useEffect } from "react";
 
-function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, setScreen } ){
+function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, setStats, setScreen } ){
+
+    const createStatsObj = (diceRolls) => ({
+        CON: diceRolls.CONScore,
+        STR: diceRolls.STRScore,
+        DEX: diceRolls.DEXScore,
+        WIS: diceRolls.WISScore,
+        INT: diceRolls.INTScore,
+        CHA: diceRolls.CHAScore,
+
+        characterHeight: ((Math.random().toFixed(2) * 2) + 5)+ " feets",
+
+        // calculateHP: function() {
+        //     calculo de HP WITH CLASS AND CON STATISTICS
+        // },
+
+        // calculateHitDices: function() {
+        //     calculo dados de golpe ON CLASSES
+        // },
+
+        // Investigar demas factores del personaje calculados con sus stats
+    })
 
     const reRollMessage = document.getElementById("reRollMessage")
     const statsScores = Array.from(document.getElementsByClassName("statsScores"))
@@ -19,6 +40,7 @@ function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, 
             stat.innerHTML = statScore
             diceRolls[stat.id] = statScore
         })
+        console.log(diceRolls)
     }, [diceRolled])
     
     const reRollStatDice = (e) => {
@@ -54,6 +76,13 @@ function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, 
                 button.disabled = true
             })
         }
+    }
+
+    const createStats = (diceRolls) => {
+        let stats = createStatsObj(diceRolls)
+        console.log(stats)
+        setStats(stats)
+        setScreen("CharacterProfile")
     }
 
     return(
@@ -109,7 +138,7 @@ function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, 
                     </tbody>
                 </table>
                 <input type="button" value="Roll Dice!" id="buttonDice" onClick={diceRoll} disabled={diceRolled ? true : false} />
-                <input type="button" className="continueButton" value="Continue" id="continueCharacter3" onClick={() => setScreen("characterProfile")} />
+                <input type="button" className="continueButton" value="Continue" id="continueCharacter3" onClick={() => createStats(diceRolls)} />
             </div>
         </section>
     )

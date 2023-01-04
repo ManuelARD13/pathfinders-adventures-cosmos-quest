@@ -372,13 +372,14 @@ const createNewRaze = (razeName, razeSkills, razeLore, razeMusicBK, razeBKImg, r
     availableClasses: availableClassesObj
 })
 
-const createNewClass = (className, classSkills, classLore, classIcon ,imgObj , dualClass=false) => ({
+const createNewClass = (className, classSkills, classLore, classIcon ,imgObj , hitPoints=12, dualClass=false) => ({
     className: className,
     classSkills: classSkills,
     classLore: classLore,
     dualClass: dualClass,
     classIcon: classIcon,
-    classImg: imgObj
+    classImg: imgObj,
+    hitPoints: hitPoints
 })
 
 /*Available Classes*/
