@@ -61,22 +61,27 @@ function App() {
   }
 
   useEffect(() => {
-    if(!characterClass){
+    try{
+      if(!characterClass){
+        setCharacterImg(gender === "male" ? raze.razeImgMale : raze.razeImgFemale)
+      } else {
+        if(raze.razeName === "human"){
+            setCharacterImg(gender === "male" ? characterClass.classImg.human.male :
+            characterClass.classImg.human.female)
+          } else if(raze.razeName === "elf"){
+            setCharacterImg(gender === "male" ? characterClass.classImg.elf.male :
+            characterClass.classImg.elf.female)
+          } else if (raze.razeName === "orc") {
+            setCharacterImg(gender === "male" ? characterClass.classImg.orc.male :
+            characterClass.classImg.orc.female)
+          } else if (raze.razeName === "dwarf") {
+            setCharacterImg(gender === "male" ? characterClass.classImg.dwarf.male : 
+            characterClass.classImg.dwarf.female)
+          }
+      }
+    } catch (error) {
+      console.log(error)
       setCharacterImg(gender === "male" ? raze.razeImgMale : raze.razeImgFemale)
-    } else {
-      if(raze.razeName === "human"){
-           setCharacterImg(gender === "male" ? characterClass.classImg.human.male :
-           characterClass.classImg.human.female)
-         } else if(raze.razeName === "elf"){
-           setCharacterImg(gender === "male" ? characterClass.classImg.elf.male :
-           characterClass.classImg.elf.female)
-         } else if (raze.razeName === "orc") {
-           setCharacterImg(gender === "male" ? characterClass.classImg.orc.male :
-           characterClass.classImg.orc.female)
-         } else if (raze.razeName === "dwarf") {
-           setCharacterImg(gender === "male" ? characterClass.classImg.dwarf.male : 
-           characterClass.classImg.dwarf.female)
-         }
     }
   }, [gender, raze, characterClass])
 
@@ -86,6 +91,19 @@ function App() {
       {screen !== "StartScreen" ?  null : <StartScreen setScreen={setScreen} setSavedCharacters={setSavedCharacters}/>}
       {screen === "BrandingScreen" ? <BrandingDisplay setScreen={setScreen} /> : null}
       {screen === "MainMenuScreen" ? <MainMenu  setScreen={setScreen} /> : null}
+
+      {screen === "DiceRoll" ? 
+
+        <DiceRoll 
+          diceRolled={diceRolled} 
+          setDiceRolled={setDiceRolled}
+          reRolledCount={reRolledCount}
+          setReRolledCount={setReRolledCount}
+          setStats={setStats}
+
+          setScreen={setScreen} 
+        />
+        : null}
 
       { screen === "LoadGameScreen" ? 
       
@@ -122,20 +140,8 @@ function App() {
           useSelectClass={useSelectClass}
 
           characterImg={characterImg}
+          setCharacterImg={setCharacterImg}
           
-          setScreen={setScreen} 
-        />
-        : null}
-       
-       {screen === "DiceRoll" ? 
-
-        <DiceRoll 
-          diceRolled={diceRolled} 
-          setDiceRolled={setDiceRolled}
-          reRolledCount={reRolledCount}
-          setReRolledCount={setReRolledCount}
-          setStats={setStats}
-
           setScreen={setScreen} 
         />
         : null}

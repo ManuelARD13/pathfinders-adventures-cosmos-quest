@@ -1,13 +1,16 @@
 import React from "react";
 import { CharacterImgDisplay } from "../CharacterImgDisplay/CharacterImgDisplay";
 
+import "./LoadedCharacterProfile.css"
+
 function LoadedCharacterProfile({ character, setScreen }) {
     console.log(character)
     return(
-        <section>
-            <div id="characterGeneralInfo">
-                <p id="selectedCharacterGender">{character.gender}</p>
-                <p id="selectedCharacterRazeTittle">{character.raze.razeName}</p>
+        <section className="loadedCharacterProfile" style={{backgroundImage: `url(${character.raze.razeBKImg})`}}>
+            <h2>{character.characterName}</h2>
+            <div className="characterGeneralInfo">
+                <p className="selectedCharacterGender">{character.gender}</p>
+                <p className="selectedCharacterRazeTittle">{character.raze.razeName}</p>
                 <p>Attributes</p>
                 <ul>
                     <li>{"CON: " + character.stats.CON}</li>
@@ -20,17 +23,15 @@ function LoadedCharacterProfile({ character, setScreen }) {
                 <p>Height: {character.stats.characterHeight}</p>
                 <p>Weight: {90 + " Pounds"}</p>
                 <p>Hit Points: {character.characterClass.hitPoints}</p>
-
-
                 <input type="button" className="continueButton" value="Continue" id="continueProfile" onClick={() => setScreen("Greetings")} />
             </div>
-            <div>
-                <h4>{character.name}</h4>
+            <div className="displayImgContainer">
                 <CharacterImgDisplay characterImg={character.characterImg}/>
             </div>
-            <div id="characterSkillsInfo">
+            <div className="characterSkillsInfo">
+            <img src={character.characterClass.classIcon} alt={character.characterClass.className + " Logo"}/>
                 <h4 id="selectedClassName">{character.characterClass.className}</h4>
-                <p id="characterLore">
+                <p className="characterLore">
                     {character.raze.razeLore}
                 </p>
                 <h4>Skills</h4>

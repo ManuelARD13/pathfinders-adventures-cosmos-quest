@@ -2,8 +2,8 @@ import React from "react";
 
 function CharacterImgDisplay( { characterImg }) {
     return(
-        <div>
-            <img src={characterImg} alt="Your Character" />
+        <div className="displayImgContainer">
+            <img src={!characterImg ? "https://i.imgur.com/aryfPBv.png" : characterImg} alt="Your Character" />
         </div>
     )
 }

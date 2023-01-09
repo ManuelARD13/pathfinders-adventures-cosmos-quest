@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "./DiceRoll.css"
 
 function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, setStats, setScreen } ){
 
@@ -28,7 +29,7 @@ function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, 
     const reRollButtons = Array.from(document.getElementsByClassName("reRollButtons"))
     let diceRolls = {}
 
-    const statCalculator = () => Math.floor(Math.random()* 14) + 7 
+    const statCalculator = () => Math.floor(Math.random()* 12) + 7 
 
     const diceRoll = () => {
         setDiceRolled(true)
@@ -40,7 +41,6 @@ function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, 
             stat.innerHTML = statScore
             diceRolls[stat.id] = statScore
         })
-        console.log(diceRolls)
     }, [diceRolled])
     
     const reRollStatDice = (e) => {
@@ -80,65 +80,129 @@ function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, 
 
     const createStats = (diceRolls) => {
         let stats = createStatsObj(diceRolls)
-        console.log(stats)
         setStats(stats)
-        setScreen("CharacterProfile")
+        setScreen("CreateCharacterScreen")
     }
 
     return(
-        <section>
-            <div id="diceRollTableContainer">
-                <p>createCharacter3</p>
-                {diceRolled ? <p id="reRollMessage">Great! Yet you have <span id="reRollDisplay">{reRolledCount}</span> chances to re-roll <br/>
-                    one of the stat's score you have get. Good Luck!<br/></p> : null}
+        <section className="diceRolls">
+            <div className="diceRollTableContainer">
+
+                {diceRolled 
+                    ? <p id="reRollMessage" className="afterRollMessage">Great! Yet you have <span id="reRollDisplay">{reRolledCount}</span> chances to re-roll <br/>one of the stat's score you have get. <br/>Good Luck!</p> 
+
+                    : <p id="reRollMessage" className="beforeRollMessage" >First, generate the statistics for your character. This numbers will help you to make a good choice of skills and proficiencies the character will have.</p>}
+
                 <h4>Roll your dices</h4>
-                <table id="statsTable">
+
+                <table className="statsTable">
                     <tbody>    
                         <tr>
                             <th>Stats</th>
                             <th>Score</th>
-                            <th>Modif.</th>
                         </tr>
                         <tr>
                             <td> CON</td>
                             <td><span id="CONScore" className="statsScores">0</span></td>
-                            <td><span id="CONModif">+0</span></td>
-                            {diceRolled ? <td><input type="button" value="Re-Roll!" className="reRollButtons" id="CON" onClick={reRollStatDice} /></td> : null}
+                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="CON" onClick={reRollStatDice} style={diceRolled ? {opacity: "1"} : {opacity: "0", visibility: "hidden"}}/>
+                            </td>
                         </tr>
                         <tr>
                             <td>STR</td>
                             <td><span id="STRScore" className="statsScores">0</span></td>
-                            <td><span id="STRModif">+0</span></td>
-                            {diceRolled ? <td><input type="button" value="Re-Roll!" className="reRollButtons" id="STR" onClick={reRollStatDice} /></td> : null }
+                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="STR" onClick={reRollStatDice} style={diceRolled ? {opacity: "1"} : {opacity: "0", visibility: "hidden"}}/>
+                            </td>
                         </tr>
                         <tr>
                             <td>DEX</td>
                             <td><span id="DEXScore" className="statsScores">0</span></td>
-                            <td><span id="DEXModif">+0</span></td>
-                            {diceRolled ? <td><input type="button" value="Re-Roll!" className="reRollButtons" id="DEX" onClick={reRollStatDice} /></td> : null }
+                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="DEX" onClick={reRollStatDice} style={diceRolled ? {opacity: "1"} : {opacity: "0", visibility: "hidden"}}/>
+                            </td>
                         </tr>
                         <tr>
                             <td>INT</td>
                             <td><span id="INTScore" className="statsScores"> 0</span></td>
-                            <td><span id="INTModif">+0</span></td>
-                            {diceRolled ?  <td><input type="button" value="Re-Roll!" className="reRollButtons" id="INT" onClick={reRollStatDice} /></td> : null }
+                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="INT" onClick={reRollStatDice} style={diceRolled ? {opacity: "1"} : {opacity: "0", visibility: "hidden"}}/>
+                            </td>
                         </tr>
                         <tr>
                             <td>WIS</td>
                             <td><span id="WISScore" className="statsScores">0</span></td>
-                            <td><span id="WISModif">+0</span></td>
-                            {diceRolled ? <td><input type="button" value="Re-Roll!" className="reRollButtons" id="WIS" onClick={reRollStatDice} /></td> : null }
+                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="WIS" onClick={reRollStatDice} style={diceRolled ? {opacity: "1"} : {opacity: "0", visibility: "hidden"}}/>
+                            </td>
                         </tr>
                         <tr>
                             <td>CHA</td>
                             <td><span id="CHAScore" className="statsScores">0</span></td>
-                            <td><span id="CHAModif">+0</span></td>
-                            {diceRolled ? <td><input type="button" value="Re-Roll!" className="reRollButtons" id="CHA" onClick={reRollStatDice} /></td> : null }
+                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="CHA" onClick={reRollStatDice} style={diceRolled ? {opacity: "1"} : {opacity: "0", visibility: "hidden"}}/>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
-                <input type="button" value="Roll Dice!" id="buttonDice" onClick={diceRoll} disabled={diceRolled ? true : false} />
-                <input type="button" className="continueButton" value="Continue" id="continueCharacter3" onClick={() => createStats(diceRolls)} />
+                <div className="screenButtonsContainer">
+                    <input type="button" value="Return" className="screenButtons" id="continueCharacter3" onClick={() => setScreen("MainMenuScreen")} />
+                    <input type="button" value="Roll Dice!" className="screenButtons" id="buttonDice" onClick={diceRoll} disabled={diceRolled ? true : false} />
+                    <input type="button" value="Continue"  className={diceRolled ? "screenButtons pulsate-fwd" : "screenButtons"} id="continueCharacter3" onClick={() => createStats(diceRolls)} />
+                </div>
+            </div>
+            <div className="statsDescription">
+                <p>
+                    Each character has six ability scores that represent his
+                    character's most basic attributes. They are his raw talent
+                    and prowess. These scores, and the modifiers
+                    they create, affect nearly every aspect of a character's skills
+                    and abilities. Each ability score generally ranges from 3 to
+                    18, although racial bonuses and penalties can alter this; an
+                    average ability score is 10.
+                </p>
+                <h5>Stats Characteristics</h5>
+                <p>
+                    Each ability partially describes your character and affects
+                    some of his actions:
+                </p>
+                <ul>
+                    <li>
+                        <h6>Constitution CON</h6>
+                        Represents your character's health and
+                        stamina. A Constitution bonus increases a character's
+                        hit points, so the ability is important for all classes. 
+                    </li>
+                    <li>
+                        <h6>Strength STR</h6>
+                        Measures muscle and physical power. This ability
+                        is important for those who engage in hand-to-hand combat, 
+                        such as fighters, monks, paladins, and
+                        some rangers.
+                    </li>
+                    <li>
+                        <h6>Dextery DEX</h6>
+                        measures agility, reflexes, and balance. This
+                        ability is the most important one for rogues, but it's also
+                        useful for characters who wear light or medium armor or
+                        no armor at all.
+                    </li>
+                    <li>
+                        <h6>Intelligence INT</h6>
+                        determines how well your character learns
+                        and reasons. This ability is important for wizards because
+                        it affects their spellcasting ability in many ways.
+                    </li>
+                    <li>
+                        <h6>Wisdom WIS</h6>
+                        describes a character's willpower, common sense,
+                        awareness, and intuition. Wisdom is the most important
+                        ability for clerics and druids, and it is also important for
+                        paladins and rangers.
+                    </li>
+                    <li>
+                        <h6>Charism CHA</h6>
+                        measures a character's personality, personal
+                        magnetism, ability to lead, and appearance. It is the most
+                        important ability for paladins, sorcerers, and bards. It
+                        is also important for clerics, since it affects their ability
+                        to channel energy
+                    </li>
+                </ul>
             </div>
         </section>
     )

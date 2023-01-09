@@ -1,6 +1,8 @@
 import React from "react";
 import { CharacterImgDisplay } from "../CharacterImgDisplay/CharacterImgDisplay";
 
+import "./CharacterProfile.css"
+
 function CharacterProfile ( { characterName, gender, raze, characterClass, characterImg, characterStats, setScreen, savedCharacters } ) {
 
     const createPlayerId = () => 
@@ -32,8 +34,9 @@ function CharacterProfile ( { characterName, gender, raze, characterClass, chara
     }
 
     return (
-        <section>
-            <div id="characterGeneralInfo">
+        <section className="characterProfile" style={{backgroundImage: `url(${raze.razeBKImg})`}}>
+            <h2>{characterName}</h2>
+            <div className="characterGeneralInfo">
                 <p id="selectedCharacterGender">{gender}</p>
                 <p id="selectedCharacterRazeTittle">{raze.razeName}</p>
                 <p>Attributes</p>
@@ -51,18 +54,18 @@ function CharacterProfile ( { characterName, gender, raze, characterClass, chara
 
                 <input type="button" className="continueButton" value="Continue" id="continueProfile" onClick={() => finishCharacterProcess(characterName, gender, raze, characterClass, characterImg)} />
             </div>
-            <div>
-                <h4>{characterName}</h4>
+            <div className="displayImgContainer">
+                {/* <h4>{characterName}</h4> */}
                 <CharacterImgDisplay characterImg={characterImg}/>
             </div>
-            <div id="characterSkillsInfo">
+            <div className="characterSkillsInfo">
+                <img src={characterClass.classIcon} />
                 <h4 id="selectedClassName">{characterClass.className}</h4>
-                <p id="characterLore">
+                <p className="characterLore">
                     {raze.razeLore}
                 </p>
-                <h4>Skills</h4>
-                <p id="razeSkills"></p>
-                <ul>
+                <h5>Skills</h5>
+                <ul className="razeSkills">
                     <li>Skill 1</li>
                     <li>Skill 1</li>
                     <li>Skill 1</li>

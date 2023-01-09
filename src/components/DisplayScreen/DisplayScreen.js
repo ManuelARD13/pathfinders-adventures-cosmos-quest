@@ -9,7 +9,17 @@ import "./DisplayScreen.css"
 function DisplayScreen({ setScreen, selectionStage, setSelectionStage, setCharacterName, gender, useSelectGender, playableRazes, raze, useSelectRaze, characterClass, useSelectClass, setCharacterClass, characterImg}){
 
   return(
-      <section>
+      <section 
+        className="displayScreen" 
+        style= {
+          selectionStage === "razes" 
+          ? {
+              backgroundImage: "url('https://i.imgur.com/svtJbZs.jpg')"
+            }
+          : {
+              backgroundImage: `url(${raze.razeBKImg})`
+            }
+        }>
           <h2>Create Your Character</h2>
           {selectionStage === "razes" 
           ? 
