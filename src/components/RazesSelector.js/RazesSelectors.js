@@ -1,10 +1,17 @@
 import React from "react";
 
-function RazesSelector({ setSelectionStage , setCharacterName, gender, raze, useSelectRaze, useSelectGender, playableRazes , useDisplayImg}) {
+function RazesSelector({ setSelectionStage , characterName, setCharacterName, gender, raze, useSelectRaze, useSelectGender, playableRazes , useDisplayImg}) {
   
     const getUserTextInput = (e) => {
       let characterName = e.target.value
       setCharacterName(characterName)
+      let comfirmButton = document.getElementById("comfirmSelections")
+      if(characterName !== "") {
+        comfirmButton.disabled = false
+      } else {
+        comfirmButton.disabled = true
+      }
+      
     }
 
     return(
@@ -35,7 +42,7 @@ function RazesSelector({ setSelectionStage , setCharacterName, gender, raze, use
                     })
               }
               </form>
-              <input type="button" className="continueButton" value="Comfirm Selections" onClick={() => setSelectionStage("classes")} />
+              <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmSelections" onClick={() => setSelectionStage("classes")}  disabled/>
           </div>
           <div>
           <p>{raze.razeLore}</p>

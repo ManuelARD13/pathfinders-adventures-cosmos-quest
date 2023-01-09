@@ -6,7 +6,7 @@ import { ClassesSelector } from "../ClassesSelector/ClassesSelector";
 
 import "./DisplayScreen.css"
 
-function DisplayScreen({ setScreen, selectionStage, setSelectionStage, setCharacterName, gender, useSelectGender, playableRazes, raze, useSelectRaze, characterClass, useSelectClass, setCharacterClass, characterImg}){
+function DisplayScreen({ setScreen, selectionStage, setSelectionStage, characterName, setCharacterName, gender, useSelectGender, playableRazes, raze, useSelectRaze, characterClass, useSelectClass, setCharacterClass, characterImg}){
 
   return(
       <section>
