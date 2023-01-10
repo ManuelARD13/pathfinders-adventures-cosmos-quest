@@ -5,27 +5,27 @@ function RazesSelector({ setSelectionStage , characterName, setCharacterName, ge
     const getUserTextInput = (e) => {
       let characterName = e.target.value
       setCharacterName(characterName)
-      let comfirmButton = document.getElementById("comfirmSelections")
       if(characterName !== "") {
-        comfirmButton.disabled = false
-      } else {
-        comfirmButton.disabled = true
+        const razesRadioSelectors = Array.from(document.getElementsByClassName("razesSelectors"))
+        razesRadioSelectors.forEach((selector) => {
+          selector.disabled = false
+        })
       }
-      
     }
 
     return(
         <>
         <div>
               <legend>Character Name</legend>
-              <input type={"text"} placeholder="Character Name" onChange={getUserTextInput}/>
+              <input type={"text"} placeholder="Character Name" onChange={getUserTextInput} required />
 
               <legend>Character Gender</legend>
+              
+              <input type={"radio"} name="gender" className="genderRadioSelectors" value="male" id="genderMale" onChange={useSelectGender} required />
               <label htmlFor="genderMale">Male</label>
-              <input type={"radio"} name="gender" className="genderRadioSelectors" value="male" id="genderMale" onChange={useSelectGender} />
 
+              <input type={"radio"} name="gender" className="genderRadioSelectors" value="female" id="genderFemale" onChange={useSelectGender} required />
               <label htmlFor="genderFemale">Female</label>
-              <input type={"radio"} name="gender" className="genderRadioSelectors" value="female" id="genderFemale" onChange={useSelectGender} />
 
               <p>Choose your raze</p>
               <form id="formRazes">
@@ -35,14 +35,14 @@ function RazesSelector({ setSelectionStage , characterName, setCharacterName, ge
                     gender === "female" ? url = raze.razeImgFemale : url = raze.razeImgMale
                   return(
                     <>
-                      <input type="radio" name="razes" className="razesSelectors" id={raze.razeName} style={{display: "none"}} onChange={useSelectRaze}/>
+                      <input type="radio" name="razes" className="razesSelectors" id={raze.razeName} style={{display: "none"}} onChange={useSelectRaze} disabled={true} />
                       <label className="razesLabels" htmlFor={raze.razeName} id={`${raze.razeName}Label`}><img src={url} alt={raze.razeName} id={raze.razeName} onClick={useDisplayImg}></img></label>
                       
                     </>)
                     })
               }
               </form>
-              <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmSelections" onClick={() => setSelectionStage("classes")}  disabled/>
+              <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmSelections" disabled />
           </div>
           <div>
           <p>{raze.razeLore}</p>

@@ -33,7 +33,7 @@ function ClassesSelector({ setScreen, setSelectionStage, raze, gender, useSelect
                     </>
                 )
             }
-            <input type="button" className="continueButton" value="Comfirm Selections" onClick={() => setScreen("DiceRoll")} />
+            <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmClass" disabled />
         </div>
         <div>
           <p>class Descrtition</p>

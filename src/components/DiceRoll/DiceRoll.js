@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, setStats, setScreen } ){
+function DiceRoll( {diceRolled, setDiceRolled, setStats, setScreen } ){
 
     const createStatsObj = (diceRolls) => ({
         CON: diceRolls.CONScore,
@@ -27,6 +27,7 @@ function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, 
     const statsScores = Array.from(document.getElementsByClassName("statsScores"))
     const reRollButtons = Array.from(document.getElementsByClassName("reRollButtons"))
     let diceRolls = {}
+    let reRolledCount = 3
 
     const statCalculator = () => Math.floor(Math.random()* 14) + 7 
 
@@ -40,7 +41,6 @@ function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, 
             stat.innerHTML = statScore
             diceRolls[stat.id] = statScore
         })
-        console.log(diceRolls)
     }, [diceRolled])
     
     const reRollStatDice = (e) => {
@@ -52,19 +52,25 @@ function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, 
     
             if(stat === "CON"){
                 diceRolls.CONScore = reRollScore
+                
             } else if(stat === "STR"){
                 diceRolls.STRScore = reRollScore
+                
             } else if(stat === "DEX"){
-                diceRolls.DEXScore = reRollScore 
+                diceRolls.DEXScore = reRollScore
+                 
             } else if(stat === "INT"){
                 diceRolls.INTScore = reRollScore
+                
             } else if(stat === "WIS"){
                 diceRolls.WISScore = reRollScore
+                
             } else if(stat === "CHA"){
                 diceRolls.CHAScore = reRollScore
+                
             }
     
-            setReRolledCount(reRolledCount--)
+            reRolledCount--
             updateReRolls() 
         } 
     }
@@ -75,12 +81,12 @@ function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, 
             reRollButtons.forEach((button) => {
                 button.disabled = true
             })
-        }
+        } else reRollMessage.innerHTML = `Great! Yet you have ${reRolledCount} chances to re-roll one of the stat's score you have get. Good Luck!`
     }
 
     const createStats = (diceRolls) => {
+        console.log(diceRolls)
         let stats = createStatsObj(diceRolls)
-        console.log(stats)
         setStats(stats)
         setScreen("CharacterProfile")
     }
@@ -89,8 +95,9 @@ function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, 
         <section>
             <div id="diceRollTableContainer">
                 <p>createCharacter3</p>
-                {diceRolled ? <p id="reRollMessage">Great! Yet you have <span id="reRollDisplay">{reRolledCount}</span> chances to re-roll <br/>
-                    one of the stat's score you have get. Good Luck!<br/></p> : null}
+                <p id="reRollMessage">{
+                diceRolled ? `Great! Yet you have ${reRolledCount} chances to re-roll one of the stat's score you have get. Good Luck!` : null
+                }</p>
                 <h4>Roll your dices</h4>
                 <table id="statsTable">
                     <tbody>    
