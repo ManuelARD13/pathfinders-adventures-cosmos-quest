@@ -1,5 +1,6 @@
 import React from "react";
 import { CharacterImgDisplay } from "../CharacterImgDisplay/CharacterImgDisplay";
+import { StatsList } from "../StatsList/StatsList";
 
 import "./CharacterProfile.css"
 
@@ -7,11 +8,14 @@ function CharacterProfile ( { characterName, gender, raze, characterClass, chara
 
     const createPlayerId = () => 
         "00" + Math.floor(Math.random() * 100)
+
+    const createTimeStamp = () => new Date().toLocaleString()
       
 
     const createNewCharacterObj = (characterName, gender, raze, characterClass, characterImg, stats) => ({
 
         playerId: createPlayerId(),
+        savedTimestamp: createTimeStamp(),
         characterName: characterName,
         gender: gender,
         raze: raze,
@@ -22,7 +26,6 @@ function CharacterProfile ( { characterName, gender, raze, characterClass, chara
 
     const finishCharacterProcess = () => {
         let usersCharacter = createNewCharacterObj(characterName, gender, raze, characterClass, characterImg, characterStats)
-        console.log(usersCharacter)
         saveCharacter(usersCharacter)
         setScreen("Greetings")
     }
@@ -40,14 +43,15 @@ function CharacterProfile ( { characterName, gender, raze, characterClass, chara
                 <p id="selectedCharacterGender">{gender}</p>
                 <p id="selectedCharacterRazeTittle">{raze.razeName}</p>
                 <p>Attributes</p>
-                <ul>
+                <StatsList characterStats={characterStats} raze={raze} />
+                {/* <ul>
                     <li>{"CON: " + characterStats.CON}</li>
                     <li>{"STR: " + characterStats.STR}</li>
                     <li>{"DEX: " + characterStats.DEX}</li>
                     <li>{"INT: " + characterStats.INT}</li>
                     <li>{"WIS: " + characterStats.WIS}</li>
                     <li>{"CHA: " + characterStats.CHA}</li>
-                </ul>
+                </ul> */}
                 <p>Height: {characterStats.characterHeight}</p>
                 <p>Weight: {90 + " Pounds"}</p>
                 <p>Hit Point: {characterClass.hitPoints}</p>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./DiceRoll.css"
 
-function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, setStats, setScreen } ){
+function DiceRoll( {diceRolled, setDiceRolled, characterStats, setStats, setScreen } ){
 
     const createStatsObj = (diceRolls) => ({
         CON: diceRolls.CONScore,
@@ -28,6 +28,7 @@ function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, 
     const statsScores = Array.from(document.getElementsByClassName("statsScores"))
     const reRollButtons = Array.from(document.getElementsByClassName("reRollButtons"))
     let diceRolls = {}
+    let reRolledCount = 3
 
     const statCalculator = () => Math.floor(Math.random()* 12) + 7 
 
@@ -52,19 +53,25 @@ function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, 
     
             if(stat === "CON"){
                 diceRolls.CONScore = reRollScore
+                
             } else if(stat === "STR"){
                 diceRolls.STRScore = reRollScore
+                
             } else if(stat === "DEX"){
-                diceRolls.DEXScore = reRollScore 
+                diceRolls.DEXScore = reRollScore
+                 
             } else if(stat === "INT"){
                 diceRolls.INTScore = reRollScore
+                
             } else if(stat === "WIS"){
                 diceRolls.WISScore = reRollScore
+                
             } else if(stat === "CHA"){
                 diceRolls.CHAScore = reRollScore
+                
             }
     
-            setReRolledCount(reRolledCount--)
+            reRolledCount--
             updateReRolls() 
         } 
     }
@@ -75,24 +82,22 @@ function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, 
             reRollButtons.forEach((button) => {
                 button.disabled = true
             })
-        }
+        } else reRollMessage.innerHTML = `Great! Yet you have ${reRolledCount} chances to re-roll one of the stat's score you have get. Good Luck!`
     }
 
     const createStats = (diceRolls) => {
+     
         let stats = createStatsObj(diceRolls)
         setStats(stats)
         setScreen("CreateCharacterScreen")
+        
     }
 
     return(
         <section className="diceRolls">
             <div className="diceRollTableContainer">
-
-                {diceRolled 
-                    ? <p id="reRollMessage" className="afterRollMessage">Great! Yet you have <span id="reRollDisplay">{reRolledCount}</span> chances to re-roll <br/>one of the stat's score you have get. <br/>Good Luck!</p> 
-
-                    : <p id="reRollMessage" className="beforeRollMessage" >First, generate the statistics for your character. This numbers will help you to make a good choice of skills and proficiencies the character will have.</p>}
-
+              
+                <p id="reRollMessage">3 chances</p>
                 <h4>Roll your dices</h4>
 
                 <table className="statsTable">
@@ -104,38 +109,32 @@ function DiceRoll( {diceRolled, setDiceRolled, reRolledCount, setReRolledCount, 
                         <tr>
                             <td> CON</td>
                             <td><span id="CONScore" className="statsScores">0</span></td>
-                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="CON" onClick={reRollStatDice} style={diceRolled ? {opacity: "1"} : {opacity: "0", visibility: "hidden"}}/>
-                            </td>
+                            {diceRolled ? <td><input type="button" value="Re-Roll!" className="reRollButtons" id="CON" onClick={reRollStatDice} /></td> : null}
                         </tr>
                         <tr>
                             <td>STR</td>
                             <td><span id="STRScore" className="statsScores">0</span></td>
-                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="STR" onClick={reRollStatDice} style={diceRolled ? {opacity: "1"} : {opacity: "0", visibility: "hidden"}}/>
-                            </td>
+                            {diceRolled ? <td><input type="button" value="Re-Roll!" className="reRollButtons" id="STR" onClick={reRollStatDice} /></td> : null }
                         </tr>
                         <tr>
                             <td>DEX</td>
                             <td><span id="DEXScore" className="statsScores">0</span></td>
-                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="DEX" onClick={reRollStatDice} style={diceRolled ? {opacity: "1"} : {opacity: "0", visibility: "hidden"}}/>
-                            </td>
+                            {diceRolled ? <td><input type="button" value="Re-Roll!" className="reRollButtons" id="DEX" onClick={reRollStatDice} /></td> : null }
                         </tr>
                         <tr>
                             <td>INT</td>
                             <td><span id="INTScore" className="statsScores"> 0</span></td>
-                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="INT" onClick={reRollStatDice} style={diceRolled ? {opacity: "1"} : {opacity: "0", visibility: "hidden"}}/>
-                            </td>
+                            {diceRolled ?  <td><input type="button" value="Re-Roll!" className="reRollButtons" id="INT" onClick={reRollStatDice} /></td> : null }
                         </tr>
                         <tr>
                             <td>WIS</td>
                             <td><span id="WISScore" className="statsScores">0</span></td>
-                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="WIS" onClick={reRollStatDice} style={diceRolled ? {opacity: "1"} : {opacity: "0", visibility: "hidden"}}/>
-                            </td>
+                            {diceRolled ? <td><input type="button" value="Re-Roll!" className="reRollButtons" id="WIS" onClick={reRollStatDice} /></td> : null }
                         </tr>
                         <tr>
                             <td>CHA</td>
                             <td><span id="CHAScore" className="statsScores">0</span></td>
-                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="CHA" onClick={reRollStatDice} style={diceRolled ? {opacity: "1"} : {opacity: "0", visibility: "hidden"}}/>
-                            </td>
+                            {diceRolled ? <td><input type="button" value="Re-Roll!" className="reRollButtons" id="CHA" onClick={reRollStatDice} /></td> : null }
                         </tr>
                     </tbody>
                 </table>

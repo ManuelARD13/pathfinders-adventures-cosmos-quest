@@ -1,5 +1,6 @@
 import './App.css';
 import { playableClasses, playableRazes, playlist } from "./resources.js"
+import { React } from 'react';
 import { useState, useEffect } from "react";
 
 import { DisplayScreen } from './components/DisplayScreen/DisplayScreen';
@@ -29,19 +30,27 @@ function App() {
   const [characterName, setCharacterName] = useState("")
 
   const[gender, setGender] = useState("male")
-  const[raze, setRaze] = useState({})
+  const[raze, setRaze] = useState("")
 
   const[characterClass, setcharacterClass] = useState(undefined)
 
   const [characterImg, setCharacterImg] = useState("https://i.imgur.com/aryfPBv.png")
 
   const [diceRolled, setDiceRolled] = useState(false)
-  const [reRolledCount, setReRolledCount] = useState(3)
+  
   const [characterStats, setStats] = useState({})
 
   const useSelectGender = () => {
-    const genderSelector = document.getElementById("genderFemale")
-    genderSelector.checked ? setGender("female") : setGender("male")
+    const genderFemaleSelector = document.getElementById("genderFemale")
+    const genderMaleSelector = document.getElementById("genderMale")
+
+    const applyGender = ( gender )  => {
+      setGender(gender)
+      genderMaleSelector.checked= true
+    }
+
+    genderFemaleSelector.checked ? setGender("female") : applyGender("male") 
+
   }
 
   const useSelectRaze = (e) => {
@@ -50,6 +59,11 @@ function App() {
         pRaze.razeName === e.target.id
       )
     )
+    if(characterName !== ""){
+      const comfirmButton = document.getElementById("comfirmSelections")
+      comfirmButton.disabled = false
+      comfirmButton.addEventListener("click", () => setSelectionStage("classes"))
+    }
   } 
 
   const useSelectClass = (e) => {
@@ -58,6 +72,9 @@ function App() {
         pClass.className === e.target.id
       )
     )
+    const comfirmButton = document.getElementById("comfirmClass")
+    comfirmButton.disabled = false
+    comfirmButton.addEventListener("click", () => setScreen("CharacterProfile"))
   }
 
   useEffect(() => {
@@ -85,6 +102,7 @@ function App() {
     }
   }, [gender, raze, characterClass])
 
+
   /*Renderization*/
   return (
     <>
@@ -97,13 +115,13 @@ function App() {
         <DiceRoll 
           diceRolled={diceRolled} 
           setDiceRolled={setDiceRolled}
-          reRolledCount={reRolledCount}
-          setReRolledCount={setReRolledCount}
+  
+          characterStats={characterStats}
           setStats={setStats}
 
           setScreen={setScreen} 
         />
-        : null}
+      : null} 
 
       { screen === "LoadGameScreen" ? 
       
@@ -124,6 +142,8 @@ function App() {
         <DisplayScreen
           selectionStage={selectionStage}
           setSelectionStage={setSelectionStage}
+
+          characterStats={characterStats}
           
           characterName={characterName}
           setCharacterName={setCharacterName}
@@ -145,7 +165,7 @@ function App() {
           setScreen={setScreen} 
         />
         : null}
-
+    
         { screen === "CharacterProfile" ? 
         
           <CharacterProfile 
