@@ -51,9 +51,10 @@ function RazesSelector({ setCharacterName, gender, raze, characterStats ,useSele
           <p>{raze.razeLore}</p>
           <p>Raze Skills</p>
           <ul>
-            {raze.razeSkills.map((skill) =>
+            {raze !== "" ?
+            raze.razeSkills.map((skill) =>
                 <li key={skill}>{skill}</li>
-            )}
+            ): ""}
           </ul>
         </div>
         </>

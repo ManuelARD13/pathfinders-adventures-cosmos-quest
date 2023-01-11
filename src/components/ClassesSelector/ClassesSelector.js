@@ -32,15 +32,26 @@ function ClassesSelector({ setSelectionStage, gender, raze, characterClass, useS
             <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmClass" disabled />
         </div>
         <div>
-          <p>{characterClass.className[0].toUpperCase() + characterClass.className.substring(1)}</p>
           <p>
-            {characterClass.classLore}
+            {
+                characterClass !== undefined ?
+                characterClass.className[0].toUpperCase() + characterClass.className.substring(1) 
+                : ""
+            }
+          </p>
+          <p>
+            {
+                characterClass !== undefined ?
+                characterClass.classLore 
+                : ""
+            }
           </p>
           <p>Class Skills</p>
           <ul>
-            {characterClass.classSkills.map((skill) =>
+            { characterClass !== undefined ?
+            characterClass.classSkills.map((skill) =>
                 <li key={skill}>{skill}</li>
-            )}
+            ): ""}
           </ul>
         </div>
         </>

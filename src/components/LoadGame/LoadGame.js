@@ -15,12 +15,11 @@ function LoadGame ( { savedCharacters, setCharacter, setScreen} ) {
     }
 
     return(
-        <section id="loadingGameScreen">
-            <div>
+        <section className="loadingGameScreen">
+            <div className="LoadingGameSection">
                 <p>Load Game</p>
-                <input type="button" className="returnButton returnMainMenu" value="Return" onClick={() => setScreen("MainMenuScreen")} />
-                <input type="button" className="continueButton" value="Continue" id="continueLoadGame" onClick={() => setScreen("LoadedCharacterScreen")}/>
-            </div>
+                <div className="loadGameMenu">
+            
             {
                 savedCharacters.map((character) =>
                 <>
@@ -28,14 +27,19 @@ function LoadGame ( { savedCharacters, setCharacter, setScreen} ) {
                         <h4>{character.characterName}</h4>
                         <img src={character.characterImg} alt={character.playerId + character.name} />
                     </div>
-                    <div>
-                        <img src={character.characterClass.classIcon}></img>
+                    <div className="userDetails">
                         <p>Player ID:&nbsp;{character.playerId}</p>
                         <p>Created:&nbsp;{character.savedTimestamp}</p>
-                        <StatsList characterStats={character.stats} raze={character.raze} />
                     </div>
-                    <div>
+                    <div className="statsList">
+                        <StatsList  characterStats={character.stats} raze={character.raze} />
+                    </div>
+                    
+                    <div className="characterDescription">
                         <p>{character.raze.razeLore}</p>
+                    </div>
+                    <div className="characterLogo">
+                        <img src={character.characterClass.classIcon}></img>
                     </div>
                     <div>
                         <input type={"radio"} className="selectionBox" name="savedCharacters" id={character.characterName} onChange={useSelectCharacter}/>
@@ -43,6 +47,10 @@ function LoadGame ( { savedCharacters, setCharacter, setScreen} ) {
                 </> 
                 )
             }
+            </div>
+            <input type="button" className="returnButton returnMainMenu" value="Return" onClick={() => setScreen("MainMenuScreen")} />
+                <input type="button" className="continueButton" value="Continue" id="continueLoadGame" onClick={() => setScreen("LoadedCharacterScreen")}/>
+            </div>
         </section>
     )
 }

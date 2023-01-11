@@ -105,6 +105,19 @@ function App() {
       {screen === "BrandingScreen" ? <BrandingDisplay setScreen={setScreen} /> : null}
       {screen === "MainMenuScreen" ? <MainMenu  setScreen={setScreen} /> : null}
 
+      {screen === "DiceRoll" ? 
+
+        <DiceRoll 
+          diceRolled={diceRolled} 
+          setDiceRolled={setDiceRolled}
+  
+          characterStats={characterStats}
+          setStats={setStats}
+
+          setScreen={setScreen} 
+        />
+: null} 
+
       { screen === "LoadGameScreen" ? 
       
         <LoadGame 
@@ -146,32 +159,7 @@ function App() {
           setScreen={setScreen} 
         />
         : null}
-       
-        {screen === "DiceRoll" ? 
-
-        <DiceRoll 
-          diceRolled={diceRolled} 
-          setDiceRolled={setDiceRolled}
-          
-          characterStats={characterStats}
-          setStats={setStats}
-
-          setScreen={setScreen} 
-        />
-        : null} 
-        {/* { screen === "diceRoll" ?
-          <DiceRoll 
-            diceRolled={diceRolled} 
-            setDiceRolled={setDiceRolled}
-
-            characterStats={characterStats}
-            setStats={setStats}
-
-            setScreen={setScreen} 
-          /> : null
-        } */}
-        
-
+    
         { screen === "CharacterProfile" ? 
         
           <CharacterProfile 
