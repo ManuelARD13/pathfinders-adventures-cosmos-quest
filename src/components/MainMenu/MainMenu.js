@@ -10,7 +10,7 @@ function MainMenu( { setScreen } ) {
                 <input 
                     type="button" 
                     value="New Game" 
-                    onClick={() => setScreen("CreateCharacterScreen")}  
+                    onClick={() => setScreen("DiceRoll")}  
                 />
                 <input 
                     type="button" 

@@ -1,5 +1,6 @@
 import './App.css';
 import { playableClasses, playableRazes, playlist } from "./resources.js"
+import { React } from 'react';
 import { useState, useEffect } from "react";
 
 import { DisplayScreen } from './components/DisplayScreen/DisplayScreen';
@@ -29,7 +30,7 @@ function App() {
   const [characterName, setCharacterName] = useState("")
 
   const[gender, setGender] = useState("male")
-  const[raze, setRaze] = useState({})
+  const[raze, setRaze] = useState("")
 
   const[characterClass, setcharacterClass] = useState(undefined)
 
@@ -73,7 +74,7 @@ function App() {
     )
     const comfirmButton = document.getElementById("comfirmClass")
     comfirmButton.disabled = false
-    comfirmButton.addEventListener("click", () => setScreen("DiceRoll"))
+    comfirmButton.addEventListener("click", () => setScreen("CharacterProfile"))
   }
 
   useEffect(() => {
@@ -123,6 +124,8 @@ function App() {
         <DisplayScreen
           selectionStage={selectionStage}
           setSelectionStage={setSelectionStage}
+
+          characterStats={characterStats}
           
           characterName={characterName}
           setCharacterName={setCharacterName}
@@ -144,17 +147,30 @@ function App() {
         />
         : null}
        
-       {screen === "DiceRoll" ? 
+        {screen === "DiceRoll" ? 
 
         <DiceRoll 
           diceRolled={diceRolled} 
           setDiceRolled={setDiceRolled}
-       
+          
+          characterStats={characterStats}
           setStats={setStats}
 
           setScreen={setScreen} 
         />
-        : null}
+        : null} 
+        {/* { screen === "diceRoll" ?
+          <DiceRoll 
+            diceRolled={diceRolled} 
+            setDiceRolled={setDiceRolled}
+
+            characterStats={characterStats}
+            setStats={setStats}
+
+            setScreen={setScreen} 
+          /> : null
+        } */}
+        
 
         { screen === "CharacterProfile" ? 
         

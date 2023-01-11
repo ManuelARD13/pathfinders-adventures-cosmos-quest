@@ -1,6 +1,6 @@
 import React from "react";
 
-function ClassesSelector({ setScreen, setSelectionStage, raze, gender, useSelectClass, setCharacterClass, useScreenChange }) {
+function ClassesSelector({ setSelectionStage, gender, raze, characterClass, useSelectClass, setCharacterClass }) {
     
     return (
         <>
@@ -11,11 +11,7 @@ function ClassesSelector({ setScreen, setSelectionStage, raze, gender, useSelect
                 }} />
             <p>Choose your class</p>
             <div>
-                <ul>
-                    <li>CON</li>
-                    <li>CON</li>
-                    <li>CON</li>
-                </ul>
+                    <p>Add Class Stats Calculation...</p>
             </div>
             {
                gender === "male" ? 
@@ -36,10 +32,16 @@ function ClassesSelector({ setScreen, setSelectionStage, raze, gender, useSelect
             <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmClass" disabled />
         </div>
         <div>
-          <p>class Descrtition</p>
+          <p>{characterClass.className[0].toUpperCase() + characterClass.className.substring(1)}</p>
           <p>
-            An elf (pl: elves) is a type of humanoid supernatural being in Germanic mythology and folklore (especially North Germanic mythology and folklore). In medieval Germanic-speaking cultures, elves generally seem to have been thought of as beings with magical powers and supernatural beauty, ambivalent towards everyday people and capable of either helping or hindering them.[1] However, the details of these beliefs have varied considerably over time and space and have flourished in both pre-Christian and Christian cultures.
+            {characterClass.classLore}
           </p>
+          <p>Class Skills</p>
+          <ul>
+            {characterClass.classSkills.map((skill) =>
+                <li key={skill}>{skill}</li>
+            )}
+          </ul>
         </div>
         </>
     )

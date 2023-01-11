@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-function DiceRoll( {diceRolled, setDiceRolled, setStats, setScreen } ){
+function DiceRoll( {diceRolled, setDiceRolled, characterStats, setStats, setScreen } ){
 
     const createStatsObj = (diceRolls) => ({
         CON: diceRolls.CONScore,
@@ -85,10 +85,11 @@ function DiceRoll( {diceRolled, setDiceRolled, setStats, setScreen } ){
     }
 
     const createStats = (diceRolls) => {
-        console.log(diceRolls)
+     
         let stats = createStatsObj(diceRolls)
         setStats(stats)
-        setScreen("CharacterProfile")
+        setScreen("CreateCharacterScreen")
+        
     }
 
     return(

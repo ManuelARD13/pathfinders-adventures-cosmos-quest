@@ -1,6 +1,8 @@
 import React from "react";
 
-function LoadGame ( {savedCharacters, setCharacter, setScreen} ) {
+import { StatsList } from "../StatsList/StatsList.js"
+
+function LoadGame ( { savedCharacters, setCharacter, setScreen} ) {
 
     const useSelectCharacter = () => {
         let loadedCharacters = Array.from(document.getElementsByClassName("selectionBox"))
@@ -27,14 +29,10 @@ function LoadGame ( {savedCharacters, setCharacter, setScreen} ) {
                         <img src={character.characterImg} alt={character.playerId + character.name} />
                     </div>
                     <div>
-                        <ul>
-                            <li key="CON">CON: {character.stats.CON}</li>
-                            <li key="STR">STR: {character.stats.STR}</li>
-                            <li key="DEX">DEX: {character.stats.DEX}</li>
-                            <li key="INT">INT: {character.stats.INT}</li>
-                            <li key="WIS">WIS: {character.stats.WIS}</li>
-                            <li key="CHA">CHA: {character.stats.CHA}</li>
-                        </ul>
+                        <img src={character.characterClass.classIcon}></img>
+                        <p>Player ID:&nbsp;{character.playerId}</p>
+                        <p>Created:&nbsp;{character.savedTimestamp}</p>
+                        <StatsList characterStats={character.stats} raze={character.raze} />
                     </div>
                     <div>
                         <p>{character.raze.razeLore}</p>
