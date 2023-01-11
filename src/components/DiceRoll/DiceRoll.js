@@ -96,8 +96,9 @@ function DiceRoll( {diceRolled, setDiceRolled, characterStats, setStats, setScre
     return(
         <section className="diceRolls">
             <div className="diceRollTableContainer">
-              
-                <p id="reRollMessage">3 chances</p>
+              <p className="beforeRollMessage">First, let's generate your character's stats numbers. They'll be usefull to make a good choice of skills and proficiencies for your character.<br/></p>
+                <p id="reRollMessage" >
+                After roll your dices, you'll have 3 chances to re-roll one stat of your choice.</p>
                 <h4>Roll your dices</h4>
 
                 <table className="statsTable">

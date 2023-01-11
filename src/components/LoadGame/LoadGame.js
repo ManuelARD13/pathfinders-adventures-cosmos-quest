@@ -44,7 +44,7 @@ function LoadGame ( { savedCharacters, setCharacter, setScreen} ) {
                                 <p>{character.raze.razeLore}</p>
                             </div>
                             <div className="characterLogo">
-                                <img src={character.characterClass.classIcon}></img>
+                                <img src={character.characterClass.classIcon} alt="" ></img>
                             </div>
                         </div>
                     </label>

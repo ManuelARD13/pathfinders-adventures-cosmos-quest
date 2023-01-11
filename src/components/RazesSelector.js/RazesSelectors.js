@@ -50,14 +50,20 @@ function RazesSelector({ setCharacterName, gender, raze, characterStats ,useSele
               <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmSelections" disabled />
           </div>
           <div className="displayRazesDescriptionContainer">
-          <p>{raze.razeLore}</p>
-          <p>Raze Skills</p>
-          <ul>
-            {raze !== "" ?
-            raze.razeSkills.map((skill) =>
-                <li key={skill}>{skill}</li>
-            ): ""}
-          </ul>
+          
+          { raze !== "" ?
+            <>
+              <p>{raze.razeLore}</p>
+              <p>Raze Skills</p>
+              <ul>{
+                raze.razeSkills.map((skill) =>
+                    <li key={skill}>{skill}</li>
+                ) }
+              </ul>
+            </> 
+            : <p>Welcome to a world where noble warriors battle mighty dragons and powerful wizards explore long-forgotten tombs. This is a world of fantasy, populated by mysterious elves and savage orcs, wise dwarves and wily gnomes. In this game, your character can become a master swordsman who has never lost a duel, or a skilled thief capable of stealing the crown from atop the king's head. You can play a pious cleric wielding the power of the gods, or unravel the mysteries of magic as an enigmatic sorcerer. The world is here for you to explore, and your actions will have a profound inf luence in shaping its history.</p>
+          }
+          
         </div>
         </>
     )

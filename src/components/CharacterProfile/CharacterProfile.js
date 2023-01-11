@@ -4,12 +4,18 @@ import { StatsList } from "../StatsList/StatsList";
 
 import "./CharacterProfile.css"
 
-function CharacterProfile ( { characterName, gender, raze, characterClass, characterImg, characterStats, setScreen, savedCharacters } ) {
+function CharacterProfile ( { character, setCharacter, characterName, gender, raze, characterClass, characterImg, characterStats, setScreen, savedCharacters } ) {
 
     const createPlayerId = () => 
         "00" + Math.floor(Math.random() * 100)
 
     const createTimeStamp = () => new Date().toLocaleString()
+
+    const HP = raze.razeModifiers.CON + Math.floor( (characterStats.CON - 10) / 2 ) + characterClass.hitPoints
+    const DEF = 10 + raze.razeModifiers.DEX + ( Math.floor((characterStats.DEX - 10) / 2) )
+    const level = 1
+
+    // const calculateWeight = (minWeight, maxWeight) => Math.floor(minWeight + (Math.random() * (maxWeight-minWeight))) 
       
 
     const createNewCharacterObj = (characterName, gender, raze, characterClass, characterImg, stats) => ({
@@ -22,12 +28,20 @@ function CharacterProfile ( { characterName, gender, raze, characterClass, chara
         characterClass: characterClass,
         characterImg: characterImg,
         stats: stats,
+        HP: raze.razeModifiers.CON + Math.floor( (stats.CON - 10) / 2 ) + characterClass.hitPoints,
+        ATK: "1d" + characterClass.hitPoints + " + " + (raze.razeModifiers.STR + ( Math.floor((stats.STR - 10) / 2))),
+        DEF: 10 + raze.razeModifiers.DEX + ( Math.floor((stats.DEX - 10) / 2) ),
+        // weight: gender === "female" ? calculateWeight(120, 210) + " Pounds" : calculateWeight(155, 265) + " Pounds",
+        // height: this.weight < 168 ? ((Math.random * 10) + 5).toFixed(2) : ((Math.random * 10) + 6).toFixed(2),
+        level: 1
     })
 
     const finishCharacterProcess = () => {
         let usersCharacter = createNewCharacterObj(characterName, gender, raze, characterClass, characterImg, characterStats)
         saveCharacter(usersCharacter)
+        setCharacter(usersCharacter)
         setScreen("Greetings")
+        console.log(usersCharacter)
     }
 
     const saveCharacter = (character) => {
@@ -36,13 +50,23 @@ function CharacterProfile ( { characterName, gender, raze, characterClass, chara
         localStorage.setItem("savedCharacters_V1", parsedSavedCharacters)
     }
 
+    
+
     return (
         <section className="characterProfile" style={{backgroundImage: `url(${raze.razeBKImg})`}}>
             <h2>{characterName}</h2>
             <div className="characterGeneralInfo">
                 <p id="selectedCharacterGender">{gender}</p>
                 <p id="selectedCharacterRazeTittle">{raze.razeName}</p>
-                <p>Attributes</p>
+                <p>Lv. {level}</p>
+                <p>HP: {HP}</p>
+                <p>DEF: {DEF}</p>
+                <h5>Raze Skills</h5>
+                <ul className="razeSkills">
+                    {raze.razeSkills.map((skill) =>
+                        <li key={skill}>{skill}</li>
+                    )}
+                </ul>
                 <StatsList characterStats={characterStats} raze={raze} />
                 {/* <ul>
                     <li>{"CON: " + characterStats.CON}</li>
@@ -52,28 +76,24 @@ function CharacterProfile ( { characterName, gender, raze, characterClass, chara
                     <li>{"WIS: " + characterStats.WIS}</li>
                     <li>{"CHA: " + characterStats.CHA}</li>
                 </ul> */}
-                <p>Height: {characterStats.characterHeight}</p>
-                <p>Weight: {90 + " Pounds"}</p>
-                <p>Hit Point: {characterClass.hitPoints}</p>
-
+                {/* <p>Height: {character.height}</p>
+                <p>Weight: {character.weight}</p> */}
                 <input type="button" className="continueButton" value="Continue" id="continueProfile" onClick={() => finishCharacterProcess(characterName, gender, raze, characterClass, characterImg)} />
             </div>
             <div className="displayImgContainer">
-                {/* <h4>{characterName}</h4> */}
                 <CharacterImgDisplay characterImg={characterImg}/>
             </div>
             <div className="characterSkillsInfo">
-                <img src={characterClass.classIcon} />
+                <img src={characterClass.classIcon} alt="" />
                 <h4 id="selectedClassName">{characterClass.className}</h4>
                 <p className="characterLore">
-                    {raze.razeLore}
+                    {characterClass.classLore}
                 </p>
-                <h5>Skills</h5>
-                <ul className="razeSkills">
-                    <li>Skill 1</li>
-                    <li>Skill 1</li>
-                    <li>Skill 1</li>
-                    <li>Skill 1</li>
+                <h5>Class Skills</h5>
+                <ul className="classSkills">
+                    {characterClass.classSkills.map((skill) =>
+                        <li key={skill}>{skill}</li>
+                    )}
                 </ul>
             </div>
         </section>

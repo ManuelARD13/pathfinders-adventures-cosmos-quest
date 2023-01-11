@@ -37,27 +37,27 @@ function ClassesSelector({ setSelectionStage, gender, raze, characterClass, useS
             <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmClass" disabled />
         </div>
         <div className="displayClassesDescriptionContainer">
-          <p>
-            {
-                characterClass !== undefined ?
-                characterClass.className[0].toUpperCase() + characterClass.className.substring(1) 
-                : ""
-            }
-          </p>
-          <p>
-            {
-                characterClass !== undefined ?
-                characterClass.classLore 
-                : ""
-            }
-          </p>
-          <p>Class Skills</p>
-          <ul>
-            { characterClass !== undefined ?
-            characterClass.classSkills.map((skill) =>
-                <li key={skill}>{skill}</li>
-            ): ""}
-          </ul>
+          
+        {
+            characterClass !== undefined ?
+                <>
+                    <p>
+                        {characterClass.className[0].toUpperCase() + characterClass.className.substring(1)} 
+                    </p>
+                    <p>{characterClass.classLore}</p>
+                    <p>Class Skills</p>
+                    <ul>
+                        {
+                            characterClass.classSkills.map((skill) =>
+                                <li key={skill}>{skill}</li>
+                            )
+                        }
+                    </ul>
+                </> 
+                : <p>
+                    The dragon roared in triumph as Valeros collapsed into the snow, blood spurting from the terrible wound in his belly. Kyra rushed to his side, praying that she wasn't too late to save his life. “I'll hold the beast off!” Seoni cried as she stepped up to the dragon, her staff flaring with defensive fire. Merisiel looked to the hulking dragon, then at the delicate sorcerer, and shook her head sadly. The adventure had just barely begun, and judging by this fight alone, they weren't getting paid enough for the job.
+                </p>
+        }
         </div>
         </>
     )

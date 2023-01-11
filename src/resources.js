@@ -389,16 +389,43 @@ const playableClasses = []
 /*playableClasses.push(dragonSlayer)*/
 
 /*Standar Classes */
-const assasin = createNewClass("Assasin", [], "lorem ipsum x 100", "https://i.imgur.com/eKEOTZ3.png", assasinImg)
+const assasin = createNewClass(
+        "Assasin", 
+        ["Stealh Mastery", "Fatal Blow", "Anatomic Acknowledge", "Small Weapons Proficiency"], 
+        
+        "Assasins excel at moving about unseen and catching foes unaware, and tend to avoid head-to-head combat. Their varied skills and abilities allow them to be highly versatile, with great variations in expertise existing between different assasins. Most, however, excel in overcoming hindrances of all types, from unlocking doors and disarming traps to outwitting magical hazards and conning dull-witted opponents.", 
+        
+        "https://i.imgur.com/eKEOTZ3.png", 
+        assasinImg,
+        8
+    )
 playableClasses.push(assasin)
 
-const barbarian = createNewClass("Barbarian", [], "lorem ipsum x 100", "https://i.imgur.com/vVWdxTB.png", barbarianImg)
+const barbarian = createNewClass(
+        "Barbarian", 
+        ["Untamable Rage","Beast Reflexes", "Taunt", "Feral Intimidation"], 
+        
+        "Barbarians excel in combat, possessing the martial prowess and fortitude to take on foes seemingly far superior to themselves. With rage granting them boldness and daring beyond that of most other warriors, barbarians charge furiously into battle and ruin all who would stand in their way.",
+        
+        "https://i.imgur.com/vVWdxTB.png",
+        barbarianImg,
+        12
+     )
 playableClasses.push(barbarian)
 
 const berzerker = createNewClass("Berzerker", [], "lorem ipsum x 100", "https://i.imgur.com/FDuaBg8.png", berzerkerImg)
 playableClasses.push(berzerker)
 
-const caster = createNewClass("Caster", [], "lorem ipsum x 100", "https://i.imgur.com/jBBTATN.png", casterImg)
+const caster = createNewClass(
+        "Caster", 
+        ["Magical Nature", "Arcane Bond", "Arcane Literature", "Arcane School"], 
+        
+        "While some seek to control their abilities through meditation and discipline, becoming masters of their fantastic birthright, others give in to their magic, letting it rule their lives with often explosive results. Regardless, casters live and breathe that which other spellcasters devote their lives to mastering, and for them magic is more than a boon or a field of study; it is life itself. casters excel at casting a selection of favored spells frequently, making them powerful battle mages. As they become familiar with a specific and ever-widening set of spells, casters often discover new and versatile ways of making use of magics other spellcasters might overlook. Their bloodlines also grant them additional abilities, assuring that no two casters are ever quite alike.", 
+        
+        "https://i.imgur.com/jBBTATN.png", 
+        casterImg,
+        6
+    )
 playableClasses.push(caster)
 
 const celestialDefender = createNewClass("Celestial Defender", [], "lorem ipsum x 100", "https://i.imgur.com/fVjIEzp.png", celestialDefenderImg)
@@ -410,7 +437,16 @@ playableClasses.push(crusader)
 const dragonTaimer = createNewClass("Dragon Taimer", [], "lorem ipsum x 100", "https://i.imgur.com/8f6Z4dy.png", dragonTaimerImg)
 playableClasses.push(dragonTaimer)
 
-const fighter = createNewClass("Fighter", [], "lorem ipsum x 100", "https://i.imgur.com/wtpA7oK.png", fighterImg)
+const fighter = createNewClass(
+        "Fighter", 
+        ["Weapon Mastery", "Battle Genius", "Flurry of Blows", "Mindfull Breath"], 
+        
+        "Lords of the battlefield, fighters are a disparate lot, training with many weapons or just one, perfecting the uses of armor, learning the fighting techniques of exotic masters, and studying the art of combat, all to shape themselves into living weapons. Far more than mere thugs, these skilled warriors reveal the true deadliness of their weapons, turning hunks of metal into arms capable of taming kingdoms, slaughtering monsters, and rousing the hearts of armies. Soldiers, knights, hunters, and artists of war, fighters are unparalleled champions, and woe to those who dare stand against them.", 
+        
+        "https://i.imgur.com/wtpA7oK.png",
+        fighterImg,
+        8,
+     )
 playableClasses.push(fighter)
 
 const explorer = createNewClass("Explorer", [], "lorem ipsum x 100", "https://i.imgur.com/F7jpnCj.png", explorerImg)
@@ -431,14 +467,23 @@ playableClasses.push(monk)
 const necromancer = createNewClass("Necromancer", [], "lorem ipsum x 100", "https://i.imgur.com/PBDRvxw.png", necromancerImg)
 playableClasses.push(necromancer)
 
-const paladin = createNewClass("Paladin", [], "lorem ipsum x 100", "https://i.imgur.com/3hL4EQl.png", paladinImg)
+const paladin = createNewClass(
+        "Paladin", 
+        ["Holy Aura", "Evil Vanquisher", "Divine Hands", "Holy Favor"], 
+        
+        "Knights, crusaders, and lawbringers, paladins seek not just to spread divine justice but to embody the teachings of the virtuous deities they serve. In pursuit of their lofty goals, they adhere to ironclad laws of morality and discipline. As reward for their righteousness, these holy champions are blessed with boons to aid them in their quests: powers to banish evil, heal the innocent, and inspire the faithful. Although their convictions might lead them into conflict with the very souls they would save, paladins weather endless challenges of faith and dark temptations, risking their lives to do right and fighting to bring about a brighter future.",
+
+        "https://i.imgur.com/3hL4EQl.png",
+        paladinImg,
+        10
+     )
 playableClasses.push(paladin)
 
 const priest = createNewClass(
     "Priest",
      ["Divine Caster", "Divine Aura", "Deity's Artifact", "Channel Energy"],
 
-     "In faith and the miracles of the divine, many find a greater purpose. Called to serve powers beyond most mortal understanding, all priests preach wonders and provide for the spiritual needs of their people. Clerics are more than mere priests, though; these emissaries of the divine work the will of their deities through strength of arms and the magic of their gods. Devoted to the tenets of the religions and philosophies that inspire them, these ecclesiastics quest to spread the knowledge and inf luence of their faith",
+     "In faith and the miracles of the divine, many find a greater purpose. Called to serve powers beyond most mortal understanding, all priests preach wonders and provide for the spiritual needs of their people. Clerics are more than mere priests, though; these emissaries of the divine work the will of their deities through strength and the magic of their gods. Devoted to the tenets of the religions and philosophies that inspire them, these ecclesiastics quest to spread the knowledge and inf luence of their faith",
 
     "https://i.imgur.com/3R5ShQH.png",
     priestImg,
@@ -446,7 +491,16 @@ const priest = createNewClass(
  )
 playableClasses.push(priest)
 
-const ranger = createNewClass("Ranger", [], "lorem ipsum x 100", "https://i.imgur.com/KvJoPwZ.png", rangerImg)
+const ranger = createNewClass(
+        "Ranger", 
+        ["Favored Foe", "Wild Empathy", "Hunting Mastery", "Animal Instinct "], 
+        
+        "Be they scouts, trackers, or bounty hunters, rangers share much in common: unique mastery of specialized weapons, skill at stalking even the most elusive game, and the expertise to defeat a wide range of quarries. Knowledgeable, patient, and skilled hunters, these rangers hound man, beast, and monster alike, gaining insight into the way of the predator, skill in varied environments, and ever more lethal martial prowess.", 
+        
+        "https://i.imgur.com/KvJoPwZ.png", 
+        rangerImg,
+        10
+    )
 playableClasses.push(ranger)
 
 const rider = createNewClass("Rider", [], "lorem ipsum x 100", "https://i.imgur.com/dK3YbuB.png", riderImg)

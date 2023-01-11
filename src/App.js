@@ -168,7 +168,9 @@ function App() {
     
         { screen === "CharacterProfile" ? 
         
-          <CharacterProfile 
+          <CharacterProfile
+            character= {character}
+            setCharacter={setCharacter} 
             characterName={characterName}
             gender={gender} 
             raze={raze} 
