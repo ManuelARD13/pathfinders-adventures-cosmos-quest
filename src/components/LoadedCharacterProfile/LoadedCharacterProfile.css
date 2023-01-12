@@ -18,7 +18,7 @@
     border-bottom: 3px solid #CCAE27;
 }
 
-.displayImgContainer {
+.loadedCharacterProfile .displayImgContainer {
     grid-column: 2 / 2;
     grid-row: 2 / -1;
     display: flex;
@@ -30,7 +30,7 @@
 } 
 
 
-.characterGeneralInfo {
+.loadedCharacterProfile .characterGeneralInfo {
     grid-column: 1/1;
     grid-row: 2/-1;
     padding: 1.5vw 1vw;
@@ -40,7 +40,7 @@
             animation: slide-in-left 0.7s ease-out both;
 }
 
-.characterSkillsInfo {
+.loadedCharacterProfile .characterSkillsInfo {
     grid-column: 3 / -1;
     grid-row: 2 / -1;
     display: grid;
@@ -56,7 +56,7 @@
 
     overflow: auto;
 }
-
+/* 
 .characterSkillsInfo img {
     display: inline;
     height: 10vh;
@@ -66,9 +66,9 @@
     grid-column: 2/span 3;
     justify-self: baseline;
     padding-left: 0.6vw;
-}
+} */
 
-.characterSkillsInfo .characterLore {
+.loadedCharacterProfile .characterSkillsInfo .characterLore {
     grid-column: 1/-1;
     grid-row: 2/span 5;
     border: 1px solid white;
@@ -76,10 +76,10 @@
     min-width: 25vw;
 } 
 
-.characterSkillsInfo h5 {
+/* .characterSkillsInfo h5 {
     grid-column: 1/-1;
     grid-row: 7/span 1;
-}
+} */
 
 .characterSkillsInfo ul {
     grid-column: 1/-1;

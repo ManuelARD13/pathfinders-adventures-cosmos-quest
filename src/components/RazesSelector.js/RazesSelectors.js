@@ -18,17 +18,17 @@ function RazesSelector({ setCharacterName, gender, raze, characterStats ,useSele
     return(
         <>
         <div className="displayRazesSelectorsContainer">
-              <legend>Character Name</legend>
+              <legend>Your Character Name</legend>
               <input type={"text"} placeholder="Adventurer Name..." onChange={getUserTextInput} required />
 
-              <legend>Character Gender</legend>
-              
-              <input type={"radio"} name="gender" className="genderRadioSelectors" value="male" id="genderMale" onChange={useSelectGender} required />
-              <label htmlFor="genderMale" className="genderLabels" id="maleLabel"></label>
+              <legend>Select Gender</legend>
+              <div className="genderButtons">
+                <input type={"radio"} name="gender" className="genderRadioSelectors" value="male" id="genderMale" onChange={useSelectGender} required />
+                <label htmlFor="genderMale" className="genderLabels" id="maleLabel"></label>
 
-              <input type={"radio"} name="gender" className="genderRadioSelectors" value="female" id="genderFemale" onChange={useSelectGender} required />
-              <label htmlFor="genderFemale" className="genderLabels" id="femaleLabel"></label>
-
+                <input type={"radio"} name="gender" className="genderRadioSelectors" value="female" id="genderFemale" onChange={useSelectGender} required />
+                <label htmlFor="genderFemale" className="genderLabels" id="femaleLabel"></label>
+              </div>
               <StatsList characterStats={characterStats} raze={raze }/>
 
               <p>Choose your raze</p>
@@ -53,17 +53,19 @@ function RazesSelector({ setCharacterName, gender, raze, characterStats ,useSele
           
           { raze !== "" ?
             <>
-              <p>{raze.razeLore}</p>
+              <p className="razeLoreContainer">{raze.razeLore}</p>
               <p>Raze Skills</p>
-              <ul>{
+              <p className="divider"></p>
+              <ul className="razeSkillsList">{
                 raze.razeSkills.map((skill) =>
                     <li key={skill}>{skill}</li>
                 ) }
               </ul>
             </> 
-            : <p>Welcome to a world where noble warriors battle mighty dragons and powerful wizards explore long-forgotten tombs. This is a world of fantasy, populated by mysterious elves and savage orcs, wise dwarves and wily gnomes. In this game, your character can become a master swordsman who has never lost a duel, or a skilled thief capable of stealing the crown from atop the king's head. You can play a pious cleric wielding the power of the gods, or unravel the mysteries of magic as an enigmatic sorcerer. The world is here for you to explore, and your actions will have a profound inf luence in shaping its history.</p>
+            : <p className="noRazeContent">
+                Welcome to a world where noble warriors battle mighty dragons and powerful wizards explore long-forgotten tombs. This is a world of fantasy, populated by mysterious elves and savage orcs, wise dwarves and wily gnomes. In this game, your character can become a master swordsman who has never lost a duel, or a skilled thief capable of stealing the crown from atop the king's head. You can play a pious cleric wielding the power of the gods, or unravel the mysteries of magic as an enigmatic sorcerer. The world is here for you to explore, and your actions will have a profound inf luence in shaping its history.
+              </p>
           }
-          
         </div>
         </>
     )

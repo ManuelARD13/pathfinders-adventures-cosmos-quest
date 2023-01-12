@@ -1,8 +1,21 @@
 .displayRazesSelectorsContainer {
-    padding: 1.5vw 1vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5vw 1vw;
+    background-color: rgba(0,0,0, 0.7);
     border: 2px solid #CCAE27 ;
+    border-radius: 1%;
     -webkit-animation: slide-in-left 0.7s ease-out both;
 	        animation: slide-in-left 0.7s ease-out both;
+}
+
+.displayRazesSelectorsContainer legend {
+  display: inline;
+    align-self: flex-start;
+    margin: 1vh 0px;
+    padding-left: 0.7vw;
+    text-shadow: 0 3px 1px rgba(0,0,0);
 }
 
 input[type="text"] {
@@ -18,16 +31,11 @@ input[type="text"] {
     border: 1px solid #B37A5F;
     border-radius: 1vh;
     font-family: 'MedievalSharp', cursive;
-    font-size: 1rem;
-    font-weight:500;
+    font-size: 1.2rem;
+    font-weight:600;
     font-style: italic;
     line-height: 4vh;
-    color: whitesmoke;
-    text-shadow: 6px 3px 3px #000;
-}
-
-input[type="text"]:focus-within {
-    border: 1px solid #CCAE27;
+    color: rgb(49, 27, 6);
 }
 
 input[type="text"]::placeholder {
@@ -35,11 +43,25 @@ input[type="text"]::placeholder {
     color: rgba(0, 0, 0, 0.685);
 }
 
+.genderButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 2vw;
+  margin: 0 0 1vh 0;
+}
+
 .genderLabels {
   display: inline-block;
   width: 3vw;
   height: 3vw;
-  margin-right: 1vw;
+  transform: scale(1.1);
+  transition: 0.3s ease-out;
+  cursor: pointer;
+}
+
+.genderLabels:hover {
+  transform: scale(1.4);
+  transition: 0.3s ease-out;
 }
 
 .genderRadioSelectors {
@@ -55,6 +77,38 @@ input[type="text"]::placeholder {
   background-size: cover;
 }
 
+.displayRazesSelectorsContainer table {
+  border: 1px solid #CCAE27;
+  padding: 0 1vw 1vh 0;
+  font-size: 0.8rem;
+  margin: 1vh 0;
+  cursor: pointer;
+  user-select: none;
+  transition: 0.3s ease-in-out;
+}
+
+.displayRazesSelectorsContainer table:active {
+  position: relative;
+  left: 10%;
+  transform: scale(1.3);
+  background: rgba(0,0,0, 0.9);
+  transition: 0.3s ease-in-out;
+}
+
+.displayRazesSelectorsContainer .modifiersTable th {
+  font-size: 0.9rem;
+  text-shadow: 0 3px 1px rgba(0,0,0);
+}
+
+.displayRazesSelectorsContainer .modifiersTable td {
+  padding: 0 2vw;
+}
+
+.displayRazesSelectorsContainer p:nth-child(6) {
+  padding: 0.5vh;
+    border-bottom: 1px solid #CCAE27;
+}
+
 .formRazes {
     display: flex;
     flex-direction: row;
@@ -67,11 +121,13 @@ input[type="text"]::placeholder {
     max-width: 6vw;
     transition: 0.2s ease-in;
 }
+
 .formRazes p{
     max-width: 6vw;
     max-height: 6vw;
     display: inline-block;
     align-self: center;
+    text-shadow: 0 3px 1px rgba(0,0,0);
 }
 
 .razesLabels {
@@ -80,6 +136,7 @@ input[type="text"]::placeholder {
     box-sizing: border-box;
     width: 6vw;
     height: 6vw;
+    cursor: pointer;
 }
 
 .razesLabels img {
@@ -95,10 +152,60 @@ input[type="text"]::placeholder {
 }
 
 .displayRazesDescriptionContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
     padding: 1.5vw 1vw;
+    background-color: rgba(0,0,0, 0.4);
     border: 2px solid #CCAE27 ;
+    border-radius: 1%;
     -webkit-animation: slide-in-right 0.7s ease-out both;
                 animation: slide-in-right 0.7s ease-out both;
+}
+
+.displayRazesDescriptionContainer .noRazeContent {
+      font-style: italic;
+      line-height: 1.7rem;
+      font-size: 1.35rem;
+      text-shadow: 0 1px 1px #0000005c;
+}
+
+.displayRazesDescriptionContainer .razeLoreContainer {
+    max-height: 57vh;
+    overflow: auto;
+    margin: 2vh 0.6vw;
+    padding: 1vh 1vw;
+    border: 1px solid #CCAE27;
+    
+}
+
+.displayRazesDescriptionContainer p:nth-child(2) {
+    margin: 1vh 0px;
+    padding-left: 2vw;
+    align-self: baseline;
+    text-shadow: 0 3px 1px rgba(0,0,0);
+}
+
+.divider {
+  border-bottom: 1px solid #CCAE27;
+  width: 90%;
+  margin-bottom: 2vh;
+}
+
+.displayRazesDescriptionContainer .razeSkillsList li {
+  list-style: none;
+  text-shadow: 0 3px 1px rgba(0,0,0);
+  min-width: 23vw;
+  padding: 1vh;
+  margin: 0.5vh;
+  border: 1px solid #CCAE27;
+  background: rgba(0,0,0, 0.9);
+  transition: 0.3s ease-in-out;
+}
+
+.displayRazesDescriptionContainer .razeSkillsList li:hover {
+  transform: scale(1.1);
+  transition: 0.3s ease-in-out;
 }
 
 /* ----------------------------------------------

@@ -1,6 +1,7 @@
 .diceRolls {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    gap: 5vw;
     align-items: center;
     justify-items: center;
     background-image: url("https://i.imgur.com/svtJbZs.jpg");
@@ -14,9 +15,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 25.25vw;
-    height: 62.74vh;
-    padding: 1.5vw 3vw 6vw 3vw;
+    width: 28vw;
+    height: 74vh;
+    padding: 2vh 2vw;
     background: rgb(0, 0, 0, 0.6);
     border: 1px solid #d9952e;
 }
@@ -27,16 +28,20 @@
 }
 
 .afterRollMessage {
-    font-size: 1.2rem;
+    min-height: 60px;
+    font-size: 1.05rem;
+    text-align: center;
 }
 
 .beforeRollMessage {
+    margin-top: 2vh;
     font-size: 1.05rem;
+    text-align: center;
 }
 
 .diceRolls h4 {
     font-size: 1.2rem;
-    margin: 2vh 0 1vh 0;
+    margin: 1vh 0;
 }
 
 .diceRolls h5 {
@@ -59,11 +64,18 @@ tr th {
     line-height: 6vh;
 }
 
+.diceRollTableContainer .reRollButtons {
+    width: 5vw;
+    height: 4vh;
+    margin-top: 0.7vh;
+    font-size: 0.75rem;
+}
+
 .screenButtonsContainer {
     display: flex;
     flex-direction: row;
     gap: 0.5vw;
-    margin-top: 5vh;
+    margin-top: 2vh;
 }
 
 .diceRollTableContainer input:hover {
@@ -75,9 +87,9 @@ tr th {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 25.25vw;
-    height: 62.74vh;
-    padding: 1.5vw 3vw 6vw 3vw;
+    width: 28vw;
+    max-height: 74vh;
+    padding: 2vh 2vw;
     background: rgb(0, 0, 0, 0.6);
     border: 1px solid #d9952e;
     overflow: auto;

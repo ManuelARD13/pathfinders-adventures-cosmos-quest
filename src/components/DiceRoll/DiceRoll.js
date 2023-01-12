@@ -82,7 +82,8 @@ function DiceRoll( {diceRolled, setDiceRolled, characterStats, setStats, setScre
             reRollButtons.forEach((button) => {
                 button.disabled = true
             })
-        } else reRollMessage.innerHTML = `Great! Yet you have ${reRolledCount} chances to re-roll one of the stat's score you have get. Good Luck!`
+        } else 
+            reRollMessage.innerHTML = `Great! You have ${reRolledCount} chances to re-roll one of the stat's score you have get. Good Luck!`
     }
 
     const createStats = (diceRolls) => {
@@ -96,11 +97,13 @@ function DiceRoll( {diceRolled, setDiceRolled, characterStats, setStats, setScre
     return(
         <section className="diceRolls">
             <div className="diceRollTableContainer">
-              <p className="beforeRollMessage">First, let's generate your character's stats numbers. They'll be usefull to make a good choice of skills and proficiencies for your character.<br/></p>
-                <p id="reRollMessage" >
-                After roll your dices, you'll have 3 chances to re-roll one stat of your choice.</p>
+                <p className="beforeRollMessage">
+                    First, let's generate your character's stats numbers. They'll be usefull to make a good choice of skills and proficiencies for your character.<br/>
+                </p>
+                <p id="reRollMessage" className="afterRollMessage">
+                    After roll your dices, you'll have 3 chances to re-roll one stat of your choice.
+                </p>
                 <h4>Roll your dices</h4>
-
                 <table className="statsTable">
                     <tbody>    
                         <tr>
@@ -110,32 +113,32 @@ function DiceRoll( {diceRolled, setDiceRolled, characterStats, setStats, setScre
                         <tr>
                             <td> CON</td>
                             <td><span id="CONScore" className="statsScores">0</span></td>
-                            {diceRolled ? <td><input type="button" value="Re-Roll!" className="reRollButtons" id="CON" onClick={reRollStatDice} /></td> : null}
+                             <td><input type="button" value="Re-Roll!" className="reRollButtons" id="CON" onClick={reRollStatDice} style={diceRolled ? {opacity: 1, visibility: "visible"}: {opacity: 0, visibility: "hidden"}} /></td>
                         </tr>
                         <tr>
                             <td>STR</td>
                             <td><span id="STRScore" className="statsScores">0</span></td>
-                            {diceRolled ? <td><input type="button" value="Re-Roll!" className="reRollButtons" id="STR" onClick={reRollStatDice} /></td> : null }
+                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="STR" onClick={reRollStatDice} style={diceRolled ? {opacity: 1, visibility: "visible"}: {opacity: 0, visibility: "hidden"}} /></td>
                         </tr>
                         <tr>
                             <td>DEX</td>
                             <td><span id="DEXScore" className="statsScores">0</span></td>
-                            {diceRolled ? <td><input type="button" value="Re-Roll!" className="reRollButtons" id="DEX" onClick={reRollStatDice} /></td> : null }
+                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="DEX" onClick={reRollStatDice} style={diceRolled ? {opacity: 1, visibility: "visible"}: {opacity: 0, visibility: "hidden"}} /></td>
                         </tr>
                         <tr>
                             <td>INT</td>
                             <td><span id="INTScore" className="statsScores"> 0</span></td>
-                            {diceRolled ?  <td><input type="button" value="Re-Roll!" className="reRollButtons" id="INT" onClick={reRollStatDice} /></td> : null }
+                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="INT" onClick={reRollStatDice} style={diceRolled ? {opacity: 1, visibility: "visible"}: {opacity: 0, visibility: "hidden"}} /></td>
                         </tr>
                         <tr>
                             <td>WIS</td>
                             <td><span id="WISScore" className="statsScores">0</span></td>
-                            {diceRolled ? <td><input type="button" value="Re-Roll!" className="reRollButtons" id="WIS" onClick={reRollStatDice} /></td> : null }
+                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="WIS" onClick={reRollStatDice} style={diceRolled ? {opacity: 1, visibility: "visible"}: {opacity: 0, visibility: "hidden"}} /></td>
                         </tr>
                         <tr>
                             <td>CHA</td>
                             <td><span id="CHAScore" className="statsScores">0</span></td>
-                            {diceRolled ? <td><input type="button" value="Re-Roll!" className="reRollButtons" id="CHA" onClick={reRollStatDice} /></td> : null }
+                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="CHA" onClick={reRollStatDice} style={diceRolled ? {opacity: 1, visibility: "visible"}: {opacity: 0, visibility: "hidden"}} /></td>
                         </tr>
                     </tbody>
                 </table>

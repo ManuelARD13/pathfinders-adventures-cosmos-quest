@@ -61,21 +61,14 @@ function CharacterProfile ( { character, setCharacter, characterName, gender, ra
                 <p>Lv. {level}</p>
                 <p>HP: {HP}</p>
                 <p>DEF: {DEF}</p>
+                <StatsList characterStats={characterStats} raze={raze} />
                 <h5>Raze Skills</h5>
+                <p className="divider"></p>
                 <ul className="razeSkills">
                     {raze.razeSkills.map((skill) =>
                         <li key={skill}>{skill}</li>
                     )}
                 </ul>
-                <StatsList characterStats={characterStats} raze={raze} />
-                {/* <ul>
-                    <li>{"CON: " + characterStats.CON}</li>
-                    <li>{"STR: " + characterStats.STR}</li>
-                    <li>{"DEX: " + characterStats.DEX}</li>
-                    <li>{"INT: " + characterStats.INT}</li>
-                    <li>{"WIS: " + characterStats.WIS}</li>
-                    <li>{"CHA: " + characterStats.CHA}</li>
-                </ul> */}
                 {/* <p>Height: {character.height}</p>
                 <p>Weight: {character.weight}</p> */}
                 <input type="button" className="continueButton" value="Continue" id="continueProfile" onClick={() => finishCharacterProcess(characterName, gender, raze, characterClass, characterImg)} />
@@ -90,6 +83,7 @@ function CharacterProfile ( { character, setCharacter, characterName, gender, ra
                     {characterClass.classLore}
                 </p>
                 <h5>Class Skills</h5>
+                {/* <p className="divider"></p> */}
                 <ul className="classSkills">
                     {characterClass.classSkills.map((skill) =>
                         <li key={skill}>{skill}</li>
