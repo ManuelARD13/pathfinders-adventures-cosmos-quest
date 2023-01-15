@@ -1,9 +1,76 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StatsList } from "../StatsList/StatsList";
 import "./ClassesSelector.css"
 
-function ClassesSelector({ setSelectionStage, gender, raze, characterClass, characterStats ,useSelectClass, setCharacterClass }) {
-    
+function ClassesSelector({ setSelectionStage, gender, raze, characterClass, characterStats ,useSelectClass, setCharacterClass, isSelectable, setSelectable }) {
+
+    const totalScores =  {}
+
+    for (const [key, value] of Object.entries(characterStats)) {
+        for(const [modKey, modValue] of Object.entries(raze.razeModifiers)){
+            if(modKey === key && modValue !== 0) {
+                totalScores[`${key}`] = value + modValue
+            } else if(modKey === key && modValue === 0) {
+                totalScores[`${key}`] = value
+            }
+        }
+    }
+
+  
+
+
+        const useSelectableClass = () => {
+            console.log("WTF")
+        
+            let requisites = 0
+            for (const [key, value] of Object.entries(totalScores)){
+                for (const [classKey, classValue] of Object.entries(characterClass.classRequirements)){
+                    if(key === classKey) {
+                        if(value > classValue) {
+                            requisites++
+                        }
+                    }   
+                }
+         
+
+            if(requisites === 2) {
+                setSelectable(true)
+                console.log(isSelectable)
+            } else {
+                setSelectable(false)
+                console.log(isSelectable)
+            }
+        }
+        }
+        
+        const useClassSelection = (e) =>{
+            useSelectClass(e)
+            useSelectableClass()
+        }
+
+    // useEffect(() => {
+    //     useSelectableClass()
+    // }, [characterClass])
+    // useEffect(() => {
+    //     let flag = isSelectable()
+
+    //     const requiredMessage = document.getElementById("requiredMessage")
+    //     const requiredStat1 = document.getElementById("requiredStat1")
+    //     // const requiredStat2 = document.getElementById("requiredStat2")
+
+    //     requiredStat1.innerHTML = characterClass.classRequirements
+
+        
+
+    //     if(flag === true) {
+    //         requiredMessage.innerHTML = "Great! You have Enough Stats Scores"
+    //     } else if (flag === false) {
+    //         requiredMessage.innerHTML = "Not Enough Stats Scores"
+    //     }
+    // }, [characterClass, isSelectable])
+        
+
+ 
     return (
         <>
         <input type={"button"} value="Return" className="returnButton"
@@ -15,7 +82,9 @@ function ClassesSelector({ setSelectionStage, gender, raze, characterClass, char
             
             <p>Choose your class</p>
             <p className="divider"></p>
-            <p>Not Enough Stats Scores</p>
+            <p id="requiredMessage">
+              
+            </p>
             <div>
                 <StatsList characterStats={characterStats} raze={raze} />
             </div>
@@ -26,8 +95,8 @@ function ClassesSelector({ setSelectionStage, gender, raze, characterClass, char
                     raze.availableClasses.male.map((pClass) => 
                         <div className="classContainer">
                             <input type="radio" name="classes" className="classSelectors" id={pClass.className} />
-                            <label className="classesLabels" htmlFor={pClass.className} id={`${pClass.className}Label`} onClick={useSelectClass}><img src={pClass.classIcon} alt={pClass.className} id={pClass.className}></img></label>
-                            <p>{pClass.className}</p>
+                            <label className="classesLabels" htmlFor={pClass.className} id={`${pClass.className}Label`} onClick={useClassSelection}><img src={pClass.classIcon} alt={pClass.className} id={pClass.className}></img></label>
+                            <p onClick={useSelectableClass}>{pClass.className}</p>
                         </div>
                     ) 
                     :
@@ -52,7 +121,7 @@ function ClassesSelector({ setSelectionStage, gender, raze, characterClass, char
                         {characterClass.className[0].toUpperCase() + characterClass.className.substring(1)} 
                     </h5>
                     <div>
-                    <p>Stats Requeriments: <span>STR: +16 CHA: +16</span></p>
+                    <p>Stats Requeriments: STR: +<span id="requiredStat1">16</span> CHA: +<span id="requiredStat2">16</span></p>
             </div>
                     <p className="classLoreContainer">"  {characterClass.classLore} "</p>
                     <p>Class Skills</p>

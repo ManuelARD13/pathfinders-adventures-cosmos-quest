@@ -12,11 +12,18 @@ import { CharacterProfile } from './components/CharacterProfile/CharacterProfile
 import { Greetings } from './components/Greetings/Greetings';
 import { LoadGame } from './components/LoadGame/LoadGame';
 import { LoadedCharacterProfile } from './components/LoadedCharacterProfile/LoadedCharacterProfile';
+// import { SoundPlayer } from './components/SoundPlayer/SoundPlayer';
 
 function App() {
 
   /*Functions*/
 
+  const newPlaylist = []
+
+playlist.forEach((track) => {
+  let sound = new Audio(track)
+  newPlaylist.push(sound)
+})
   
 
   /*States & Hooks*/
@@ -33,6 +40,7 @@ function App() {
   const[raze, setRaze] = useState("")
 
   const[characterClass, setcharacterClass] = useState(undefined)
+  const[isSelectable, setSelectable] = useState(false)
 
   const [characterImg, setCharacterImg] = useState("https://i.imgur.com/aryfPBv.png")
 
@@ -75,6 +83,7 @@ function App() {
     const comfirmButton = document.getElementById("comfirmClass")
     comfirmButton.disabled = false
     comfirmButton.addEventListener("click", () => setScreen("CharacterProfile"))
+
   }
 
   useEffect(() => {
@@ -106,8 +115,14 @@ function App() {
   /*Renderization*/
   return (
     <>
+      {/* <SoundPlayer screen={screen} /> */}
       {screen !== "StartScreen" ?  null : <StartScreen setScreen={setScreen} setSavedCharacters={setSavedCharacters}/>}
-      {screen === "BrandingScreen" ? <BrandingDisplay setScreen={setScreen} /> : null}
+      {screen === "BrandingScreen" ? 
+      
+          <BrandingDisplay setScreen={setScreen} newPlaylist={newPlaylist} /> 
+          
+    
+      : null}
       {screen === "MainMenuScreen" ? <MainMenu  setScreen={setScreen} /> : null}
 
       {screen === "DiceRoll" ? 
@@ -163,6 +178,8 @@ function App() {
 
           characterImg={characterImg}
           setCharacterImg={setCharacterImg}
+          isSelectable={isSelectable}
+          setSelectable={setSelectable}
           
           setScreen={setScreen} 
         />

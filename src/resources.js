@@ -342,17 +342,17 @@ const gunslingerImg = {
 
 /*Audio tracks*/
 const playlist = []
-const mainMenuAudio = new Audio("audio/mainMenu.mp3")
+const mainMenuAudio = new Audio("./audio/mainMenu.mp3")
 playlist.push(mainMenuAudio)
-const taverAudio = new Audio("audio/tavern.mp3")
-playlist.push(taverAudio)
-const humansAudio = new Audio("audio/human.mp3")
+const tavernAudio = new Audio("./audio/tavern.mp3")
+playlist.push(tavernAudio)
+const humansAudio = "audio/human.mp3"
 playlist.push(humansAudio)
-const elfsAudio = new Audio("audio/elf.mp3")
+const elfsAudio = "audio/elf.mp3"
 playlist.push(elfsAudio)
-const orcsAudio = new Audio("audio/orc.mp3")
+const orcsAudio = "audio/orc.mp3"
 playlist.push(orcsAudio)
-const dwarfsAudio = new Audio("audio/dwarf.mp3")
+const dwarfsAudio = "audio/dwarf.mp3"
 playlist.push(dwarfsAudio)
 
 
@@ -371,15 +371,16 @@ const createNewRaze = (razeName, razeSkills ,razeLore, razeMusicBK, razeBKImg, r
     razeModifiers: razeModifiers,
 })
 
-const createNewClass = (className, classSkills, classLore, classIcon ,imgObj , classProfileImg="https://i.imgur.com/edBdVwz.png",hitPoints=12, dualClass=false) => ({
+const createNewClass = (className, classSkills, classLore, classIcon ,imgObj , classProfileImg="https://i.imgur.com/edBdVwz.png",hitPoints=12, dualClass=false , classRequirements={STR: 16, CHA: 16 }) => ({
     className: className,
     classSkills: classSkills,
     classLore: classLore,
-    dualClass: dualClass,
     classIcon: classIcon,
     classImg: imgObj,
     classProfileImg: classProfileImg,
-    hitPoints: hitPoints
+    hitPoints: hitPoints,
+    dualClass: dualClass,
+    classRequirements: classRequirements
 })
 
 /*Available Classes*/
