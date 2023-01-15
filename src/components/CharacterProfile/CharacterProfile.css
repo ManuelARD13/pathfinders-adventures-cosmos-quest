@@ -20,15 +20,20 @@
 }
 
 .characterProfile .displayImgContainer {
-    grid-column: 3 / span 1;
-    grid-row: 2 / span 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 2vh 0;
-    max-width: 40vw;
-    max-height: 85vh;
+  grid-column: 3 / span 1;
+  grid-row: 2 / span 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 2vh 0;
+  max-width: 40vw;
+  max-height: 85vh;
 } 
+
+.characterProfile .displayImgContainer img {
+  max-width: 40vw;
+  max-height: 83vh;
+}
 
 
 .characterProfile .characterGeneralInfo {
@@ -103,11 +108,23 @@
     grid-column: 1/-1;
     grid-row: 2/span 5;
     max-height: 40vh;
-    overflow: auto;
+    overflow: overlay;
     margin: 2vh 0.6vw;
     padding: 1vh 1vw;
     border: 1px solid #CCAE27;
 } 
+
+.characterSkillsInfo .characterLore::-webkit-scrollbar {
+  display: none;
+}
+
+.characterSkillsInfo .characterLore:hover::-webkit-scrollbar {
+  display: initial;
+ }
+
+ .characterSkillsInfo .characterLore::-webkit-scrollbar-thumb {
+ background-color: #976820;
+}
 
 .characterProfile h5 {
     grid-column: 1/-1;
@@ -146,4 +163,11 @@
 .characterProfile .razeSkills li:hover, .characterProfile .classSkills li:hover {
   transform: scale(1.1);
   transition: 0.3s ease-in-out;
+}
+
+.characterProfile .continueButton {
+  position: absolute;
+  left: 39%;
+  bottom: 2%;
+  width: 25vw;
 }

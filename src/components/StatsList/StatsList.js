@@ -1,4 +1,5 @@
 import React from "react";
+import "./StatsList.css"
 
 function StatsList ( { characterStats, raze } ) {
 

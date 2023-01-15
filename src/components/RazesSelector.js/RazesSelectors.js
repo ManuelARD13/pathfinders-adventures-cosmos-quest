@@ -47,8 +47,8 @@ function RazesSelector({ setCharacterName, gender, raze, characterStats ,useSele
                     })
               }
               </form>
-              <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmSelections" disabled />
           </div>
+          <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmSelections" disabled />
           <div className="displayRazesDescriptionContainer">
           
           { raze !== "" ?

@@ -71,11 +71,11 @@ function CharacterProfile ( { character, setCharacter, characterName, gender, ra
                 </ul>
                 {/* <p>Height: {character.height}</p>
                 <p>Weight: {character.weight}</p> */}
-                <input type="button" className="continueButton" value="Continue" id="continueProfile" onClick={() => finishCharacterProcess(characterName, gender, raze, characterClass, characterImg)} />
             </div>
             <div className="displayImgContainer">
                 <CharacterImgDisplay characterImg={characterImg}/>
             </div>
+            <input type="button" className="continueButton" value="Continue" id="continueProfile" onClick={() => finishCharacterProcess(characterName, gender, raze, characterClass, characterImg)} />
             <div className="characterSkillsInfo">
                 <img src={characterClass.classIcon} alt="" />
                 <h4 id="selectedClassName">{characterClass.className}</h4>

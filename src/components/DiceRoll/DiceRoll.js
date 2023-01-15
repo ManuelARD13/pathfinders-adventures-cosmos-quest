@@ -78,7 +78,7 @@ function DiceRoll( {diceRolled, setDiceRolled, characterStats, setStats, setScre
 
     const updateReRolls = () => {
         if(reRolledCount === 0){
-            reRollMessage.innerHTML = "You have roll all your Re-Roll chances. Excellent! this are great stats to begin your epic journey. Congrats!"
+            reRollMessage.innerHTML = "You've roll all your chances. Congrats! You're ready to begin your epic journey."
             reRollButtons.forEach((button) => {
                 button.disabled = true
             })
@@ -98,10 +98,11 @@ function DiceRoll( {diceRolled, setDiceRolled, characterStats, setStats, setScre
         <section className="diceRolls">
             <div className="diceRollTableContainer">
                 <p className="beforeRollMessage">
-                    First, let's generate your character's stats numbers. They'll be usefull to make a good choice of skills and proficiencies for your character.<br/>
+                    First, let's generate your <strong>character's stats</strong> numbers. They'll be usefull to make a good choice of skills and proficiencies for your character.<br/>
                 </p>
+                <p className="divider"></p>
                 <p id="reRollMessage" className="afterRollMessage">
-                    After roll your dices, you'll have 3 chances to re-roll one stat of your choice.
+                    After roll your dices, you'll have 3 chances to re-roll one stat of your choice if you want to.
                 </p>
                 <h4>Roll your dices</h4>
                 <table className="statsTable">
@@ -159,6 +160,7 @@ function DiceRoll( {diceRolled, setDiceRolled, characterStats, setStats, setScre
                     average ability score is 10.
                 </p>
                 <h5>Stats Characteristics</h5>
+                <p className="divider"></p>
                 <p>
                     Each ability partially describes your character and affects
                     some of his actions:

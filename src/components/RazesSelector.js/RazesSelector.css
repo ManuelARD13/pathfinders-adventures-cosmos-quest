@@ -166,17 +166,31 @@ input[type="text"]::placeholder {
 .displayRazesDescriptionContainer .noRazeContent {
       font-style: italic;
       line-height: 1.7rem;
-      font-size: 1.35rem;
+      font-size: 1.2rem;
       text-shadow: 0 1px 1px #0000005c;
 }
 
 .displayRazesDescriptionContainer .razeLoreContainer {
-    max-height: 57vh;
-    overflow: auto;
-    margin: 2vh 0.6vw;
+    max-height: 46vh;
+    min-height: 46vh;
+    overflow: overlay;
+    margin: 2vh 0.6vw 0 0.6vw;
     padding: 1vh 1vw;
     border: 1px solid #CCAE27;
-    
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.displayRazesDescriptionContainer .razeLoreContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.displayRazesDescriptionContainer .razeLoreContainer:hover::-webkit-scrollbar {
+  display: initial;
+ }
+
+ .displayRazesDescriptionContainer .razeLoreContainer::-webkit-scrollbar-thumb {
+ background-color: #976820;
 }
 
 .displayRazesDescriptionContainer p:nth-child(2) {
@@ -186,10 +200,10 @@ input[type="text"]::placeholder {
     text-shadow: 0 3px 1px rgba(0,0,0);
 }
 
-.divider {
+.displayRazesDescriptionContainer .divider, .displayRazesSelectorsContainer .divider {
   border-bottom: 1px solid #CCAE27;
   width: 90%;
-  margin-bottom: 2vh;
+  margin: 1vh 0;
 }
 
 .displayRazesDescriptionContainer .razeSkillsList li {

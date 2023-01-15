@@ -27,7 +27,6 @@ function StartScreen ( { setScreen, setSavedCharacters}) {
                 <p>This app works with React.js Library and Object-Oriented programming concepts, Arrays manipulation, localStorage, and APIs usage on Javascript. CSS3 for styling and FramerMotion React Library for animations. Hosted and deployed on Github Pages.</p>
                 <input 
                     type="button" 
-                    className="continueButton" 
                     value="START DEMO APP TRIAL" 
                     id="startScreenButton"
                     onClick={initializeLocalStorage}  />

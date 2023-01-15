@@ -23,7 +23,7 @@ function App() {
   const [screen, setScreen] = useState("StartScreen")
 
   const [savedCharacters, setSavedCharacters] = useState([])
-  const [character, setCharacter] = useState({})
+  const [character, setCharacter] = useState("")
 
   const [selectionStage, setSelectionStage] = useState("razes")
 
@@ -126,6 +126,8 @@ function App() {
       { screen === "LoadGameScreen" ? 
       
         <LoadGame 
+          character={character}
+
           savedCharacters={savedCharacters} 
 
           setCharacter={setCharacter}

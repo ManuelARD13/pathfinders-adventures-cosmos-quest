@@ -38,6 +38,7 @@ function DisplayScreen({ setScreen, selectionStage, setSelectionStage, character
             setSelectionStage={setSelectionStage}
             gender={gender}
             raze={raze}
+            characterStats={characterStats}
             characterClass={characterClass}
             useSelectClass={useSelectClass}
             setCharacterClass={setCharacterClass}

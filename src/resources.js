@@ -13,7 +13,7 @@ const assasinImg = {
         female: new Image().src = "https://i.imgur.com/uzaD2L5.png"
     },
     dwarf: {
-        male: "",
+        male: "https://i.imgur.com/yQDyyGN.png",
         female: ""
     }
 }
@@ -220,7 +220,7 @@ const rangerImg = {
         female: new Image().src = "https://i.imgur.com/o6zCwsW.png"
     },
     orc: {
-        male: new Image().src = "https://i.imgur.com/N2CTDqa.png",
+        male: new Image().src = "https://i.imgur.com/Q3sG9xF.png",
         female: new Image().src = "https://i.imgur.com/PngUT3v.png"
     },
     dwarf: {
@@ -371,13 +371,14 @@ const createNewRaze = (razeName, razeSkills ,razeLore, razeMusicBK, razeBKImg, r
     razeModifiers: razeModifiers,
 })
 
-const createNewClass = (className, classSkills, classLore, classIcon ,imgObj , hitPoints=12, dualClass=false) => ({
+const createNewClass = (className, classSkills, classLore, classIcon ,imgObj , classProfileImg="https://i.imgur.com/edBdVwz.png",hitPoints=12, dualClass=false) => ({
     className: className,
     classSkills: classSkills,
     classLore: classLore,
     dualClass: dualClass,
     classIcon: classIcon,
     classImg: imgObj,
+    classProfileImg: classProfileImg,
     hitPoints: hitPoints
 })
 
@@ -603,7 +604,7 @@ const elfAvailableClasses = {
         paladin,
         priest,
         ranger,
-        samurai,
+        /*samurai,*/
         warrior,
         warlock
     ]

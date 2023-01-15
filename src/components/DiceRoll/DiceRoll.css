@@ -8,6 +8,8 @@
     background-size: cover;
     min-width: 100vw;
     min-height: 100vh;
+    font-family: "Eagle Lake", cursive;
+    text-shadow: 0 2px 1px rgba(0,0,0);
 }
 
 .diceRollTableContainer {
@@ -16,37 +18,42 @@
     flex-direction: column;
     align-items: center;
     width: 28vw;
-    height: 74vh;
-    padding: 2vh 2vw;
-    background: rgb(0, 0, 0, 0.6);
+    height: 76vh;
+    padding: 3vh 2vw;
+    background: rgb(0, 0, 0, 0.8);
     border: 1px solid #d9952e;
+    border-radius: 2%;
 }
 
 #reRollMessage {
     width: 25.25vw;
-    margin: 2vh 0; 
+    margin: 1vh 0; 
 }
 
 .afterRollMessage {
-    min-height: 60px;
-    font-size: 1.05rem;
+    font-size: 0.8rem;
     text-align: center;
 }
 
 .beforeRollMessage {
-    margin-top: 2vh;
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     text-align: center;
 }
 
 .diceRolls h4 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin: 1vh 0;
 }
 
 .diceRolls h5 {
-    font-size: 1.1rem;
-    margin: 3vh 0;
+    font-size: 1rem;
+    margin: 3vh 0 0 0;
+}
+
+.diceRolls h6 {
+    border-bottom: 2px solid #d9952e;
+    max-width: fit-content;
+    text-shadow: 0 2px 1px rgba(0,0,0);
 }
 
 .statsTable {
@@ -60,7 +67,7 @@ tr {
 }
 
 tr th {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     line-height: 6vh;
 }
 
@@ -88,12 +95,27 @@ tr th {
     flex-direction: column;
     align-items: center;
     width: 28vw;
-    max-height: 74vh;
-    padding: 2vh 2vw;
-    background: rgb(0, 0, 0, 0.6);
+    max-height: 76vh;
+    padding: 3vh 2vw;
+    background: rgb(0, 0, 0, 0.8);
     border: 1px solid #d9952e;
-    overflow: auto;
+    border-radius: 2%;
+    overflow: overlay;
 }
+
+.statsDescription::-webkit-scrollbar {
+    display: none;
+  }
+  
+.statsDescription:hover::-webkit-scrollbar {
+    display: initial;
+   }
+  
+.statsDescription::-webkit-scrollbar-thumb {
+   background-color: #976820;
+  }
+
+
 
 .statsDescription p {
     font-size: 1rem;

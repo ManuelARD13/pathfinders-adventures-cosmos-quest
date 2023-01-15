@@ -44,3 +44,9 @@ input[type="button"]:hover {
   transform: scale(1.1) translate(0, -5px);
   transition: 0.2s ease-out;
 }
+
+.divider {
+  border-bottom: 1px solid #CCAE27;
+    width: 90%;
+    margin: 2vh 0 1vh 0;
+}

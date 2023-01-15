@@ -1,19 +1,25 @@
 import React from "react";
+import { StatsList } from "../StatsList/StatsList";
 import "./ClassesSelector.css"
 
-function ClassesSelector({ setSelectionStage, gender, raze, characterClass, useSelectClass, setCharacterClass }) {
+function ClassesSelector({ setSelectionStage, gender, raze, characterClass, characterStats ,useSelectClass, setCharacterClass }) {
     
     return (
         <>
-        <div className="displayClassesSelectorsContainer">
-            <input type={"button"} value="Return" onClick={() => {
+        <input type={"button"} value="Return" className="returnButton"
+            onClick={() => {
                 setSelectionStage("razes")
                 setCharacterClass(undefined)
                 }} />
+        <div className="displayClassesSelectorsContainer">
+            
             <p>Choose your class</p>
+            <p className="divider"></p>
+            <p>Not Enough Stats Scores</p>
             <div>
-                    <p>Add Class Stats Calculation...</p>
+                <StatsList characterStats={characterStats} raze={raze} />
             </div>
+            <p className="divider"></p>
             <form className="formClasses">
                 {
                 gender === "male" ? 
@@ -34,19 +40,24 @@ function ClassesSelector({ setSelectionStage, gender, raze, characterClass, useS
                     )
                 }
             </form>
-            <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmClass" disabled />
         </div>
+        <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmClass" disabled />
         <div className="displayClassesDescriptionContainer">
           
         {
             characterClass !== undefined ?
                 <>
-                    <p>
+                
+                    <h5>
                         {characterClass.className[0].toUpperCase() + characterClass.className.substring(1)} 
-                    </p>
-                    <p>{characterClass.classLore}</p>
+                    </h5>
+                    <div>
+                    <p>Stats Requeriments: <span>STR: +16 CHA: +16</span></p>
+            </div>
+                    <p className="classLoreContainer">"  {characterClass.classLore} "</p>
                     <p>Class Skills</p>
-                    <ul>
+                    <p className="divider"></p>
+                    <ul className="classSkillsList">
                         {
                             characterClass.classSkills.map((skill) =>
                                 <li key={skill}>{skill}</li>
@@ -54,7 +65,7 @@ function ClassesSelector({ setSelectionStage, gender, raze, characterClass, useS
                         }
                     </ul>
                 </> 
-                : <p>
+                : <p className="noClassContent">
                     The dragon roared in triumph as Valeros collapsed into the snow, blood spurting from the terrible wound in his belly. Kyra rushed to his side, praying that she wasn't too late to save his life. “I'll hold the beast off!” Seoni cried as she stepped up to the dragon, her staff flaring with defensive fire. Merisiel looked to the hulking dragon, then at the delicate sorcerer, and shook her head sadly. The adventure had just barely begun, and judging by this fight alone, they weren't getting paid enough for the job.
                 </p>
         }
