@@ -40,13 +40,14 @@ playlist.forEach((track) => {
   const[raze, setRaze] = useState("")
 
   const[characterClass, setcharacterClass] = useState(undefined)
-  const[isSelectable, setSelectable] = useState(false)
+  const[isSelectable, setSelectable] = useState(true)
 
   const [characterImg, setCharacterImg] = useState("https://i.imgur.com/aryfPBv.png")
 
   const [diceRolled, setDiceRolled] = useState(false)
   
   const [characterStats, setStats] = useState({})
+  const [totalScores, setTotalScores] = useState({})
 
   const useSelectGender = () => {
     const genderFemaleSelector = document.getElementById("genderFemale")
@@ -80,6 +81,7 @@ playlist.forEach((track) => {
         pClass.className === e.target.id
       )
     )
+
     const comfirmButton = document.getElementById("comfirmClass")
     comfirmButton.disabled = false
     comfirmButton.addEventListener("click", () => setScreen("CharacterProfile"))
@@ -110,6 +112,34 @@ playlist.forEach((track) => {
       setCharacterImg(gender === "male" ? raze.razeImgMale : raze.razeImgFemale)
     }
   }, [gender, raze, characterClass])
+
+useEffect( () => {   
+    console.log("WTF")
+   if(characterClass !== undefined){
+       let requisites = 0
+   for (const [key, value] of Object.entries(totalScores)){
+       for (const [classKey, classValue] of Object.entries(characterClass.classRequirements)){
+  
+           if(key === classKey) {
+      
+               if(value > classValue) {
+          
+                   requisites++
+               }
+           }   
+       }
+
+  console.log(requisites)
+   if(requisites === 2) {
+       setSelectable(true)
+       console.log(isSelectable)
+   } else {
+       setSelectable(false)
+       console.log(isSelectable)
+   }
+}
+}
+}, [totalScores])
 
 
   /*Renderization*/
@@ -161,6 +191,7 @@ playlist.forEach((track) => {
           setSelectionStage={setSelectionStage}
 
           characterStats={characterStats}
+          setTotalScores={setTotalScores}
           
           characterName={characterName}
           setCharacterName={setCharacterName}
@@ -179,7 +210,6 @@ playlist.forEach((track) => {
           characterImg={characterImg}
           setCharacterImg={setCharacterImg}
           isSelectable={isSelectable}
-          setSelectable={setSelectable}
           
           setScreen={setScreen} 
         />

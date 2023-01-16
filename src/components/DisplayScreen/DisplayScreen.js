@@ -6,7 +6,7 @@ import { ClassesSelector } from "../ClassesSelector/ClassesSelector";
 
 import "./DisplayScreen.css"
 
-function DisplayScreen({ setScreen, selectionStage, setSelectionStage, characterStats, setCharacterName, gender, useSelectGender, playableRazes, raze, useSelectRaze, characterClass, useSelectClass, setCharacterClass, characterImg}){
+function DisplayScreen({ setScreen, selectionStage, setSelectionStage, characterStats, setTotalScores, setCharacterName, gender, useSelectGender, playableRazes, raze, useSelectRaze, characterClass, useSelectClass, setCharacterClass, isSelectable, characterImg}){
  
   return(
       <section 
@@ -39,14 +39,17 @@ function DisplayScreen({ setScreen, selectionStage, setSelectionStage, character
             gender={gender}
             raze={raze}
             characterStats={characterStats}
+            setTotalScores={setTotalScores}
             characterClass={characterClass}
             useSelectClass={useSelectClass}
             setCharacterClass={setCharacterClass}
+            isSelectable={isSelectable}
             setScreen={setScreen}
+
      
             />
           }
-          <CharacterImgDisplay characterImg={characterImg} />     
+          <CharacterImgDisplay characterImg={characterImg} isSelectable={isSelectable} />     
       </section>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./DiceRoll.css"
 
-function DiceRoll( {diceRolled, setDiceRolled, characterStats, setStats, setScreen } ){
+function DiceRoll( {diceRolled, setDiceRolled, setStats, setScreen } ){
 
 
     const createStatsObj = (diceRolls) => ({
@@ -13,16 +13,6 @@ function DiceRoll( {diceRolled, setDiceRolled, characterStats, setStats, setScre
         CHA: diceRolls.CHAScore,
 
         characterHeight: ((Math.random().toFixed(2) * 2) + 5)+ " feets",
-
-        // calculateHP: function() {
-        //     calculo de HP WITH CLASS AND CON STATISTICS
-        // },
-
-        // calculateHitDices: function() {
-        //     calculo dados de golpe ON CLASSES
-        // },
-
-        // Investigar demas factores del personaje calculados con sus stats
     })
 
     const reRollMessage = document.getElementById("reRollMessage")
@@ -99,7 +89,7 @@ function DiceRoll( {diceRolled, setDiceRolled, characterStats, setStats, setScre
         <section className="diceRolls">
             <div className="diceRollTableContainer">
                 <p className="beforeRollMessage">
-                    First, let's generate your <strong>character's stats</strong> numbers. They'll be usefull to make a good choice of skills and proficiencies for your character.<br/>
+                    First, let's generate your <strong>Character's Stats</strong> numbers. They'll be usefull to make a good choice of skills and proficiencies for your character.<br/>
                 </p>
                 <p className="divider"></p>
                 <p id="reRollMessage" className="afterRollMessage">

@@ -371,16 +371,17 @@ const createNewRaze = (razeName, razeSkills ,razeLore, razeMusicBK, razeBKImg, r
     razeModifiers: razeModifiers,
 })
 
-const createNewClass = (className, classSkills, classLore, classIcon ,imgObj , classProfileImg="https://i.imgur.com/edBdVwz.png",hitPoints=12, dualClass=false , classRequirements={STR: 16, CHA: 16 }) => ({
+const createNewClass = (className, classSkills, classLore, classIcon ,imgObj ,classRequirements, classProfileImg="https://i.imgur.com/edBdVwz.png",  hitPoints=12, dualClass=false) => ({
     className: className,
     classSkills: classSkills,
     classLore: classLore,
     classIcon: classIcon,
     classImg: imgObj,
-    classProfileImg: classProfileImg,
+    classRequirements: classRequirements,
     hitPoints: hitPoints,
+    classProfileImg: classProfileImg,
     dualClass: dualClass,
-    classRequirements: classRequirements
+    
 })
 
 /*Available Classes*/
@@ -399,6 +400,7 @@ const assasin = createNewClass(
         
         "https://i.imgur.com/eKEOTZ3.png", 
         assasinImg,
+        {DEX: 15, INT: 12},
         8
     )
 playableClasses.push(assasin)
@@ -411,11 +413,12 @@ const barbarian = createNewClass(
         
         "https://i.imgur.com/vVWdxTB.png",
         barbarianImg,
+        {CON: 15, STR: 12},
         12
      )
 playableClasses.push(barbarian)
 
-const berzerker = createNewClass("Berzerker", [], "lorem ipsum x 100", "https://i.imgur.com/FDuaBg8.png", berzerkerImg)
+const berzerker = createNewClass("Berzerker", [], "lorem ipsum x 100", "https://i.imgur.com/FDuaBg8.png", berzerkerImg, {CON: 15, STR: 15},)
 playableClasses.push(berzerker)
 
 const caster = createNewClass(
@@ -426,6 +429,7 @@ const caster = createNewClass(
         
         "https://i.imgur.com/jBBTATN.png", 
         casterImg,
+        {INT: 15, CHA: 12},
         6
     )
 playableClasses.push(caster)
@@ -433,10 +437,10 @@ playableClasses.push(caster)
 const celestialDefender = createNewClass("Celestial Defender", [], "lorem ipsum x 100", "https://i.imgur.com/fVjIEzp.png", celestialDefenderImg)
 playableClasses.push(celestialDefender)
 
-const crusader = createNewClass("Crusader", [], "lorem ipsum x 100", "https://i.imgur.com/VChKkyj.png", crusaderImg)
+const crusader = createNewClass("Crusader", [], "lorem ipsum x 100", "https://i.imgur.com/VChKkyj.png", crusaderImg, {CON: 16, WIS: 14},)
 playableClasses.push(crusader)
 
-const dragonTaimer = createNewClass("Dragon Taimer", [], "lorem ipsum x 100", "https://i.imgur.com/8f6Z4dy.png", dragonTaimerImg)
+const dragonTaimer = createNewClass("Dragon Taimer", [], "lorem ipsum x 100", "https://i.imgur.com/8f6Z4dy.png", dragonTaimerImg, {STR: 16, CHA: 16},)
 playableClasses.push(dragonTaimer)
 
 const fighter = createNewClass(
@@ -447,26 +451,27 @@ const fighter = createNewClass(
         
         "https://i.imgur.com/wtpA7oK.png",
         fighterImg,
+        {CON: 16, CHA: 16},
         8,
      )
 playableClasses.push(fighter)
 
-const explorer = createNewClass("Explorer", [], "lorem ipsum x 100", "https://i.imgur.com/F7jpnCj.png", explorerImg)
+const explorer = createNewClass("Explorer", [], "lorem ipsum x 100", "https://i.imgur.com/F7jpnCj.png", explorerImg, {INT: 15, WIS: 14}, 8)
 playableClasses.push(explorer)
 
-const hunter = createNewClass("Hunter", [], "lorem ipsum x 100", "https://i.imgur.com/kz6Thjo.png", hunterImg)
+const hunter = createNewClass("Hunter", [], "lorem ipsum x 100", "https://i.imgur.com/kz6Thjo.png", hunterImg, {DEX: 15, WIS: 12},)
 playableClasses.push(hunter)
 
-const ironLord = createNewClass("Iron Lord", [], "lorem ipsum x 100", "https://i.imgur.com/GXlwQDg.png", ironLordImg)
+const ironLord = createNewClass("Iron Lord", [], "lorem ipsum x 100", "https://i.imgur.com/GXlwQDg.png", ironLordImg, {STR: 16, WIS: 16},)
 playableClasses.push(ironLord)
 
-const knight = createNewClass("Knight", [], "lorem ipsum x 100", "https://i.imgur.com/aEurYCh.png", knightImg)
+const knight = createNewClass("Knight", [], "lorem ipsum x 100", "https://i.imgur.com/aEurYCh.png", knightImg, {STR: 14, DEX: 16},)
 playableClasses.push(knight)
 
-const monk = createNewClass("Monk", [], "lorem ipsum x 100", "https://i.imgur.com/M8C6sIW.png", monkImg)
+const monk = createNewClass("Monk", [], "lorem ipsum x 100", "https://i.imgur.com/M8C6sIW.png", monkImg, {STR: 15, DEX: 15},)
 playableClasses.push(monk)
 
-const necromancer = createNewClass("Necromancer", [], "lorem ipsum x 100", "https://i.imgur.com/PBDRvxw.png", necromancerImg)
+const necromancer = createNewClass("Necromancer", [], "lorem ipsum x 100", "https://i.imgur.com/PBDRvxw.png", necromancerImg, {INT: 15, CHA: 16},)
 playableClasses.push(necromancer)
 
 const paladin = createNewClass(
@@ -477,6 +482,7 @@ const paladin = createNewClass(
 
         "https://i.imgur.com/3hL4EQl.png",
         paladinImg,
+        {CON: 12, CHA: 14},
         10
      )
 playableClasses.push(paladin)
@@ -489,6 +495,7 @@ const priest = createNewClass(
 
     "https://i.imgur.com/3R5ShQH.png",
     priestImg,
+    {WIS: 12, CHA: 14},
     8,
  )
 playableClasses.push(priest)
@@ -501,26 +508,27 @@ const ranger = createNewClass(
         
         "https://i.imgur.com/KvJoPwZ.png", 
         rangerImg,
+        {DEX: 12, CHA: 15},
         10
     )
 playableClasses.push(ranger)
 
-const rider = createNewClass("Rider", [], "lorem ipsum x 100", "https://i.imgur.com/dK3YbuB.png", riderImg)
+const rider = createNewClass("Rider", [], "lorem ipsum x 100", "https://i.imgur.com/dK3YbuB.png", riderImg, {STR: 12, CHA: 16},)
 playableClasses.push(rider)
 
-const shaman = createNewClass("Shaman", [], "lorem ipsum x 100", "https://i.imgur.com/2fBE6dH.png", shamanImg)
+const shaman = createNewClass("Shaman", [], "lorem ipsum x 100", "https://i.imgur.com/2fBE6dH.png", shamanImg, {CON: 14, WIS: 14}, )
 playableClasses.push(shaman)
 
-const samurai = createNewClass("Samurai", [], "lorem ipsum x 100", "https://i.imgur.com/M8C6sIW.png", samuraiImg)
+const samurai = createNewClass("Samurai", [], "lorem ipsum x 100", "https://i.imgur.com/M8C6sIW.png", samuraiImg, {STR: 16, DEX: 16},)
 playableClasses.push(samurai)
 
-const warchief = createNewClass("Warchief", [], "lorem ipsum x 100", "https://i.imgur.com/jposVjE.png", warchiefImg)
+const warchief = createNewClass("Warchief", [], "lorem ipsum x 100", "https://i.imgur.com/jposVjE.png", warchiefImg, {STR: 16, CHA: 16},)
 playableClasses.push(warchief)
 
-const warlock = createNewClass("Warlock", [], "lorem ipsum x 100", "https://i.imgur.com/KgFdPED.png", warlockImg)
+const warlock = createNewClass("Warlock", [], "lorem ipsum x 100", "https://i.imgur.com/KgFdPED.png", warlockImg, {INT: 14, CHA: 14},)
 playableClasses.push(warlock)
 
-const warrior = createNewClass("Warrior", [], "lorem ipsum x 100", "https://i.imgur.com/cNSh8f1.png" ,warriorImg)
+const warrior = createNewClass("Warrior", [], "lorem ipsum x 100", "https://i.imgur.com/cNSh8f1.png" ,warriorImg, {STR: 14, DEX: 12},)
 playableClasses.push(warrior)
 
 /*Available Razes*/

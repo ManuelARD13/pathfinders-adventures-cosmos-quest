@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { StatsList } from "../StatsList/StatsList";
 import "./ClassesSelector.css"
 
-function ClassesSelector({ setSelectionStage, gender, raze, characterClass, characterStats ,useSelectClass, setCharacterClass, isSelectable, setSelectable }) {
+function ClassesSelector({ setSelectionStage, gender, raze, characterClass, characterStats, setTotalScores ,useSelectClass, setCharacterClass, isSelectable }) {
 
-    const totalScores =  {}
+        const totalScores =  {}
 
     for (const [key, value] of Object.entries(characterStats)) {
         for(const [modKey, modValue] of Object.entries(raze.razeModifiers)){
@@ -15,61 +15,6 @@ function ClassesSelector({ setSelectionStage, gender, raze, characterClass, char
             }
         }
     }
-
-  
-
-
-        const useSelectableClass = () => {
-            console.log("WTF")
-        
-            let requisites = 0
-            for (const [key, value] of Object.entries(totalScores)){
-                for (const [classKey, classValue] of Object.entries(characterClass.classRequirements)){
-                    if(key === classKey) {
-                        if(value > classValue) {
-                            requisites++
-                        }
-                    }   
-                }
-         
-
-            if(requisites === 2) {
-                setSelectable(true)
-                console.log(isSelectable)
-            } else {
-                setSelectable(false)
-                console.log(isSelectable)
-            }
-        }
-        }
-        
-        const useClassSelection = (e) =>{
-            useSelectClass(e)
-            useSelectableClass()
-        }
-
-    // useEffect(() => {
-    //     useSelectableClass()
-    // }, [characterClass])
-    // useEffect(() => {
-    //     let flag = isSelectable()
-
-    //     const requiredMessage = document.getElementById("requiredMessage")
-    //     const requiredStat1 = document.getElementById("requiredStat1")
-    //     // const requiredStat2 = document.getElementById("requiredStat2")
-
-    //     requiredStat1.innerHTML = characterClass.classRequirements
-
-        
-
-    //     if(flag === true) {
-    //         requiredMessage.innerHTML = "Great! You have Enough Stats Scores"
-    //     } else if (flag === false) {
-    //         requiredMessage.innerHTML = "Not Enough Stats Scores"
-    //     }
-    // }, [characterClass, isSelectable])
-        
-
  
     return (
         <>
@@ -82,9 +27,13 @@ function ClassesSelector({ setSelectionStage, gender, raze, characterClass, char
             
             <p>Choose your class</p>
             <p className="divider"></p>
-            <p id="requiredMessage">
-              
-            </p>
+            
+              {isSelectable ? 
+                <p className="yesScoreMessage">Great! You've enough Stats Scores.</p> 
+                :
+                <p className="noScoreMessage">Sorry. No enough Stats Scores.</p>
+                }
+            
             <div>
                 <StatsList characterStats={characterStats} raze={raze} />
             </div>
@@ -94,15 +43,15 @@ function ClassesSelector({ setSelectionStage, gender, raze, characterClass, char
                 gender === "male" ? 
                     raze.availableClasses.male.map((pClass) => 
                         <div className="classContainer">
-                            <input type="radio" name="classes" className="classSelectors" id={pClass.className} />
-                            <label className="classesLabels" htmlFor={pClass.className} id={`${pClass.className}Label`} onClick={useClassSelection}><img src={pClass.classIcon} alt={pClass.className} id={pClass.className}></img></label>
-                            <p onClick={useSelectableClass}>{pClass.className}</p>
+                            <input type="radio" name="classes" className="classSelectors" id={pClass.className} onClick={() => setTotalScores(totalScores)} />
+                            <label className="classesLabels" htmlFor={pClass.className} id={`${pClass.className}Label`} onClick={useSelectClass}><img src={pClass.classIcon} alt={pClass.className} id={pClass.className}></img></label>
+                            <p>{pClass.className}</p>
                         </div>
                     ) 
                     :
                     raze.availableClasses.female.map((pClass) => 
                         <div className="classContainer">
-                            <input type="radio" name="classes" className="classSelectors" id={pClass.className} />
+                            <input type="radio" name="classes" className="classSelectors" id={pClass.className} onClick={() => setTotalScores(totalScores)} />
                             <label className="classesLabels" htmlFor={pClass.className} id={`${pClass.className}Label`} onClick={useSelectClass}><img src={pClass.classIcon} alt={pClass.className} id={pClass.className} /></label>
                             <p>{pClass.className}</p>
                         </div>

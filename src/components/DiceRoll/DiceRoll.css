@@ -82,7 +82,7 @@ tr th {
     display: flex;
     flex-direction: row;
     gap: 0.5vw;
-    margin-top: 2vh;
+    margin-top: 0.5vh;
 }
 
 .diceRollTableContainer input:hover {
