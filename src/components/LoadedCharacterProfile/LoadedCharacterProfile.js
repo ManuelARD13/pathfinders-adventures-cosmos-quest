@@ -4,7 +4,7 @@ import { CharacterImgDisplay } from "../CharacterImgDisplay/CharacterImgDisplay"
 import "./LoadedCharacterProfile.css"
 
 function LoadedCharacterProfile({ character, setScreen }) {
-    console.log(character)
+    /*TODO: Combine this component with CharacterProfile and add it to DisplayScreen */
     return(
         <section className="loadedCharacterProfile" style={{backgroundImage: `url(${character.raze.razeBKImg})`}}>
             <h2>{character.characterName}</h2>

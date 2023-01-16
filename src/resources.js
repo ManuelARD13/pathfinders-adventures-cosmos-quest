@@ -346,13 +346,13 @@ const mainMenuAudio = new Audio("./audio/mainMenu.mp3")
 playlist.push(mainMenuAudio)
 const tavernAudio = new Audio("./audio/tavern.mp3")
 playlist.push(tavernAudio)
-const humansAudio = "audio/human.mp3"
+const humansAudio = "../../audio/human.mp3"
 playlist.push(humansAudio)
-const elfsAudio = "audio/elf.mp3"
+const elfsAudio = "../../audio/elf.mp3"
 playlist.push(elfsAudio)
-const orcsAudio = "audio/orc.mp3"
+const orcsAudio = "../../audio/orc.mp3"
 playlist.push(orcsAudio)
-const dwarfsAudio = "audio/dwarf.mp3"
+const dwarfsAudio = "../../audio/dwarf.mp3"
 playlist.push(dwarfsAudio)
 
 

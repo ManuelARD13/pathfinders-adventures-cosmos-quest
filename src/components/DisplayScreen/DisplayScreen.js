@@ -11,45 +11,55 @@ function DisplayScreen({ setScreen, selectionStage, setSelectionStage, character
   return(
       <section 
         className="displayScreen" 
-        style= {
-          selectionStage === "razes" 
+        style= { selectionStage === "razes" 
           ? {
               backgroundImage: "url('https://i.imgur.com/svtJbZs.jpg')"
             }
           : {
               backgroundImage: `url(${raze.razeBKImg})`
             }
-        }>
+      }>
           <h2>Create Your Character</h2>
-          {selectionStage === "razes" 
-          ? 
-            <RazesSelector
-            setSelectionStage={setSelectionStage}
-            characterStats={characterStats}
-            setCharacterName={setCharacterName}
-            gender={gender}
-            raze={raze}
-            useSelectGender={useSelectGender}
-            useSelectRaze={useSelectRaze}
-            playableRazes={playableRazes} 
+            { selectionStage === "razes" 
 
-            />
-          : <ClassesSelector 
-            setSelectionStage={setSelectionStage}
-            gender={gender}
-            raze={raze}
-            characterStats={characterStats}
-            setTotalScores={setTotalScores}
-            characterClass={characterClass}
-            useSelectClass={useSelectClass}
-            setCharacterClass={setCharacterClass}
-            isSelectable={isSelectable}
-            setScreen={setScreen}
+              ? 
+                <RazesSelector
+                  setSelectionStage={setSelectionStage}
+                  characterStats={characterStats}
 
-     
-            />
-          }
-          <CharacterImgDisplay characterImg={characterImg} isSelectable={isSelectable} />     
+                  setCharacterName={setCharacterName}
+
+                  gender={gender}
+                  useSelectGender={useSelectGender}
+
+                  raze={raze}
+                  useSelectRaze={useSelectRaze}
+                  playableRazes={playableRazes} 
+      
+                />
+              : <ClassesSelector 
+                  setSelectionStage={setSelectionStage}
+
+                  characterStats={characterStats}
+                  setTotalScores={setTotalScores}
+
+                  gender={gender}
+
+                  raze={raze}
+                  
+                  characterClass={characterClass}
+                  useSelectClass={useSelectClass}
+                  setCharacterClass={setCharacterClass}
+                  isSelectable={isSelectable}
+
+                  setScreen={setScreen}
+                />
+              }
+
+              {/* TODO: Add CharacterProfile screen */}
+
+          <CharacterImgDisplay characterImg={characterImg} isSelectable={isSelectable} />
+               
       </section>
     )
 }

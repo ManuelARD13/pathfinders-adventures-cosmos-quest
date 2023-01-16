@@ -10,7 +10,7 @@
                 animation: fade-in-out 4s cubic-bezier(0.390, 0.575, 0.565, 1.000) 3s 2 alternate both; 
 }
 
-#branding h3 {
+.branding h3 {
     font-size: 2rem;
     border-bottom: 10px solid;
     border-image-slice: 1;
@@ -19,7 +19,7 @@
     padding-bottom: 10px;
 }
 
-#branding h3 span {
+.branding h3 span {
     background-color: #6413b0;
     background-image: linear-gradient(90deg, #6413b0, #d60042);
     background-size: 100%;

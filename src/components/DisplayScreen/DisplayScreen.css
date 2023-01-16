@@ -7,6 +7,8 @@
     background-blend-mode: overlay;
     font-family: 'Eagle Lake', cursive;
     font-size: 1rem;
+    -webkit-animation: fade-in 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            animation: fade-in 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
 .displayScreen h2 {

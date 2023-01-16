@@ -1,3 +1,5 @@
+/*TODO: Combine styles with other components of the DisplayScreen once added to them*/
+
 .characterProfile {
     display: grid;
     grid-template-columns: 2vw 29vw 38vw 29vw 2vw;

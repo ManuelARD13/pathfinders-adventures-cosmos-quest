@@ -1,6 +1,7 @@
 import './App.css';
 import { playableClasses, playableRazes, playlist } from "./resources.js"
-import { React } from 'react';
+
+import { React, useRef } from 'react';
 import { useState, useEffect } from "react";
 
 import { DisplayScreen } from './components/DisplayScreen/DisplayScreen';
@@ -9,25 +10,20 @@ import { BrandingDisplay } from './components/BrandingDisplay/BrandingDisplay';
 import { MainMenu } from './components/MainMenu/MainMenu';
 import { DiceRoll } from './components/DiceRoll/DiceRoll';
 import { CharacterProfile } from './components/CharacterProfile/CharacterProfile';
-import { Greetings } from './components/Greetings/Greetings';
+import { Acknoledgements } from './components/Acknoledgements/Acknoledgements';
 import { LoadGame } from './components/LoadGame/LoadGame';
 import { LoadedCharacterProfile } from './components/LoadedCharacterProfile/LoadedCharacterProfile';
-// import { SoundPlayer } from './components/SoundPlayer/SoundPlayer';
+import { SoundPlayer } from './components/SoundPlayer/SoundPlayer';
 
 function App() {
 
   /*Functions*/
-
-  const newPlaylist = []
-
-playlist.forEach((track) => {
-  let sound = new Audio(track)
-  newPlaylist.push(sound)
-})
   
 
   /*States & Hooks*/
   const [screen, setScreen] = useState("StartScreen")
+  // const [track, setTrack] = useState(mainMenuTrack)
+  const [trackRef, setTrackRef]  = useState("")
 
   const [savedCharacters, setSavedCharacters] = useState([])
   const [character, setCharacter] = useState("")
@@ -48,6 +44,8 @@ playlist.forEach((track) => {
   
   const [characterStats, setStats] = useState({})
   const [totalScores, setTotalScores] = useState({})
+
+ 
 
   const useSelectGender = () => {
     const genderFemaleSelector = document.getElementById("genderFemale")
@@ -114,7 +112,6 @@ playlist.forEach((track) => {
   }, [gender, raze, characterClass])
 
 useEffect( () => {   
-    console.log("WTF")
    if(characterClass !== undefined){
        let requisites = 0
    for (const [key, value] of Object.entries(totalScores)){
@@ -129,13 +126,10 @@ useEffect( () => {
            }   
        }
 
-  console.log(requisites)
    if(requisites === 2) {
        setSelectable(true)
-       console.log(isSelectable)
    } else {
        setSelectable(false)
-       console.log(isSelectable)
    }
 }
 }
@@ -145,11 +139,12 @@ useEffect( () => {
   /*Renderization*/
   return (
     <>
-      {/* <SoundPlayer screen={screen} /> */}
+      {screen !== "StartScreen" ?<SoundPlayer screen={screen} selectionStage={selectionStage} raze={raze} /> : null }
       {screen !== "StartScreen" ?  null : <StartScreen setScreen={setScreen} setSavedCharacters={setSavedCharacters}/>}
+     
       {screen === "BrandingScreen" ? 
       
-          <BrandingDisplay setScreen={setScreen} newPlaylist={newPlaylist} /> 
+          <BrandingDisplay setScreen={setScreen}  /> 
           
     
       : null}
@@ -157,14 +152,14 @@ useEffect( () => {
 
       {screen === "DiceRoll" ? 
 
-        <DiceRoll 
+        <DiceRoll         
           diceRolled={diceRolled} 
           setDiceRolled={setDiceRolled}
   
           characterStats={characterStats}
           setStats={setStats}
 
-          setScreen={setScreen} 
+          setScreen={setScreen}
         />
       : null} 
 
@@ -231,7 +226,7 @@ useEffect( () => {
           /> 
           : null }
 
-          { screen === "Greetings" ? <Greetings /> : null}
+          { screen === "Acknoledgements" ? <Acknoledgements /> : null}
     </> 
   );
 }

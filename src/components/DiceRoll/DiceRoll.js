@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import "./DiceRoll.css"
 
-function DiceRoll( {diceRolled, setDiceRolled, setStats, setScreen } ){
-
+function DiceRoll( { diceRolled, setDiceRolled, setStats, setScreen } ){
 
     const createStatsObj = (diceRolls) => ({
+        /*Constructor */
         CON: diceRolls.CONScore,
         STR: diceRolls.STRScore,
         DEX: diceRolls.DEXScore,
@@ -28,6 +28,7 @@ function DiceRoll( {diceRolled, setDiceRolled, setStats, setScreen } ){
     }
 
     useEffect (() => {
+        /*Create and Print diceRolls values*/
         statsScores.forEach((stat) => {
             let statScore = statCalculator()
             stat.innerHTML = statScore
@@ -36,6 +37,7 @@ function DiceRoll( {diceRolled, setDiceRolled, setStats, setScreen } ){
     }, [diceRolled])
     
     const reRollStatDice = (e) => {
+        /*Re-calculate diceRolls values */
         if(reRolledCount > 0){
            let stat = e.target.id
             let statScore = document.getElementById(stat + "Score")
@@ -68,6 +70,7 @@ function DiceRoll( {diceRolled, setDiceRolled, setStats, setScreen } ){
     }
 
     const updateReRolls = () => {
+        /*Print Re-Rolls messages*/
         if(reRolledCount === 0){
             reRollMessage.innerHTML = "You've roll all your chances. Congrats! You're ready to begin your epic journey."
             reRollButtons.forEach((button) => {
@@ -78,7 +81,7 @@ function DiceRoll( {diceRolled, setDiceRolled, setStats, setScreen } ){
     }
 
     const createStats = (diceRolls) => {
-     
+        /*Set States and Continue */
         let stats = createStatsObj(diceRolls)
         setStats(stats)
         setScreen("CreateCharacterScreen")
@@ -104,40 +107,96 @@ function DiceRoll( {diceRolled, setDiceRolled, setStats, setScreen } ){
                         </tr>
                         <tr>
                             <td> CON</td>
-                            <td><span id="CONScore" className="statsScores">0</span></td>
-                             <td><input type="button" value="Re-Roll!" className="reRollButtons" id="CON" onClick={reRollStatDice} style={diceRolled ? {opacity: 1, visibility: "visible"}: {opacity: 0, visibility: "hidden"}} /></td>
+                            <td>
+                                <span id="CONScore" className="statsScores">0</span>
+                            </td>
+                             <td>
+                                <input  type="button" 
+                                        value="Re-Roll!" 
+                                        className="reRollButtons" 
+                                        id="CON" 
+                                        onClick={reRollStatDice} 
+                                        style = { diceRolled
+                                            ? {opacity: 1, visibility: "visible"}
+                                            : {opacity: 0, visibility: "hidden"}} 
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <td>STR</td>
-                            <td><span id="STRScore" className="statsScores">0</span></td>
-                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="STR" onClick={reRollStatDice} style={diceRolled ? {opacity: 1, visibility: "visible"}: {opacity: 0, visibility: "hidden"}} /></td>
+                            <td>
+                                <span id="STRScore" className="statsScores">0</span>
+                            </td>
+                            <td>
+                                <input type="button" value="Re-Roll!" className="reRollButtons" id="STR" 
+                                    onClick={reRollStatDice} 
+                                    style = {diceRolled 
+                                        ? {opacity: 1, visibility: "visible"}
+                                        : {opacity: 0, visibility: "hidden"}} 
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <td>DEX</td>
                             <td><span id="DEXScore" className="statsScores">0</span></td>
-                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="DEX" onClick={reRollStatDice} style={diceRolled ? {opacity: 1, visibility: "visible"}: {opacity: 0, visibility: "hidden"}} /></td>
+                            <td>
+                                <input type="button" value="Re-Roll!" className="reRollButtons" id="DEX" 
+                                    onClick={reRollStatDice} 
+                                    style = {diceRolled 
+                                    ? {opacity: 1, visibility: "visible"}
+                                    : {opacity: 0, visibility: "hidden"}} 
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <td>INT</td>
                             <td><span id="INTScore" className="statsScores"> 0</span></td>
-                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="INT" onClick={reRollStatDice} style={diceRolled ? {opacity: 1, visibility: "visible"}: {opacity: 0, visibility: "hidden"}} /></td>
+                            <td>
+                                <input type="button" value="Re-Roll!" className="reRollButtons" id="INT" 
+                                    onClick={reRollStatDice} 
+                                    style = {diceRolled 
+                                    ? {opacity: 1, visibility: "visible"}
+                                    : {opacity: 0, visibility: "hidden"}} 
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <td>WIS</td>
                             <td><span id="WISScore" className="statsScores">0</span></td>
-                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="WIS" onClick={reRollStatDice} style={diceRolled ? {opacity: 1, visibility: "visible"}: {opacity: 0, visibility: "hidden"}} /></td>
+                            <td>
+                                <input type="button" value="Re-Roll!" className="reRollButtons" id="WIS" 
+                                    onClick={reRollStatDice} 
+                                    style = {diceRolled 
+                                    ? {opacity: 1, visibility: "visible"}
+                                    : {opacity: 0, visibility: "hidden"}} 
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <td>CHA</td>
                             <td><span id="CHAScore" className="statsScores">0</span></td>
-                            <td><input type="button" value="Re-Roll!" className="reRollButtons" id="CHA" onClick={reRollStatDice} style={diceRolled ? {opacity: 1, visibility: "visible"}: {opacity: 0, visibility: "hidden"}} /></td>
+                            <td>
+                                <input type="button" value="Re-Roll!" className="reRollButtons" id="CHA" 
+                                    onClick={reRollStatDice} 
+                                    style = {diceRolled 
+                                    ? {opacity: 1, visibility: "visible"}
+                                    : {opacity: 0, visibility: "hidden"}} 
+                                />
+                            </td>
                         </tr>
                     </tbody>
                 </table>
                 <div className="screenButtonsContainer">
-                    <input type="button" value="Return" className="screenButtons" id="continueCharacter3" onClick={() => setScreen("MainMenuScreen")} />
-                    <input type="button" value="Roll Dice!" className="screenButtons" id="buttonDice" onClick={diceRoll} disabled={diceRolled ? true : false} />
-                    <input type="button" value="Continue"  className={diceRolled ? "screenButtons pulsate-fwd" : "screenButtons"} id="continueCharacter3" onClick={() => createStats(diceRolls)} />
+                    <input type="button" value="Return" className="screenButtons" id="continueCharacter3" 
+                        onClick={() => setScreen("MainMenuScreen")} 
+                    />
+                    <input type="button" value="Roll Dice!" className="screenButtons" id="buttonDice"
+                        onClick={diceRoll} disabled={diceRolled ? true : false} 
+                    />
+                    <input type="button" value="Continue" id="continueCharacter3"
+                        className={diceRolled ? "screenButtons pulsate-fwd" : "screenButtons"}  
+                        onClick={() => createStats(diceRolls)} 
+                    />
                 </div>
             </div>
             <div className="statsDescription">

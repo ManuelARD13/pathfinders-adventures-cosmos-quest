@@ -1,57 +1,69 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { StatsList } from "../StatsList/StatsList";
 import "./ClassesSelector.css"
 
 function ClassesSelector({ setSelectionStage, gender, raze, characterClass, characterStats, setTotalScores ,useSelectClass, setCharacterClass, isSelectable }) {
 
-        const totalScores =  {}
+	/*Creating totalScores Object for classRequeriments comparisons*/
+  const totalScores =  {}
 
-    for (const [key, value] of Object.entries(characterStats)) {
-        for(const [modKey, modValue] of Object.entries(raze.razeModifiers)){
-            if(modKey === key && modValue !== 0) {
-                totalScores[`${key}`] = value + modValue
-            } else if(modKey === key && modValue === 0) {
-                totalScores[`${key}`] = value
-            }
-        }
+  for (const [key, value] of Object.entries(characterStats)) {
+    for(const [modKey, modValue] of Object.entries(raze.razeModifiers)){
+      if(modKey === key && modValue !== 0) {
+        totalScores[`${key}`] = value + modValue
+      } else if(modKey === key && modValue === 0) {
+        totalScores[`${key}`] = value
+      }
     }
+  }
  
-    return (
-        <>
-        <input type={"button"} value="Return" className="returnButton"
-            onClick={() => {
-                setSelectionStage("razes")
-                setCharacterClass(undefined)
+  return (
+  	<>
+      <input type={"button"} value="Return" className="returnButton"
+        onClick={() => {
+                				setSelectionStage("razes")
+                				setCharacterClass(undefined)
                 }} />
+
         <div className="displayClassesSelectorsContainer">
             
-            <p>Choose your class</p>
-            <p className="divider"></p>
+          <p>Choose your class</p>
+          <p className="divider"></p>
             
-              {isSelectable ? 
-                <p className="yesScoreMessage">Great! You've enough Stats Scores.</p> 
-                :
-                <p className="noScoreMessage">Sorry. No enough Stats Scores.</p>
-                }
+          { isSelectable 
+						? 
+							<p className="yesScoreMessage">Great! You've enough Stats Scores.</p> 
+						:
+							<p className="noScoreMessage">Sorry. No enough Stats Scores.</p>
+          }
             
-            <div>
-                <StatsList characterStats={characterStats} raze={raze} />
-            </div>
-            <p className="divider"></p>
-            <form className="formClasses">
-                {
-                gender === "male" ? 
-                    raze.availableClasses.male.map((pClass) => 
-                        <div className="classContainer">
-                            <input type="radio" name="classes" className="classSelectors" id={pClass.className} onClick={() => setTotalScores(totalScores)} />
-                            <label className="classesLabels" htmlFor={pClass.className} id={`${pClass.className}Label`} onClick={useSelectClass}><img src={pClass.classIcon} alt={pClass.className} id={pClass.className}></img></label>
-                            <p>{pClass.className}</p>
-                        </div>
-                    ) 
-                    :
-                    raze.availableClasses.female.map((pClass) => 
-                        <div className="classContainer">
-                            <input type="radio" name="classes" className="classSelectors" id={pClass.className} onClick={() => setTotalScores(totalScores)} />
+        	<div>
+            <StatsList characterStats={characterStats} raze={raze} />
+          </div>
+
+          <p className="divider"></p>
+          <form className="formClasses">
+						{/* TODO: Try ternary operator just in the object to iterate on */}
+            { gender === "male" 
+						? raze.availableClasses.male.map((pClass) => 
+                <div className="classContainer">
+                  <input type="radio" name="classes" className="classSelectors" id={pClass.className} 
+										onClick={() => setTotalScores(totalScores)} 
+									/>
+                  <label className="classesLabels" htmlFor={pClass.className} id={`${pClass.className}Label`} 
+										onClick={useSelectClass}
+									>
+											<img src={pClass.classIcon} alt={pClass.className} id={pClass.className}>
+											</img>
+									</label>
+                  <p>{pClass.className}</p>
+                </div>
+              ) 
+            :	raze.availableClasses.female.map((pClass) => 
+                <div className="classContainer">
+                <input type="radio" name="classes" className="classSelectors" id={pClass.className} 
+								onClick={() => setTotalScores(totalScores)} 
+								/>
                             <label className="classesLabels" htmlFor={pClass.className} id={`${pClass.className}Label`} onClick={useSelectClass}><img src={pClass.classIcon} alt={pClass.className} id={pClass.className} /></label>
                             <p>{pClass.className}</p>
                         </div>
