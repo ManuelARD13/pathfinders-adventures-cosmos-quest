@@ -1,7 +1,7 @@
 import './App.css';
-import { playableClasses, playableRazes, playlist } from "./resources.js"
+import { playableClasses, playableRazes } from "./resources.js"
 
-import { React, useRef } from 'react';
+import React from 'react';
 import { useState, useEffect } from "react";
 
 import { DisplayScreen } from './components/DisplayScreen/DisplayScreen';
@@ -17,13 +17,8 @@ import { SoundPlayer } from './components/SoundPlayer/SoundPlayer';
 
 function App() {
 
-  /*Functions*/
-  
-
   /*States & Hooks*/
   const [screen, setScreen] = useState("StartScreen")
-  // const [track, setTrack] = useState(mainMenuTrack)
-  const [trackRef, setTrackRef]  = useState("")
 
   const [savedCharacters, setSavedCharacters] = useState([])
   const [character, setCharacter] = useState("")
@@ -36,7 +31,7 @@ function App() {
   const[raze, setRaze] = useState("")
 
   const[characterClass, setcharacterClass] = useState(undefined)
-  const[isSelectable, setSelectable] = useState(true)
+  const[isSelectable, setSelectable] = useState("")
 
   const [characterImg, setCharacterImg] = useState("https://i.imgur.com/aryfPBv.png")
 
@@ -81,12 +76,15 @@ function App() {
     )
 
     const comfirmButton = document.getElementById("comfirmClass")
-    comfirmButton.disabled = false
-    comfirmButton.addEventListener("click", () => setScreen("CharacterProfile"))
-
+    
+    if(isSelectable === true){
+      comfirmButton.disabled = false
+      comfirmButton.addEventListener("click", () => setScreen("CharacterProfile"))
+    }
   }
 
   useEffect(() => {
+    /*Character Images Display */
     try{
       if(!characterClass){
         setCharacterImg(gender === "male" ? raze.razeImgMale : raze.razeImgFemale)
@@ -111,29 +109,27 @@ function App() {
     }
   }, [gender, raze, characterClass])
 
-useEffect( () => {   
-   if(characterClass !== undefined){
-       let requisites = 0
-   for (const [key, value] of Object.entries(totalScores)){
-       for (const [classKey, classValue] of Object.entries(characterClass.classRequirements)){
-  
-           if(key === classKey) {
-      
-               if(value > classValue) {
-          
-                   requisites++
-               }
-           }   
-       }
+  useEffect( () => {
+    /*Class Requeriments Validation*/   
+    if(characterClass !== undefined){
+        let requisites = 0
+    for (const [key, value] of Object.entries(totalScores)){
+        for (const [classKey, classValue] of Object.entries(characterClass.classRequirements)){
+            if(key === classKey) {
+                if(value > classValue) {
+                    requisites++
+                }
+            }   
+        }
 
-   if(requisites === 2) {
-       setSelectable(true)
-   } else {
-       setSelectable(false)
-   }
-}
-}
-}, [totalScores])
+    if(requisites === 2) {
+        setSelectable(true)
+    } else {
+        setSelectable(false)
+    }
+    }
+  }
+  }, [totalScores, characterClass])
 
 
   /*Renderization*/
@@ -142,12 +138,8 @@ useEffect( () => {
       {screen !== "StartScreen" ?<SoundPlayer screen={screen} selectionStage={selectionStage} raze={raze} /> : null }
       {screen !== "StartScreen" ?  null : <StartScreen setScreen={setScreen} setSavedCharacters={setSavedCharacters}/>}
      
-      {screen === "BrandingScreen" ? 
-      
-          <BrandingDisplay setScreen={setScreen}  /> 
-          
-    
-      : null}
+      {screen === "BrandingScreen" ? <BrandingDisplay setScreen={setScreen}  /> : null}
+
       {screen === "MainMenuScreen" ? <MainMenu  setScreen={setScreen} /> : null}
 
       {screen === "DiceRoll" ? 
@@ -224,9 +216,9 @@ useEffect( () => {
             setScreen={setScreen}
             savedCharacters={savedCharacters} 
           /> 
-          : null }
+        : null }
 
-          { screen === "Acknoledgements" ? <Acknoledgements /> : null}
+        { screen === "Acknoledgements" ? <Acknoledgements /> : null}
     </> 
   );
 }

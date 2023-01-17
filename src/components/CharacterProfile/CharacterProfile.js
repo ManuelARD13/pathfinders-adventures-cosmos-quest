@@ -18,7 +18,23 @@ function CharacterProfile ( { setCharacter, characterName, gender, raze, charact
   const DEF = 10 + raze.razeModifiers.DEX + ( Math.floor((characterStats.DEX - 10) / 2) )
   const level = 1
 
-  const calculateWeight = (minWeight, maxWeight) => Math.floor(minWeight + (Math.random() * (maxWeight-minWeight))) 
+  const calculateWeight = (minWeight, maxWeight) => Math.floor(minWeight + (Math.random() * (maxWeight-minWeight)))
+  
+  const createCharacterProfileImg = (gender, raze, characterClass ) => {
+    if(raze.razeName === "human"){
+      return (gender === "male" ? characterClass.classImg.human.maleProfile :
+      characterClass.classImg.human.femaleProfile)
+    } else if(raze.razeName === "elf"){
+      return(gender === "male" ? characterClass.classImg.elf.maleProfile :
+      characterClass.classImg.elf.femaleProfile)
+    } else if (raze.razeName === "orc") {
+      return(gender === "male" ? characterClass.classImg.orc.maleProfile :
+      characterClass.classImg.orc.femaleProfile)
+    } else if (raze.razeName === "dwarf") {
+      return(gender === "male" ? characterClass.classImg.dwarf.maleProfile : 
+      characterClass.classImg.dwarf.femaleProfile)
+    }
+}
       
 	const createNewCharacterObj = (characterName, gender, raze, characterClass, characterImg, stats) => ({
 		/*Constructor*/
@@ -28,6 +44,7 @@ function CharacterProfile ( { setCharacter, characterName, gender, raze, charact
     gender: gender,
     raze: raze,
     characterClass: characterClass,
+    characterProfileImg: createCharacterProfileImg(gender, raze, characterClass),
     characterImg: characterImg,
     stats: stats,
     HP: raze.razeModifiers.CON + Math.floor( (stats.CON - 10) / 2 ) + characterClass.hitPoints,

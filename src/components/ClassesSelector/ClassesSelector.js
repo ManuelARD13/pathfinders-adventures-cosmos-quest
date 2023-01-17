@@ -71,7 +71,8 @@ function ClassesSelector({ setSelectionStage, gender, raze, characterClass, char
                 }
             </form>
         </div>
-        <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmClass" disabled />
+        <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmClass" 
+          disabled={ !isSelectable ? true : false} />
         <div className="displayClassesDescriptionContainer">
           
         {
