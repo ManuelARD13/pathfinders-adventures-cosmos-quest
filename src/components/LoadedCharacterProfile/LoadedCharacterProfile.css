@@ -1,0 +1,89 @@
+/*TODO: Combine styles with other components of the DisplayScreen once added to them*/
+
+.loadedCharacterProfile {
+    display: grid;
+    grid-template-columns: 30vw 40vw 30vw;
+    grid-template-rows: 13vh 87vh;
+    background-size: cover;
+    background-color: rgba(0,0,0,0.3);
+    background-blend-mode: overlay;
+    font-family: 'Eagle Lake', cursive;
+    font-size: 1rem;
+}
+
+.loadedCharacterProfile h2 {
+    grid-column: 2 / 2;
+    grid-row: 1 / 1;
+    justify-self: center;
+    align-self: center;
+    font-size: 2rem;
+    border-bottom: 3px solid #CCAE27;
+}
+
+.loadedCharacterProfile .displayImgContainer {
+    grid-column: 2 / 2;
+    grid-row: 2 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1vh 0;
+    max-width: 40vw;
+    max-height: 85vh;
+} 
+
+
+.loadedCharacterProfile .characterGeneralInfo {
+    grid-column: 1/1;
+    grid-row: 2/-1;
+    padding: 1.5vw 1vw;
+    border: 2px solid #CCAE27 ;
+    background: rgb(0, 0, 0, 0.5);
+    -webkit-animation: slide-in-left 0.7s ease-out both;
+            animation: slide-in-left 0.7s ease-out both;
+}
+
+.loadedCharacterProfile .characterSkillsInfo {
+    grid-column: 3 / -1;
+    grid-row: 2 / -1;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    align-items: center;
+    justify-items: center;
+    padding: 1.5vw 1vw;
+    border: 2px solid #CCAE27 ;
+    background: rgb(0, 0, 0, 0.6);
+    -webkit-animation: slide-in-right 0.7s ease-in both;
+                animation: slide-in-right 0.7s ease-in both;
+
+    overflow: auto;
+}
+/* 
+.characterSkillsInfo img {
+    display: inline;
+    height: 10vh;
+}
+
+.characterSkillsInfo h4 {
+    grid-column: 2/span 3;
+    justify-self: baseline;
+    padding-left: 0.6vw;
+} */
+
+.loadedCharacterProfile .characterSkillsInfo .characterLore {
+    grid-column: 1/-1;
+    grid-row: 2/span 5;
+    border: 1px solid white;
+    min-height: 45vh;
+    min-width: 25vw;
+} 
+
+/* .characterSkillsInfo h5 {
+    grid-column: 1/-1;
+    grid-row: 7/span 1;
+} */
+
+.characterSkillsInfo ul {
+    grid-column: 1/-1;
+    grid-row: 8/-1;
+}
