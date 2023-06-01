@@ -47,3 +47,5 @@ function StartScreen ( { setScreen, setSavedCharacters}) {
 }
 
 export { StartScreen }
+
+//Move localStorage logic to another file. See what others components will be change with.

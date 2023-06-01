@@ -3,9 +3,8 @@ import "./BrandingDisplay.css"
 
 function BrandingDisplay( { setScreen } ){
     
-    /*Animated Transition Parameters*/
-    const screenChange = (screen) => setScreen(screen)
-    setTimeout(() => screenChange("MainMenuScreen"), 14000)
+    /*Animated Transition*/
+    setTimeout(() => setScreen("MainMenuScreen"), 14000)
 
     return(
     <section id="branding" className="branding fade-out">
@@ -17,3 +16,5 @@ function BrandingDisplay( { setScreen } ){
 }
 
 export { BrandingDisplay }
+
+//Refactor screen states into a useReducer format.
