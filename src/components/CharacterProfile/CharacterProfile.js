@@ -118,3 +118,6 @@ function CharacterProfile ( { setCharacter, characterName, gender, raze, charact
 }
 
 export { CharacterProfile } 
+
+//Separate Create Character Obj and Save on LocalStorage logic from this component. Re factor it to create a charater display for both new character and loaded character.
+//Solve Character Height and Weight values issues

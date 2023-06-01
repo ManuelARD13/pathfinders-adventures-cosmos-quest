@@ -7,7 +7,7 @@ function BrandingDisplay( { setScreen } ){
     setTimeout(() => setScreen("MainMenuScreen"), 14000)
 
     return(
-    <section id="branding" className="branding fade-out">
+    <section className="branding fade-out">
         <div>
             <h3><span>Cosmic</span> Games</h3>
         </div>
@@ -17,4 +17,4 @@ function BrandingDisplay( { setScreen } ){
 
 export { BrandingDisplay }
 
-//Refactor screen states into a useReducer format.
+//Refactor screen's states into a useReducer format.

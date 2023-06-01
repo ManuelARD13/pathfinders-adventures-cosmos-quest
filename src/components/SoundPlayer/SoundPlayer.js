@@ -42,3 +42,5 @@ function SoundPlayer ( { screen, selectionStage, raze } ) {
 }
 
 export { SoundPlayer }
+
+//Test issues after apply useReducer format to screen's changes

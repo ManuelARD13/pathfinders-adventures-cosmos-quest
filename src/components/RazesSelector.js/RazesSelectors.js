@@ -4,12 +4,14 @@ import { StatsList } from "../StatsList/StatsList";
 
 import "./RazesSelector.css"
 
-function RazesSelector({ characterStats, setCharacterName, gender, useSelectGender, playableRazes, raze, useSelectRaze,   useDisplayImg }) {
+function RazesSelector({ characterStats, setCharacterName, gender, useSelectGender, playableRazes, raze, useSelectRaze }) {
   
     const getUserTextInput = (e) => {
-      let characterName = e.target.value
-      setCharacterName(characterName)
-      if(characterName !== "") {
+      let userInput = e.target.value
+      setCharacterName(userInput)
+      //Separate this logic.
+      if(userInput !== "") {
+        //Use charaterName state instead of userInput variable. Apply with context implementation
         const razesRadioSelectors = Array.from(document.getElementsByClassName("razesSelectors"))
         razesRadioSelectors.forEach((selector) => {
           selector.disabled = false
@@ -25,7 +27,15 @@ function RazesSelector({ characterStats, setCharacterName, gender, useSelectGend
 
           <legend>Select Gender</legend>
           <div className="genderButtons">
-            <input type={"radio"} name="gender" className="genderRadioSelectors" value="male" id="genderMale" onChange={useSelectGender} required />
+            <input 
+              type={"radio"} 
+              name="gender" 
+              className="genderRadioSelectors" 
+              value="male" 
+              id="genderMale" 
+              onChange={useSelectGender} 
+              required 
+            />
             <label htmlFor="genderMale" className="genderLabels" id="maleLabel"></label>
 
             <input type={"radio"} name="gender" className="genderRadioSelectors" value="female" id="genderFemale" onChange={useSelectGender} required />
@@ -45,15 +55,28 @@ function RazesSelector({ characterStats, setCharacterName, gender, useSelectGend
                 return(
 
                   <div className="razeContainer">
-                    <input type="radio" name="razes" className="razesSelectors" id={raze.razeName} style={{display: "none"}} onChange={useSelectRaze} disabled={true} />
-                    <label className="razesLabels" htmlFor={raze.razeName} id={`${raze.razeName}Label`}><img src={url} alt={raze.razeName} id={raze.razeName} onClick={useDisplayImg}></img></label>
+                    <input 
+                      type="radio" 
+                      name="razes" 
+                      className="razesSelectors" 
+                      id={raze.razeName} 
+                      style={{display: "none"}} 
+                      onChange={useSelectRaze} 
+                      disabled={true} 
+                    />
+                    <label className="razesLabels" htmlFor={raze.razeName} id={`${raze.razeName}Label`}>
+                      <img 
+                        src={url} 
+                        alt={raze.razeName} 
+                      />
+                    </label>
                     <p>{raze.razeName}</p>
                   </div>
                 )
               })
             }
           </form>
-          </div>
+        </div>
 
           <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmSelections" disabled />
 
@@ -79,3 +102,7 @@ function RazesSelector({ characterStats, setCharacterName, gender, useSelectGend
 }
 
 export { RazesSelector }
+
+//Review confirmation buttons logic.
+//Apply React Context to put all razes selection logic on the component and export raze state only.
+//Review select gender logic. Miss functioning with the radio selectors checks.

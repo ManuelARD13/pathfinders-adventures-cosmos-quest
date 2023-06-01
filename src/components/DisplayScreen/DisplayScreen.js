@@ -11,7 +11,7 @@ function DisplayScreen({ setScreen, selectionStage, setSelectionStage, character
   return(
       <section 
         className="displayScreen" 
-        style= { selectionStage === "razes" 
+        style = { selectionStage === "razes" 
           ? {
               backgroundImage: "url('https://i.imgur.com/svtJbZs.jpg')"
             }
@@ -21,9 +21,7 @@ function DisplayScreen({ setScreen, selectionStage, setSelectionStage, character
       }>
           <h2>Create Your Character</h2>
             { selectionStage === "razes" 
-
-              ? 
-                <RazesSelector
+              ? <RazesSelector
                   setSelectionStage={setSelectionStage}
                   characterStats={characterStats}
 
@@ -65,3 +63,5 @@ function DisplayScreen({ setScreen, selectionStage, setSelectionStage, character
 }
 
 export { DisplayScreen }
+
+//Apply React Context to solve prop drilling issues.

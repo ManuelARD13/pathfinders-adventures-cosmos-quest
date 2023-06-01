@@ -264,3 +264,6 @@ function DiceRoll( { diceRolled, setDiceRolled, setStats, setScreen } ){
 }
 
 export { DiceRoll } 
+
+//Apply changes with useReducer parameters on screen's changes
+//Test useReducer format for dice values manipulation. Export them directly from this component. This will solve the innerHTML usage issue and the logic complexity.

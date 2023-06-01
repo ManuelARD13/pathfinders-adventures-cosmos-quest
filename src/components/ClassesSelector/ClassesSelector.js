@@ -43,7 +43,7 @@ function ClassesSelector({ setSelectionStage, gender, raze, characterClass, char
 
           <p className="divider"></p>
           <form className="formClasses">
-						{/* TODO: Try ternary operator just in the object to iterate on */}
+						{/* TODO: Try ternary operator just in the object to iterate on, USE A FUNCTION OR COMPONENT */}
             { gender === "male" 
 						? raze.availableClasses.male.map((pClass) => 
                 <div className="classContainer">
@@ -106,3 +106,7 @@ function ClassesSelector({ setSelectionStage, gender, raze, characterClass, char
 }
 
 export { ClassesSelector }
+
+
+//Apply context to reduce prop drilling.
+//Solve the Img issues while returning to the previous stage (Selection, grayscale filter)

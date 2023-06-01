@@ -87,3 +87,5 @@ function LoadGame ( { character, savedCharacters, setCharacter, setScreen} ) {
 }
 
 export { LoadGame }
+
+//Apply changes after implement useReducer format to screen's changes logic.

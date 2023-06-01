@@ -28,3 +28,5 @@ function MainMenu( { setScreen } ) {
 }
 
 export { MainMenu }
+
+//Apply changes with useReducer parameters on screen's changes

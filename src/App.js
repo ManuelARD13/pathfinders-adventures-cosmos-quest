@@ -43,15 +43,16 @@ function App() {
  
 
   const useSelectGender = () => {
+    //Review logic. Miss functioning with the radio selectors checks.
     const genderFemaleSelector = document.getElementById("genderFemale")
     const genderMaleSelector = document.getElementById("genderMale")
 
-    const applyGender = ( gender )  => {
+    const applyMaleGender = ( gender )  => {
       setGender(gender)
       genderMaleSelector.checked= true
     }
 
-    genderFemaleSelector.checked ? setGender("female") : applyGender("male") 
+    genderFemaleSelector.checked ? setGender("female") : applyMaleGender("male") 
 
   }
 
@@ -61,6 +62,7 @@ function App() {
         pRaze.razeName === e.target.id
       )
     )
+    //Separate this logic
     if(characterName !== ""){
       const comfirmButton = document.getElementById("comfirmSelections")
       comfirmButton.disabled = false
@@ -74,7 +76,7 @@ function App() {
         pClass.className === e.target.id
       )
     )
-
+  //Separate this logic
     const comfirmButton = document.getElementById("comfirmClass")
     
     if(isSelectable === true){
@@ -85,6 +87,7 @@ function App() {
 
   useEffect(() => {
     /*Character Images Display */
+    //Solve return to razes selection img issues and error catching
     try{
       if(!characterClass){
         setCharacterImg(gender === "male" ? raze.razeImgMale : raze.razeImgFemale)
@@ -132,7 +135,7 @@ function App() {
   }, [totalScores, characterClass])
 
 
-  /*Renderization*/
+  /*Rendering*/
   return (
     <>
       {screen !== "StartScreen" ?<SoundPlayer screen={screen} selectionStage={selectionStage} raze={raze} /> : null }
@@ -224,3 +227,8 @@ function App() {
 }
 
 export { App }
+
+// Apply useReducer on Screen's states
+//Apply useContext to separate some states into context component.
+//Separate hooks into their own files.
+//Solve img issues.

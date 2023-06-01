@@ -48,3 +48,5 @@ function LoadedCharacterProfile({ character, setScreen }) {
 }
 
 export { LoadedCharacterProfile }
+
+//Combine this component with CharaterProfile component.
