@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./LoadGame.css"
 
 import { StatsList } from "../StatsList/StatsList.js"
+import { SelectorsContext } from "../../context/SelectorsCtx";
 
-function LoadGame ( { character, savedCharacters, setCharacter, setScreen} ) {
+function LoadGame () {
+
+  const  { character, savedCharacters, setCharacter, setScreen} = useContext(SelectorsContext)
 
   const useSelectCharacter = () => {
     let loadedCharacters = Array.from(document.getElementsByClassName("selectionBox"))
@@ -89,3 +92,4 @@ function LoadGame ( { character, savedCharacters, setCharacter, setScreen} ) {
 export { LoadGame }
 
 //Apply changes after implement useReducer format to screen's changes logic.
+//Add delete character and delete all funcionality

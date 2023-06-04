@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CharacterImgDisplay } from "../CharacterImgDisplay/CharacterImgDisplay";
 import { StatsList } from "../StatsList/StatsList";
 
 import "./CharacterProfile.css"
+import { SelectorsContext } from "../../context/SelectorsCtx";
 
-function CharacterProfile ( { setCharacter, characterName, gender, raze, characterClass, characterImg, characterStats, setScreen, savedCharacters } ) {
+function CharacterProfile () {
+  
+  const { setCharacter, characterName, gender, raze, characterClass, characterImg, characterStats, setScreen, savedCharacters } = useContext(SelectorsContext)
 
 	/*TODO: Move createNewCharacterObj outside this component to combine both this and loadedCharacterProfile component*/
 

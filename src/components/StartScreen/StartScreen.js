@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./StartScreen.css"
+import { SelectorsContext } from "../../context/SelectorsCtx";
 
-function StartScreen ( { setScreen, setSavedCharacters}) {
+function StartScreen () {
+
+  const { setScreen, setSavedCharacters} = useContext(SelectorsContext)
 
   const localStorageCharacters = localStorage.getItem("savedCharacters_V1")
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import mainMenuTrack  from "../../audio/mainMenu.mp3"
 import  tavernTrack  from "../../audio/tavern.mp3"
@@ -6,9 +6,12 @@ import humanTrack from "../../audio/human.mp3"
 import elfTrack from "../../audio/elf.mp3"
 import orcTrack from "../../audio/orc.mp3"
 import dwarfTrack from "../../audio/dwarf.mp3"
+import { SelectorsContext } from "../../context/SelectorsCtx";
 
 
-function SoundPlayer ( { screen, selectionStage, raze } ) {
+function SoundPlayer () {
+
+  const { screen, selectionStage, raze } = useContext(SelectorsContext)
 
   const applyRazeBKMusic = () => {
   	if(raze.razeName === "human"){

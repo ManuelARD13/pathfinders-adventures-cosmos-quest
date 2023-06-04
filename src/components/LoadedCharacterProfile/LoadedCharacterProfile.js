@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CharacterImgDisplay } from "../CharacterImgDisplay/CharacterImgDisplay";
 
 import "./LoadedCharacterProfile.css"
+import { SelectorsContext } from "../../context/SelectorsCtx";
 
-function LoadedCharacterProfile({ character, setScreen }) {
+function LoadedCharacterProfile() {
+
+    const { character, setScreen } = useContext(SelectorsContext)
     /*TODO: Combine this component with CharacterProfile and add it to DisplayScreen */
     return(
         <section className="loadedCharacterProfile" style={{backgroundImage: `url(${character.raze.razeBKImg})`}}>
@@ -26,7 +29,7 @@ function LoadedCharacterProfile({ character, setScreen }) {
                 <input type="button" className="continueButton" value="Continue" id="continueProfile" onClick={() => setScreen("Greetings")} />
             </div>
             <div className="displayImgContainer">
-                <CharacterImgDisplay characterImg={character.characterImg}/>
+                <CharacterImgDisplay />
             </div>
             <div className="characterSkillsInfo">
             <img src={character.characterClass.classIcon} alt={character.characterClass.className + " Logo"}/>
@@ -49,4 +52,4 @@ function LoadedCharacterProfile({ character, setScreen }) {
 
 export { LoadedCharacterProfile }
 
-//Combine this component with CharaterProfile component.
+//Combine this component with CharaterProfile component. NO OTHER CHOICE Img issues

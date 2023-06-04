@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./BrandingDisplay.css"
+import { SelectorsContext } from "../../context/SelectorsCtx";
 
-function BrandingDisplay( { setScreen } ){
+function BrandingDisplay(){
+
+    const { setScreen } = useContext(SelectorsContext)
     
     /*Animated Transition*/
     setTimeout(() => setScreen("MainMenuScreen"), 14000)

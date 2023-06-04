@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useContext } from "react"
 import "./StatsList.css"
+import { SelectorsContext } from "../../context/SelectorsCtx"
 
-function StatsList ( { characterStats, raze } ) {
+function StatsList () {
 
-  const [data, setData] = useState()
-
-  useEffect(() => {
-    console.log("Effect!")
-    fetch("data.json")
-        .then(response => {response.json()
-        console.log(response)})
-        .then(data => console.log(data))
-
-  }, [])
+  const  { characterStats, raze } = useContext(SelectorsContext)
 
   return(
     <div className="modifiersTable">

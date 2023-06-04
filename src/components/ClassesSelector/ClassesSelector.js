@@ -1,8 +1,22 @@
 import React from "react";
 import { StatsList } from "../StatsList/StatsList";
 import "./ClassesSelector.css"
+import { useContext } from "react";
+import { SelectorsContext } from "../../context/SelectorsCtx";
 
-function ClassesSelector({ setSelectionStage, gender, raze, characterClass, characterStats, setTotalScores ,useSelectClass, setCharacterClass, isSelectable }) {
+function ClassesSelector() {
+
+  const { 
+      setSelectionStage, 
+      gender, 
+      raze, 
+      characterClass, 
+      characterStats, 
+      setTotalScores, 
+      useSelectClass, 
+      setCharacterClass, 
+      isSelectable 
+    } = useContext(SelectorsContext)
 
 	/*Creating totalScores Object for classRequeriments comparisons*/
   const totalScores =  {}
@@ -38,7 +52,7 @@ function ClassesSelector({ setSelectionStage, gender, raze, characterClass, char
           }
             
         	<div>
-            <StatsList characterStats={characterStats} raze={raze} />
+            <StatsList />
           </div>
 
           <p className="divider"></p>
@@ -107,6 +121,6 @@ function ClassesSelector({ setSelectionStage, gender, raze, characterClass, char
 
 export { ClassesSelector }
 
-
-//Apply context to reduce prop drilling.
+//Solve return to previous step funcionality. Context breaks it
 //Solve the Img issues while returning to the previous stage (Selection, grayscale filter)
+//Create a components to display available classes per gender

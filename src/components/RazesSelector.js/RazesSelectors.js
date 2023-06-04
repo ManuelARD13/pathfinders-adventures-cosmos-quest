@@ -1,17 +1,20 @@
-import React from "react";
-
-import { StatsList } from "../StatsList/StatsList";
+import React, { useContext } from "react";
+import { SelectorsContext } from "../../context/SelectorsCtx";
 
 import "./RazesSelector.css"
 
-function RazesSelector({ characterStats, setCharacterName, gender, useSelectGender, playableRazes, raze, useSelectRaze }) {
-  
+import { StatsList } from "../StatsList/StatsList";
+
+
+function RazesSelector() {
+
+    const { characterName, setCharacterName, gender, useSelectGender, playableRazes, raze, useSelectRaze } = useContext(SelectorsContext)
+
     const getUserTextInput = (e) => {
       let userInput = e.target.value
       setCharacterName(userInput)
       //Separate this logic.
-      if(userInput !== "") {
-        //Use charaterName state instead of userInput variable. Apply with context implementation
+      if(characterName !== "") {
         const razesRadioSelectors = Array.from(document.getElementsByClassName("razesSelectors"))
         razesRadioSelectors.forEach((selector) => {
           selector.disabled = false
@@ -23,7 +26,7 @@ function RazesSelector({ characterStats, setCharacterName, gender, useSelectGend
       <>
         <div className="displayRazesSelectorsContainer">
           <legend>Your Character Name</legend>
-          <input type={"text"} placeholder="Adventurer Name..." onChange={getUserTextInput} required />
+          <input type={"text"} placeholder="Adventurer Name..."  value={characterName} onChange={getUserTextInput} required />
 
           <legend>Select Gender</legend>
           <div className="genderButtons">
@@ -42,7 +45,7 @@ function RazesSelector({ characterStats, setCharacterName, gender, useSelectGend
             <label htmlFor="genderFemale" className="genderLabels" id="femaleLabel"></label>
           </div>
 
-          <StatsList characterStats={characterStats} raze={raze }/>
+          <StatsList />
 
           <p>Choose your raze</p>
           <form className="formRazes">
@@ -104,5 +107,4 @@ function RazesSelector({ characterStats, setCharacterName, gender, useSelectGend
 export { RazesSelector }
 
 //Review confirmation buttons logic.
-//Apply React Context to put all razes selection logic on the component and export raze state only.
 //Review select gender logic. Miss functioning with the radio selectors checks.
