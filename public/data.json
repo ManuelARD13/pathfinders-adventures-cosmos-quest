@@ -1,0 +1,211 @@
+[
+   {
+      "razes": [
+         {
+            "human": {}
+         },
+         {
+            "elf": {}
+         },
+         {
+            "orc": {}
+         },
+         {
+            "dwarf": {}
+         }
+      ]
+   },
+   {
+      "playableClasses": [
+         {
+            "className": "Assasin",
+            "classSkils": [
+               "Stealh Mastery",
+               "Fatal Blow",
+               "Anatomic Acknowledge",
+               "Small Weapons Proficiency"
+            ],
+            "classLore": "A mercenary undertaking his task with cold, professional detachment, the assassin is equally adept at espionage, bounty hunting, and terrorism. At his core, an assassin is an artisan, and his medium is death. Trained in a variety of killing techniques, assassins are among the most feared classes.",
+            "classIcon": "https://i.imgur.com/eKEOTZ3.png",
+            "classImages": {
+               "human": {
+                  "male": "https://i.imgur.com/igWDLOj.png",
+                  "female": "",
+                  "maleProfile": "https://i.imgur.com/EEt6eC3.png",
+                  "femaleProfile": ""
+               },
+               "elf": {
+                  "male": "https://i.imgur.com/USIQtEb.png",
+                  "female": "https://i.imgur.com/9Sqe8ME.png",
+                  "maleProfile": "https://i.imgur.com/mtT3tL1.png",
+                  "femaleProfile": "https://i.imgur.com/vLsS5Un.png"
+               },
+               "orc": {
+                  "male": "https://i.imgur.com/7tiOEWc.png",
+                  "female": "https://i.imgur.com/uzaD2L5.png",
+                  "maleProfile": "https://i.imgur.com/jhy9ZA8.png",
+                  "femaleProfile": "https://i.imgur.com/ppihHzc.png"
+               },
+               "dwarf": {
+                  "male": "https://i.imgur.com/yQDyyGN.png",
+                  "female": "",
+                  "maleProfile": "https://i.imgur.com/iidKH7B.png",
+                  "femaleProfile": ""
+               }
+            },
+            "classRequirements": {
+               "DEX": 14,
+               "INT": 10
+            },
+            "hitPoints": 8,
+            "dualClass": false
+         },
+         {
+            "className": "Babarian",
+            "classSkils": [
+               "Untamable Rage",
+               "Beast Reflexes",
+               "Taunt",
+               "Feral Intimidation"
+            ],
+            "classLore": "Barbarians excel in combat, possessing the martial prowess and fortitude to take on foes seemingly far superior to themselves. With rage granting them boldness and daring beyond that of most other warriors, barbarians charge furiously into battle and ruin all who would stand in their way.",
+            "classIcon": "https://i.imgur.com/vVWdxTB.png",
+            "classImages": {
+               "human": {
+                  "male": "https://i.imgur.com/igWDLOj.png",
+                  "female": "",
+                  "maleProfile": "https://i.imgur.com/EEt6eC3.png",
+                  "femaleProfile": ""
+               },
+               "elf": {
+                  "male": "https://i.imgur.com/USIQtEb.png",
+                  "female": "https://i.imgur.com/9Sqe8ME.png",
+                  "maleProfile": "https://i.imgur.com/mtT3tL1.png",
+                  "femaleProfile": "https://i.imgur.com/vLsS5Un.png"
+               },
+               "orc": {
+                  "male": "https://i.imgur.com/7tiOEWc.png",
+                  "female": "https://i.imgur.com/uzaD2L5.png",
+                  "maleProfile": "https://i.imgur.com/jhy9ZA8.png",
+                  "femaleProfile": "https://i.imgur.com/ppihHzc.png"
+               },
+               "dwarf": {
+                  "male": "https://i.imgur.com/yQDyyGN.png",
+                  "female": "",
+                  "maleProfile": "https://i.imgur.com/iidKH7B.png",
+                  "femaleProfile": ""
+               }
+            },
+            "classRequirements": {
+               "CON": 15,
+               "STR": 12
+            },
+            "hitPoints": 12,
+            "dualClass": false
+         },
+         {
+            "className": "Berzerker",
+            "classSkils": [
+               "Berzerk Fury",
+               "Monstrous Resistence",
+               "Blood Hunger",
+               "Brain Crushed"
+            ],
+            "classLore": "A Berserker relishes in the glory of combat. Their hedonistic pleasure from battle wounds is borderline masochistic. While enraged, they enter a sort of higher state where pain is just another form of indulgence. Extremely resistents, overwhelmingly strong and with a untameble rage; Berzerkers are a doble-edge ally or the most dangerous of foes.",
+            "classIcon": "https://i.imgur.com/FDuaBg8.png",
+            "classImages": {
+               "human": {
+                  "male": "https://i.imgur.com/6WbdhJx.png",
+                  "female": "https://i.imgur.com/NwcU00v.png",
+                  "maleProfile": "https://i.imgur.com/0Ez42FN.png",
+                  "femaleProfile": "https://i.imgur.com/FNtCocj.png"
+               },
+               "elf": {
+                  "male": "",
+                  "female": ""
+               },
+               "orc": {
+                  "male": "https://i.imgur.com/skBm0fj.png",
+                  "maleProfile": "https://i.imgur.com/wSlBa7g.png"
+               },
+               "dwarf": {
+                  "male": "",
+                  "female": ""
+               }
+            },
+            "classRequirements": {
+               "CON": 16,
+               "STR": 15
+            },
+            "hitPoints": 20,
+            "dualClass": false
+         },
+         {
+            "className": "Caster",
+            "classSkils": [
+               "Magical Nature",
+               "Arcane Bond",
+               "Arcane Literature",
+               "Arcane School"
+            ],
+            "classLore": "While some seek to control their abilities through meditation and discipline, becoming masters of their fantastic birthright, others give in to their magic, letting it rule their lives with often explosive results. Regardless, casters live and breathe that which other spellcasters devote their lives to mastering, and for them magic is more than a boon or a field of study; it is life itself. casters excel at casting a selection of favored spells frequently, making them powerful battle mages. As they become familiar with a specific and ever-widening set of spells, casters often discover new and versatile ways of making use of magics other spellcasters might overlook. Their bloodlines also grant them additional abilities, assuring that no two casters are ever quite alike.",
+            "classIcon": "https://i.imgur.com/jBBTATN.png",
+            "classImages": {
+               "human": {
+                  "male": "https://i.imgur.com/aEAWOy2.png",
+                  "female": "https://i.imgur.com/32iUoVl.png",
+                  "maleProfile": "https://i.imgur.com/BZFXMZs.png",
+                  "femaleProfile": "https://i.imgur.com/HID1Ytq.png"
+               },
+               "elf": {
+                  "male": "https://i.imgur.com/8Vp5na6.png",
+                  "female": "https://i.imgur.com/z6daOLY.png",
+                  "maleProfile": "https://i.imgur.com/q7HXCmR.png",
+                  "femaleProfile": "https://i.imgur.com/SH5R1uA.png"
+               },
+               "orc": {
+                  "male": "",
+                  "female": ""
+               },
+               "dwarf": {
+                  "male": "https://i.imgur.com/bgaudC8.png",
+                  "female": "",
+                  "maleProfile": "https://i.imgur.com/fTTjbNU.png",
+                  "femaleProfile": ""
+               }
+            },
+            "classRequirements": {
+               "INT": 14,
+               "CHA": 10
+            },
+            "hitPoints": 6,
+            "dualClass": false
+         },
+         {
+            "className": "Celestial Defender",
+            "classSkils": [
+               "Sword of Damocles",
+               "Heavens Shield",
+               "Lay on Hands",
+               "Vow of Justice"
+            ],
+            "classLore": "Celestial Defenders are the fiercest of heavenly warriors, making up the most and best of the Blessed Army, train in heaven whenever an elf rise as a Gods champion. Empowered with divine might, they are perfect bastions of light guided by righteous wrath and an otherwise good disposition, making them feared by evildoers and respected by less vile creatures. Most usually acting as soldiers, knights, or paladins for a good cause, they revel in the adrenaline of battle, and seek evil wherever it may hide.",
+            "classIcon": "https://i.imgur.com/fVjIEzp.png",
+            "classImages": {
+               "elf": {
+                  "male": "https://i.imgur.com/4lYJq5N.png",
+                  "female": "",
+                  "maleProfile": "https://i.imgur.com/1zut60p.png",
+                  "femaleProfile": ""
+               }
+            },
+            "classRequirements": {
+               "CON": 16,
+               "CHA": 16
+            },
+            "hitPoints": 20,
+            "dualClass": false
+         }
+      ]
+   }
+]

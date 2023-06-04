@@ -15,7 +15,23 @@ import { LoadGame } from './components/LoadGame/LoadGame';
 import { LoadedCharacterProfile } from './components/LoadedCharacterProfile/LoadedCharacterProfile';
 import { SoundPlayer } from './components/SoundPlayer/SoundPlayer';
 
+
 function App() {
+
+  const [data,setData] = useState({})
+
+  // useEffect(() => {
+  //   console.log("effect!")
+  //   fetch("data2.json")
+  //     .then(response => response.json())
+  //     .then(data => {
+  //     console.log(data)
+  //     setData(data)
+  //   })
+
+  // }, [])
+
+   
 
   /*States & Hooks*/
   const [screen, setScreen] = useState("StartScreen")

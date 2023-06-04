@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./StatsList.css"
 
 function StatsList ( { characterStats, raze } ) {
+
+  const [data, setData] = useState()
+
+  useEffect(() => {
+    console.log("Effect!")
+    fetch("data.json")
+        .then(response => {response.json()
+        console.log(response)})
+        .then(data => console.log(data))
+
+  }, [])
 
   return(
     <div className="modifiersTable">
