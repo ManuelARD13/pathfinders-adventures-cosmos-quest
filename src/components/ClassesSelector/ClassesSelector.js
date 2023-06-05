@@ -3,17 +3,17 @@ import { StatsList } from "../StatsList/StatsList";
 import "./ClassesSelector.css"
 import { useContext } from "react";
 import { SelectorsContext } from "../../context/SelectorsCtx";
+import { ClassIcon } from "../ClassIcon/ClassIcon";
 
 function ClassesSelector() {
 
   const { 
+      playableClasses,
       setSelectionStage, 
       gender, 
       raze, 
       characterClass, 
       characterStats, 
-      setTotalScores, 
-      useSelectClass, 
       setCharacterClass, 
       isSelectable 
     } = useContext(SelectorsContext)
@@ -30,6 +30,21 @@ function ClassesSelector() {
       }
     }
   }
+
+  const getAvailableClasses = (raze, gender) => {
+    const availableClasses = playableClasses.filter((pClass) => {
+
+      const className = pClass.className
+      const availableClasses = raze.availableClasses[`${gender}`]
+      
+      return availableClasses.find((sClass) => className === sClass)
+
+    })
+
+    return availableClasses
+
+  }
+
  
   return (
   	<>
@@ -58,8 +73,11 @@ function ClassesSelector() {
           <p className="divider"></p>
           <form className="formClasses">
 						{/* TODO: Try ternary operator just in the object to iterate on, USE A FUNCTION OR COMPONENT */}
-            { gender === "male" 
-						? raze.availableClasses.male.map((pClass) => 
+            { getAvailableClasses(raze, gender).map((pClass) => 
+              <ClassIcon totalScores={totalScores} pClass={pClass} />
+            )}
+            {/* { gender === "male" 
+						? getAvailableClasses(raze, gender).map((pClass) => 
                 <div className="classContainer">
                   <input type="radio" name="classes" className="classSelectors" id={pClass.className} 
 										onClick={() => setTotalScores(totalScores)} 
@@ -82,7 +100,7 @@ function ClassesSelector() {
                             <p>{pClass.className}</p>
                         </div>
                     )
-                }
+                } */}
             </form>
         </div>
         <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmClass" 

@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
+import { SelectorsContext } from "../../context/SelectorsCtx";
+
+import "./CharacterProfile.css"
+
 import { CharacterImgDisplay } from "../CharacterImgDisplay/CharacterImgDisplay";
 import { StatsList } from "../StatsList/StatsList";
 
-import "./CharacterProfile.css"
-import { SelectorsContext } from "../../context/SelectorsCtx";
+
+
 
 function CharacterProfile () {
   
@@ -25,17 +29,17 @@ function CharacterProfile () {
   
   const createCharacterProfileImg = (gender, raze, characterClass ) => {
     if(raze.razeName === "human"){
-      return (gender === "male" ? characterClass.classImg.human.maleProfile :
-      characterClass.classImg.human.femaleProfile)
+      return (gender === "male" ? characterClass.classImages.human.maleProfile :
+      characterClass.classImages.human.femaleProfile)
     } else if(raze.razeName === "elf"){
-      return(gender === "male" ? characterClass.classImg.elf.maleProfile :
-      characterClass.classImg.elf.femaleProfile)
+      return(gender === "male" ? characterClass.classImages.elf.maleProfile :
+      characterClass.classImages.elf.femaleProfile)
     } else if (raze.razeName === "orc") {
-      return(gender === "male" ? characterClass.classImg.orc.maleProfile :
-      characterClass.classImg.orc.femaleProfile)
+      return(gender === "male" ? characterClass.classImages.orc.maleProfile :
+      characterClass.classImages.orc.femaleProfile)
     } else if (raze.razeName === "dwarf") {
-      return(gender === "male" ? characterClass.classImg.dwarf.maleProfile : 
-      characterClass.classImg.dwarf.femaleProfile)
+      return(gender === "male" ? characterClass.classImages.dwarf.maleProfile : 
+      characterClass.classImages.dwarf.femaleProfile)
     }
 }
       
@@ -83,7 +87,7 @@ function CharacterProfile () {
         <p>HP: {HP}</p>
         <p>DEF: {DEF}</p>
 
-          <StatsList characterStats={characterStats} raze={raze} />
+          <StatsList />
 
         <h5>Raze Skills</h5>
         <p className="divider"></p>
@@ -97,7 +101,7 @@ function CharacterProfile () {
       </div>
 				 
       <div className="displayImgContainer">
-        <CharacterImgDisplay characterImg={characterImg}/>
+        <CharacterImgDisplay />
       </div>
 
       <input type="button" className="continueButton" value="Continue" id="continueProfile" onClick={() => finishCharacterProcess(characterName, gender, raze, characterClass, characterImg)} />

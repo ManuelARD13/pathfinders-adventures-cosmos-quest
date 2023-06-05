@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { CharacterImgDisplay } from "../CharacterImgDisplay/CharacterImgDisplay";
 
 import "./LoadedCharacterProfile.css"
@@ -6,7 +6,10 @@ import { SelectorsContext } from "../../context/SelectorsCtx";
 
 function LoadedCharacterProfile() {
 
-    const { character, setScreen } = useContext(SelectorsContext)
+    const { character, setCharacterImg ,setScreen } = useContext(SelectorsContext)
+    useEffect(() => {
+        setCharacterImg(character.characterImg)
+    }, [character])
     /*TODO: Combine this component with CharacterProfile and add it to DisplayScreen */
     return(
         <section className="loadedCharacterProfile" style={{backgroundImage: `url(${character.raze.razeBKImg})`}}>

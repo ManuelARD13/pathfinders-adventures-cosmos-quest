@@ -1,17 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import "./StartScreen.css"
 import { SelectorsContext } from "../../context/SelectorsCtx";
 
 function StartScreen () {
-
-  useEffect(() => {
-    console.log("Effect!")
-    fetch("data.json")
-        .then(response => response.json())
-        .then(data => console.log(data))
-
-  }, [])
-  
 
   const { setScreen, setSavedCharacters} = useContext(SelectorsContext)
 

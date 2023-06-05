@@ -1,10 +1,29 @@
 import React from "react"
 import { useState, useEffect } from "react"
-import { playableClasses, playableRazes } from "../resources.js"
+// import { playableClasses, playableRazes } from "../resources.js"
 
 const SelectorsContext = React.createContext()
 
 function SelectorsCtx({ children }) {
+
+  const [ playableRazes, setRazes ] = useState([])
+  const [ playableClasses, setClasses ] = useState([])
+
+    const getGameData = (data) => {
+      const razes = data[0].razes
+      const classes = data[1].playableClasses
+      
+      setRazes(razes)
+      setClasses(classes)
+    }
+
+    useEffect(() => {
+      fetch("data.json")
+        .then(response => response.json())
+        .then(data => getGameData(data))
+    }, [])
+
+
     /*States & Hooks*/
     const [screen, setScreen] = useState("StartScreen")
 
@@ -59,6 +78,7 @@ function SelectorsCtx({ children }) {
      } 
   
      const useSelectClass = (e) => {
+      console.log(e.target.id)
        setcharacterClass(
          playableClasses.find( (pClass) => 
            pClass.className === e.target.id
@@ -78,20 +98,20 @@ function SelectorsCtx({ children }) {
        // Solve return to razes selection img issues and error catching
        try{
          if(!characterClass){
-           setCharacterImg(gender === "male" ? raze.razeImgMale : raze.razeImgFemale)
+           setCharacterImg(gender === "male" ? raze.maleImg : raze.femaleImg)
          } else {
            if(raze.razeName === "human"){
-               setCharacterImg(gender === "male" ? characterClass.classImg.human.male :
-               characterClass.classImg.human.female)
+               setCharacterImg(gender === "male" ? characterClass.classImages.human.male :
+               characterClass.classImages.human.female)
              } else if(raze.razeName === "elf"){
-               setCharacterImg(gender === "male" ? characterClass.classImg.elf.male :
-               characterClass.classImg.elf.female)
+               setCharacterImg(gender === "male" ? characterClass.classImages.elf.male :
+               characterClass.classImages.elf.female)
              } else if (raze.razeName === "orc") {
-               setCharacterImg(gender === "male" ? characterClass.classImg.orc.male :
-               characterClass.classImg.orc.female)
+               setCharacterImg(gender === "male" ? characterClass.classImages.orc.male :
+               characterClass.classImages.orc.female)
              } else if (raze.razeName === "dwarf") {
-               setCharacterImg(gender === "male" ? characterClass.classImg.dwarf.male : 
-               characterClass.classImg.dwarf.female)
+               setCharacterImg(gender === "male" ? characterClass.classImages.dwarf.male : 
+               characterClass.classImages.dwarf.female)
              }
          }
        } catch (error) {
@@ -132,6 +152,7 @@ function SelectorsCtx({ children }) {
         setSavedCharacters,
 
         playableRazes,
+        playableClasses,
 
         character,
         setCharacter,

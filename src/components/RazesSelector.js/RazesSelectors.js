@@ -53,7 +53,7 @@ function RazesSelector() {
               playableRazes.map((raze) => {
 
                 let url
-                gender === "female" ? url = raze.razeImgFemale : url = raze.razeImgMale
+                gender === "female" ? url = raze.femaleImg : url = raze.maleImg
 
                 return(
 
