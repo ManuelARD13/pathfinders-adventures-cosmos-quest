@@ -48,4 +48,3 @@ export { AppUI }
 
 // Apply useReducer on Screen's states
 //Separate hooks into their own files.
-//Solve img issues.

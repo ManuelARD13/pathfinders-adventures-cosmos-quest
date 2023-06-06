@@ -1,10 +1,11 @@
 import React from "react"
 import { useState, useEffect } from "react"
-// import { playableClasses, playableRazes } from "../resources.js"
 
 const SelectorsContext = React.createContext()
 
 function SelectorsCtx({ children }) {
+
+  /*States & Hooks*/
 
   const [ playableRazes, setRazes ] = useState([])
   const [ playableClasses, setClasses ] = useState([])
@@ -18,13 +19,11 @@ function SelectorsCtx({ children }) {
     }
 
     useEffect(() => {
-      fetch("data.json")
+      fetch("API/data.json")
         .then(response => response.json())
         .then(data => getGameData(data))
     }, [])
 
-
-    /*States & Hooks*/
     const [screen, setScreen] = useState("StartScreen")
 
     const [savedCharacters, setSavedCharacters] = useState([])
@@ -37,7 +36,7 @@ function SelectorsCtx({ children }) {
     const[gender, setGender] = useState("male")
     const[raze, setRaze] = useState("")
   
-    const[characterClass, setcharacterClass] = useState(undefined)
+    const[characterClass, setCharacterClass] = useState(undefined)
     const[isSelectable, setSelectable] = useState("")
   
     const [characterImg, setCharacterImg] = useState("https://i.imgur.com/aryfPBv.png")
@@ -78,8 +77,7 @@ function SelectorsCtx({ children }) {
      } 
   
      const useSelectClass = (e) => {
-      console.log(e.target.id)
-       setcharacterClass(
+       setCharacterClass(
          playableClasses.find( (pClass) => 
            pClass.className === e.target.id
          )
@@ -95,8 +93,6 @@ function SelectorsCtx({ children }) {
   
      useEffect(() => {
        /*Character Images Display */
-       // Solve return to razes selection img issues and error catching
-       try{
          if(!characterClass){
            setCharacterImg(gender === "male" ? raze.maleImg : raze.femaleImg)
          } else {
@@ -114,10 +110,7 @@ function SelectorsCtx({ children }) {
                characterClass.classImages.dwarf.female)
              }
          }
-       } catch (error) {
-         console.log(error)
-         setCharacterImg(gender === "male" ? raze.razeImgMale : raze.razeImgFemale)
-       }
+       
      }, [gender, raze, characterClass])
   
      useEffect( () => {
@@ -170,7 +163,7 @@ function SelectorsCtx({ children }) {
         setRaze,
 
         characterClass,
-        setcharacterClass,
+        setCharacterClass,
 
         isSelectable,
         setSelectable,

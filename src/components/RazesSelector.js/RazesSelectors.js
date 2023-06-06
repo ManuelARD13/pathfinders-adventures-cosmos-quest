@@ -57,7 +57,7 @@ function RazesSelector() {
 
                 return(
 
-                  <div className="razeContainer">
+                  <div className="razeContainer" key={raze.razeName}>
                     <input 
                       type="radio" 
                       name="razes" 
@@ -65,7 +65,7 @@ function RazesSelector() {
                       id={raze.razeName} 
                       style={{display: "none"}} 
                       onChange={useSelectRaze} 
-                      disabled={true} 
+                      disabled={characterName && gender ? false :  true} 
                     />
                     <label className="razesLabels" htmlFor={raze.razeName} id={`${raze.razeName}Label`}>
                       <img 
@@ -106,5 +106,5 @@ function RazesSelector() {
 
 export { RazesSelector }
 
-//Review confirmation buttons logic.
+// Review UserInput Character Name step
 //Review select gender logic. Miss functioning with the radio selectors checks.
