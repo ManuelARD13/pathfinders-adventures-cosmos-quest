@@ -13,7 +13,7 @@ function ClassIcon({ totalScores, pClass }) {
     for (const [key, value] of Object.entries(totalScores)){
         for (const [classKey, classValue] of Object.entries(pClass.classRequirements)){
             if(key === classKey) {
-                if(value > classValue) {
+                if(value >= classValue) {
                     requisites++
                 }
             }   

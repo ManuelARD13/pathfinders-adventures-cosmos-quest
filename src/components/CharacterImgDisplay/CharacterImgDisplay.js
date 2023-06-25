@@ -3,12 +3,12 @@ import { SelectorsContext } from "../../context/SelectorsCtx";
 
 function CharacterImgDisplay() {
 
-  const { characterImg, isSelectable } = useContext(SelectorsContext)
+  const { img, isSelectable } = useContext(SelectorsContext)
   
   return(
   	<div className="displayImgContainer">
       <img 
-        src={!characterImg ? "https://i.imgur.com/aryfPBv.png" : characterImg} 
+        src={!img ? "https://i.imgur.com/aryfPBv.png" : img} 
         alt="Your Character"
         style={isSelectable === false ? {filter: "grayscale(100%)"} : {}}
       />

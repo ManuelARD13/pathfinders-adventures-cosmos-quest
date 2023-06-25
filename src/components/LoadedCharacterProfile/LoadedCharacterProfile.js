@@ -6,14 +6,17 @@ import { SelectorsContext } from "../../context/SelectorsCtx";
 
 function LoadedCharacterProfile() {
 
-    const { character, setCharacterImg ,setScreen } = useContext(SelectorsContext)
+    const { character, dispatch ,setScreen } = useContext(SelectorsContext)
     useEffect(() => {
-        setCharacterImg(character.characterImg)
-    }, [character])
+        dispatch({
+            type: "SET_IMG",
+            payload: character.img
+        })
+    }, [character.img, dispatch])
     /*TODO: Combine this component with CharacterProfile and add it to DisplayScreen */
     return(
         <section className="loadedCharacterProfile" style={{backgroundImage: `url(${character.raze.razeBKImg})`}}>
-            <h2>{character.characterName}</h2>
+            <h2>{character.name}</h2>
             <div className="characterGeneralInfo">
                 <p className="selectedCharacterGender">{character.gender}</p>
                 <p className="selectedCharacterRazeTittle">{character.raze.razeName}</p>
@@ -28,15 +31,15 @@ function LoadedCharacterProfile() {
                 </ul>
                 <p>Height: {character.stats.characterHeight}</p>
                 <p>Weight: {90 + " Pounds"}</p>
-                <p>Hit Points: {character.characterClass.hitPoints}</p>
-                <input type="button" className="continueButton" value="Continue" id="continueProfile" onClick={() => setScreen("Greetings")} />
+                <p>Hit Points: {character.cClass.hitPoints}</p>
+                <input type="button" className="continueButton" value="Continue" id="continueProfile" onClick={() => setScreen("Acknoledgements")} />
             </div>
             <div className="displayImgContainer">
                 <CharacterImgDisplay />
             </div>
             <div className="characterSkillsInfo">
-            <img src={character.characterClass.classIcon} alt={character.characterClass.className + " Logo"}/>
-                <h4 id="selectedClassName">{character.characterClass.className}</h4>
+            <img src={character.cClass.classIcon} alt={character.cClass.className + " Logo"}/>
+                <h4 id="selectedClassName">{character.cClass.className}</h4>
                 <p className="characterLore">
                     {character.raze.razeLore}
                 </p>

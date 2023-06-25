@@ -8,13 +8,16 @@ import { StatsList } from "../StatsList/StatsList";
 
 function RazesSelector() {
 
-    const { characterName, setCharacterName, gender, useSelectGender, playableRazes, raze, useSelectRaze } = useContext(SelectorsContext)
+    const { name, dispatch, gender, useSelectGender, playableRazes, raze, useSelectRaze } = useContext(SelectorsContext)
 
     const getUserTextInput = (e) => {
       let userInput = e.target.value
-      setCharacterName(userInput)
+      dispatch({
+        type: "SET_NAME",
+        payload: userInput
+      })
       //Separate this logic.
-      if(characterName !== "") {
+      if(name !== "") {
         const razesRadioSelectors = Array.from(document.getElementsByClassName("razesSelectors"))
         razesRadioSelectors.forEach((selector) => {
           selector.disabled = false
@@ -26,7 +29,7 @@ function RazesSelector() {
       <>
         <div className="displayRazesSelectorsContainer">
           <legend>Your Character Name</legend>
-          <input type={"text"} placeholder="Adventurer Name..."  value={characterName} onChange={getUserTextInput} required />
+          <input type={"text"} placeholder="Adventurer Name..."  value={name} onChange={getUserTextInput} required />
 
           <legend>Select Gender</legend>
           <div className="genderButtons">
@@ -65,7 +68,7 @@ function RazesSelector() {
                       id={raze.razeName} 
                       style={{display: "none"}} 
                       onChange={useSelectRaze} 
-                      disabled={characterName && gender ? false :  true} 
+                      disabled={name && gender ? false :  true} 
                     />
                     <label className="razesLabels" htmlFor={raze.razeName} id={`${raze.razeName}Label`}>
                       <img 
@@ -84,7 +87,7 @@ function RazesSelector() {
           <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmSelections" disabled />
 
           <div className="displayRazesDescriptionContainer">
-            { raze !== "" 
+            { Object.keys(raze).length !== 0
             ? <>
                 <p className="razeLoreContainer">{raze.razeLore}</p>
                 <p>Raze Skills</p>

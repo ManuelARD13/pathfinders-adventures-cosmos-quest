@@ -11,7 +11,7 @@ import { StatsList } from "../StatsList/StatsList";
 
 function CharacterProfile () {
   
-  const { setCharacter, characterName, gender, raze, characterClass, characterImg, characterStats, setScreen, savedCharacters } = useContext(SelectorsContext)
+  const { setCharacter, name, gender, raze, cClass, img, characterStats, setScreen, savedCharacters } = useContext(SelectorsContext)
 
 	/*TODO: Move createNewCharacterObj outside this component to combine both this and loadedCharacterProfile component*/
 
@@ -21,41 +21,41 @@ function CharacterProfile () {
 
   const createTimeStamp = () => new Date().toLocaleString()
 
-  const HP = raze.razeModifiers.CON + Math.floor( (characterStats.CON - 10) / 2 ) + characterClass.hitPoints
+  const HP = raze.razeModifiers.CON + Math.floor( (characterStats.CON - 10) / 2 ) + cClass.hitPoints
   const DEF = 10 + raze.razeModifiers.DEX + ( Math.floor((characterStats.DEX - 10) / 2) )
   const level = 1
 
   const calculateWeight = (minWeight, maxWeight) => Math.floor(minWeight + (Math.random() * (maxWeight-minWeight)))
   
-  const createCharacterProfileImg = (gender, raze, characterClass ) => {
+  const createCharacterProfileImg = (gender, raze, cClass ) => {
     if(raze.razeName === "human"){
-      return (gender === "male" ? characterClass.classImages.human.maleProfile :
-      characterClass.classImages.human.femaleProfile)
+      return (gender === "male" ? cClass.classImages.human.maleProfile :
+      cClass.classImages.human.femaleProfile)
     } else if(raze.razeName === "elf"){
-      return(gender === "male" ? characterClass.classImages.elf.maleProfile :
-      characterClass.classImages.elf.femaleProfile)
+      return(gender === "male" ? cClass.classImages.elf.maleProfile :
+      cClass.classImages.elf.femaleProfile)
     } else if (raze.razeName === "orc") {
-      return(gender === "male" ? characterClass.classImages.orc.maleProfile :
-      characterClass.classImages.orc.femaleProfile)
+      return(gender === "male" ? cClass.classImages.orc.maleProfile :
+      cClass.classImages.orc.femaleProfile)
     } else if (raze.razeName === "dwarf") {
-      return(gender === "male" ? characterClass.classImages.dwarf.maleProfile : 
-      characterClass.classImages.dwarf.femaleProfile)
+      return(gender === "male" ? cClass.classImages.dwarf.maleProfile : 
+      cClass.classImages.dwarf.femaleProfile)
     }
 }
       
-	const createNewCharacterObj = (characterName, gender, raze, characterClass, characterImg, stats) => ({
+	const createNewCharacterObj = (name, gender, raze, cClass, img, stats) => ({
 		/*Constructor*/
     playerId: createPlayerId(),
     savedTimestamp: createTimeStamp(),
-    characterName: characterName,
+    name: name,
     gender: gender,
     raze: raze,
-    characterClass: characterClass,
-    characterProfileImg: createCharacterProfileImg(gender, raze, characterClass),
-    characterImg: characterImg,
+    cClass: cClass,
+    characterProfileImg: createCharacterProfileImg(gender, raze, cClass),
+    img: img,
     stats: stats,
-    HP: raze.razeModifiers.CON + Math.floor( (stats.CON - 10) / 2 ) + characterClass.hitPoints,
-    ATK: "1d" + characterClass.hitPoints + " + " + (raze.razeModifiers.STR + ( Math.floor((stats.STR - 10) / 2))),
+    HP: raze.razeModifiers.CON + Math.floor( (stats.CON - 10) / 2 ) + cClass.hitPoints,
+    ATK: "1d" + cClass.hitPoints + " + " + (raze.razeModifiers.STR + ( Math.floor((stats.STR - 10) / 2))),
     DEF: 10 + raze.razeModifiers.DEX + ( Math.floor((stats.DEX - 10) / 2) ),
     weight: gender === "female" ? calculateWeight(120, 210) + " Pounds" : calculateWeight(155, 265) + " Pounds",
     // height: this.weight < 168 ? ((Math.random * 10) + 5).toFixed(2) : ((Math.random * 10) + 6).toFixed(2),
@@ -71,7 +71,7 @@ function CharacterProfile () {
   }
 
   const finishCharacterProcess = () => {
-    let usersCharacter = createNewCharacterObj(characterName, gender, raze, characterClass, characterImg, characterStats)
+    let usersCharacter = createNewCharacterObj(name, gender, raze, cClass, img, characterStats)
     saveCharacter(usersCharacter)
     setCharacter(usersCharacter)
     setScreen("Acknoledgements")
@@ -79,7 +79,7 @@ function CharacterProfile () {
 
   return (
   	<section className="characterProfile" style={{backgroundImage: `url(${raze.razeBKImg})`}}>
-      <h2>{characterName}</h2>
+      <h2>{name}</h2>
       <div className="characterGeneralInfo">
         <p id="selectedCharacterGender">{gender}</p>
         <p id="selectedCharacterRazeTittle">{raze.razeName}</p>
@@ -104,18 +104,18 @@ function CharacterProfile () {
         <CharacterImgDisplay />
       </div>
 
-      <input type="button" className="continueButton" value="Continue" id="continueProfile" onClick={() => finishCharacterProcess(characterName, gender, raze, characterClass, characterImg)} />
+      <input type="button" className="continueButton" value="Continue" id="continueProfile" onClick={() => finishCharacterProcess(name, gender, raze, cClass, img)} />
 
       <div className="characterSkillsInfo">
-        <img src={characterClass.classIcon} alt="" />
-        <h4 id="selectedClassName">{characterClass.className}</h4>
+        <img src={cClass.classIcon} alt="" />
+        <h4 id="selectedClassName">{cClass.className}</h4>
         <p className="characterLore">
-          {characterClass.classLore}
+          {cClass.classLore}
         </p>
         <h5>Class Skills</h5>
         {/* <p className="divider"></p> */}
         <ul className="classSkills">
-          {characterClass.classSkills.map((skill) =>
+          {cClass.classSkills.map((skill) =>
             <li key={skill}>{skill}</li>
         )}
         </ul>

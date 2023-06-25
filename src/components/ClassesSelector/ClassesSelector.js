@@ -12,14 +12,15 @@ function ClassesSelector() {
     setSelectionStage,
     gender,
     raze,
-    characterClass,
+    cClass,
     characterStats,
-    setCharacterClass,
+    dispatch,
     isSelectable,
     setSelectable
   } = useContext(SelectorsContext)
 
   const [classRequirements, setClassRequirements] = useState(false)
+
 
   /*Creating totalScores Object for classRequirements comparisons*/
   const totalScores = {}
@@ -49,11 +50,33 @@ function ClassesSelector() {
   }
 
   useEffect(() => {
-    if (!!characterClass) {
-      const classRequisites = Object.entries(characterClass.classRequirements)
+    if (Object.keys(cClass).length !== 0) {
+      const classRequisites = Object.entries(cClass.classRequirements)
       setClassRequirements(classRequisites)
     }
-  }, [characterClass])
+  }, [cClass])
+
+  useEffect(() => {
+    /*Class Requeriments Validation*/
+    if (Object.keys(cClass).length !== 0) {
+      let requisites = 0
+      for (const [key, value] of Object.entries(totalScores)) {
+        for (const [classKey, classValue] of Object.entries(cClass.classRequirements)) {
+          if (key === classKey) {
+            if (value >= classValue) {
+              requisites++
+            }
+          }
+        }
+
+        if (requisites === 2) {
+          setSelectable(true)
+        } else {
+          setSelectable(false)
+        }
+      }
+    }
+  }, [cClass, setSelectable])
 
 
 
@@ -64,7 +87,10 @@ function ClassesSelector() {
       <input type={"button"} value="Return" className="returnButton"
         onClick={() => {
           setSelectionStage("razes")
-          setCharacterClass(undefined)
+          dispatch({
+            type: "SET_CLASS",
+            payload: {}
+          })
           setSelectable(true)
         }} />
 
@@ -88,21 +114,21 @@ function ClassesSelector() {
 
         <form className="formClasses">
           {getAvailableClasses(raze, gender).map((pClass) =>
-            <ClassIcon totalScores={totalScores} pClass={pClass} key={pClass.className}/>
+            <ClassIcon totalScores={totalScores} pClass={pClass} key={pClass.className} />
           )}
         </form>
 
       </div>
       <input type="button" className="continueButton" value="Comfirm Selections" id="comfirmClass"
-        disabled={!isSelectable ? true : false} />
+        disabled={isSelectable === false ? true : false} />
       <div className="displayClassesDescriptionContainer">
 
         {
-          characterClass !== undefined ?
+          Object.keys(cClass).length !== 0 ?
             <>
 
               <h5>
-                {characterClass.className[0].toUpperCase() + characterClass.className.substring(1)}
+                {cClass.className[0].toUpperCase() + cClass.className.substring(1)}
               </h5>
               <div>
                 {!!classRequirements ?
@@ -118,12 +144,12 @@ function ClassesSelector() {
                   : null
                 }
               </div>
-              <p className="classLoreContainer">"  {characterClass.classLore} "</p>
+              <p className="classLoreContainer">"  {cClass.classLore} "</p>
               <p>Class Skills</p>
               <p className="divider"></p>
               <ul className="classSkillsList">
                 {
-                  characterClass.classSkills.map((skill) =>
+                  cClass.classSkills.map((skill) =>
                     <li key={skill}>{skill}</li>
                   )
                 }

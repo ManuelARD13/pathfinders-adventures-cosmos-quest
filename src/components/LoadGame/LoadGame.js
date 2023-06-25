@@ -13,7 +13,7 @@ function LoadGame () {
     let selectedCharacterBox = loadedCharacters.find((loadedCharacter) => 
       loadedCharacter.checked
     )
-    let character = savedCharacters.find((savedcharacter) => savedcharacter.characterName === selectedCharacterBox.id)
+    let character = savedCharacters.find((savedcharacter) => savedcharacter.name === selectedCharacterBox.id)
      setCharacter(character)
   }
 
@@ -26,10 +26,11 @@ function LoadGame () {
       <div className="loadGameMenu">
         {
 					<>
-            { savedCharacters.map((character) =>
+            { savedCharacters.length > 0 &&
+              savedCharacters.map((character) =>
               <>
-                <input type={"radio"} className="selectionBox" name="savedCharacters" id={character.characterName} onChange={useSelectCharacter}/>
-                <label htmlFor={character.characterName}>
+                <input type={"radio"} className="selectionBox" name="savedCharacters" id={character.name} onChange={useSelectCharacter}/>
+                <label htmlFor={character.name}>
                   <div className="characterContainer">
                     <div className="characterThumbnails">
                       <div className="characterPicture">
@@ -41,12 +42,12 @@ function LoadGame () {
                         	className="characterPictureSpanded" 
                           style={{backgroundImage: `url("${character.raze.razeBKImg}")`}}
                         >
-                          <img src={character.characterImg} alt={character.playerId + character.name} /> 
+                          <img src={character.img} alt={character.playerId + character.name} /> 
                       	</div> 
                     	</div>
                                         
                     	<div className="characterLogo">
-                      	<img src={character.characterClass.classIcon} alt="" ></img>
+                      	<img src={character.cClass.classIcon} alt="" />
                       	<div className="characterStatsSpanded">
                         	<StatsList characterStats={character.stats} raze={character.raze} />
                     		</div>
@@ -55,7 +56,7 @@ function LoadGame () {
                   	<div className="characterDetails">
                     	<div className="characterInfo">
                       	<p>
-                        	{character.gender}&nbsp;{character.raze.razeName}&nbsp;{character.characterClass.className}
+                        	{character.gender}&nbsp;{character.raze.razeName}&nbsp;{character.cClass.className}
                       	</p>
                       	<p>Lv:&nbsp;{character.level}</p>
                       	<p>HP:&nbsp;{character.HP}</p>
@@ -70,7 +71,7 @@ function LoadGame () {
                      		<p className="dateTime">{character.savedTimestamp}</p>
                     	</div>
                     	<div className="infoBar">
-                      	<h4>{character.characterName}</h4>
+                      	<h4>{character.name}</h4>
                     	</div>   
                   	</div>
                 	</div>

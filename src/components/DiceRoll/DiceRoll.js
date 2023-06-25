@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState ,useContext, useEffect } from "react";
 import "./DiceRoll.css"
 import { SelectorsContext } from "../../context/SelectorsCtx";
 
 function DiceRoll(){
 
-    const  { diceRolled, setDiceRolled, setStats, setScreen }  = useContext(SelectorsContext)
+    const  { setStats, setScreen }  = useContext(SelectorsContext)
+    const [diceRolled, setDiceRolled] = useState(false)
 
     const createStatsObj = (diceRolls) => ({
         /*Constructor */
@@ -37,7 +38,7 @@ function DiceRoll(){
             stat.innerHTML = statScore
             diceRolls[stat.id] = statScore
         })
-    }, [diceRolled, statsScores])
+    }, [statsScores])
     
     const reRollStatDice = (e) => {
         /*Re-calculate diceRolls values */
@@ -71,6 +72,8 @@ function DiceRoll(){
             updateReRolls() 
         } 
     }
+
+    
 
     const updateReRolls = () => {
         /*Print Re-Rolls messages*/
